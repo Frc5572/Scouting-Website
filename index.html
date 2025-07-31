@@ -1,0 +1,39 @@
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSd0aU5uxNdrizvRt6PZL4cgRauRL0xAC74xru5_cDiKKv6AXA/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+    <fieldset>
+      <legend>Your Name:</legend>
+      <select id="choices" name="entry.42633613" required>
+        <option value="" disabled selected>Select one</option>
+        <option value="Cole Roberts">Cole Roberts</option>
+        <option value="Resnick">Resnick</option>
+        <option value="Reed">Reed</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <legend>Lanyard Number:</legend>
+      <label><input type="radio" name="entry.452275389" value="1" required> 1</label><br>
+      <label><input type="radio" name="entry.452275389" value="2"> 2</label><br>
+      <label><input type="radio" name="entry.452275389" value="3"> 3</label><br>
+      <label><input type="radio" name="entry.452275389" value="4"> 4</label><br>
+      <label><input type="radio" name="entry.452275389" value="5"> 5</label><br>
+      <label><input type="radio" name="entry.452275389" value="6"> 6</label><br>
+      <!-- <label><input type="radio" name="entry.452275389" value="3"> 3</label><br> -->
+    </fieldset>
+
+    <label for="rating">Match Number: <span id="rangeValue">1</span></label><br>
+    <input type="range" id="rating" name="entry.385793713" min="1" max="200" value="1" required 
+       oninput="document.getElementById('rangeValue').textContent = this.value">
+  
+
+
+
+       
+    <button type="submit">Submit</button>
+  </form>
+  
+  <iframe name="hidden_iframe" style="display:none;" onload="if(submitted) alert('Thanks! Form submitted.');"></iframe>
+  <script>
+    var submitted = false;
+  </script>
+  
+  
