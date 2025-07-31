@@ -1,77 +1,68 @@
-<form action="https://docs.google.com/forms/d/e/1FAIpQLSd0aU5uxNdrizvRt6PZL4cgRauRL0xAC74xru5_cDiKKv6AXA/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
-  <head>
-      <meta charset="UTF-8">
-      <title>Fieldsets Side by Side</title>
-      <style>
-          .form-row {
-              display: flex;
-              gap: 20px; /* Space between fieldsets */
-          }
-          fieldset {
-              flex: 1; /* Evenly distribute space */
-              border: 1px solid #ccc;
-              padding: 10px;
-          }
-      </style>
-  </head>
-  <body>
-      <form>
-          <div class="form-row">    
- 
- <style>
-      fieldset {
-        width: 150px;         /* Set a fixed width */
-        height: min-content;         /* Let height adjust with content (or set a fixed height) */
-        padding: 5px;        /* Space inside the fieldset */
-        border: 2px solid #333; /* Customize the border */
-        margin-left: 0;    /* Center horizontally */
-        box-sizing: border-box;
-       
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fieldsets Side by Side</title>
+  <style>
+    .form-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    fieldset {
+      width: 150px;
+      padding: 5px;
+      border: 2px solid #333;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+  <form action="https://docs.google.com/forms/d/e/1FAIpQLSd0aU5uxNdrizvRt6PZL4cgRauRL0xAC74xru5_cDiKKv6AXA/formResponse"
+        method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+    
+    <div class="form-row">
+      <fieldset>
+        Your Name
+        <select name="entry.42633613" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Cole Roberts">Cole Roberts</option>
+          <option value="Resnick">Resnick</option>
+          <option value="Reed">Reed</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        Lanyard Number
+        <select name="entry.452275389" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
         
-      }
-    </style>
-  <fieldset>
-    Your Name:
-    <select id="choices" name="entry.42633613" required>
-      <option value="" disabled selected>Select one</option>
-      <option value="Cole Roberts">Cole Roberts</option>
-      <option value="Resnick">Resnick</option>
-      <option value="Reed">Reed</option>
-    </select>
-  </fieldset>
+        <label for="rating">Match Number: <span id="rangeValue">1</span></label><br>
+        <input type="range" id="rating" name="entry.385793713" min="1" max="200" value="1" required
+               oninput="document.getElementById('rangeValue').textContent = this.value">
+      </fieldset>
+    </div>
 
-  <fieldset>
-    Lanyard Number:
-    <select id="choices" name="entry.452275389" required>
-      <option value="" disabled selected>Select one</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      
-    </select>
-    <!-- <label><input type="radio" name="entry.452275389" value="3"> 3</label><br> -->
-  </fieldset>
+    <button type="submit">Submit</button>
+  </form>
 
-  <fieldset>
-  <label for="rating">Match Number: <span id="rangeValue">1</span></label><br>
-  <input type="range" id="rating" name="entry.385793713" min="1" max="200" value="1" required 
-     oninput="document.getElementById('rangeValue').textContent = this.value">
-  </select>
+  <iframe name="hidden_iframe" style="display:none;"
+          onload="if(submitted) alert('Thanks! Form submitted.');"></iframe>
 
+  <script>
+    var submitted = false;
+  </script>
 
-  </div>
-</form>
 </body>
 </html>
-
-     
-  <button type="submit">Submit Form Button</button>
-</form>
-
-<iframe name="hidden_iframe" style="display:none;" onload="if(submitted) alert('Thanks! Form submitted.');"></iframe>
-<script>
-  var submitted = false;
-</script>
