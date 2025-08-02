@@ -2,46 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <body style="background-color: rgb(232, 137, 137);"></body>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>5572 Scouting Site</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    body {
+      background-color: rgb(232, 137, 137);
+    }
     .form-row {
       display: flex;
+      flex-wrap: wrap;
       gap: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     fieldset {
-      width: min-content;
-      padding: 5px;
+      min-width: 190px;
+      padding: 10px;
       border: 2px solid #333;
-      box-sizing: border-box;
+      border-radius: 8px;
+      background-color: white;
       height: min-content;
+    }
+    legend {
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
+<div class="container py-4">
+  <h1 class="text-center mb-4"><img src="https://i.imgur.com/xqjJoxr.jpeg" alt="Online Photo" width="300" height="80" style="border: 2px solid black; border-radius: 12px;"> -      5572 Scouting Site     - <img src="https://i.imgur.com/OZ2d2KR.jpeg" alt="Online Photo" width="300" height="80" style="border: 2px solid black; border-radius: 12px;"></h1>
   <form action="https://docs.google.com/forms/d/e/1FAIpQLSd0aU5uxNdrizvRt6PZL4cgRauRL0xAC74xru5_cDiKKv6AXA/formResponse"
         method="POST" target="hidden_iframe" onsubmit="submitted=true;">
-    
+
+    <h4>Pre-Match</h4>
     <div class="form-row">
-      Pre-Match
       <fieldset>
-        Your Name
-        <select name="entry.42633613" required>
+        <legend>Your Name</legend>
+        <select class="form-select" name="entry.42633613" required>
           <option value="" disabled selected>Select one</option>
           <option value="Cole Roberts">Cole Roberts</option>
           <option value="Resnick">Resnick</option>
           <option value="Reed">Reed</option>
         </select>
       </fieldset>
-
       <fieldset>
-        Lanyard Number
-        <select name="entry.452275389" required>
+        <legend>Lanyard Number</legend>
+        <select class="form-select" name="entry.452275389" required>
           <option value="" disabled selected>Select one</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -51,44 +57,34 @@
           <option value="6">6</option>
         </select>
       </fieldset>
-
       <fieldset>
-        Match Number:
-        <input type="text" name="entry.385793713" placeholder="Type answer here" required>.
-        
-        <!---<label for="rating">Match Number: <span id="rangeValue">1</span></label><br>
-        <input type="range" id="rating" name="entry.385793713" min="1" max="200" value="1" required
-               oninput="document.getElementById('rangeValue').textContent = this.value"> ---->
+        <legend>Match Number</legend>
+        <input type="text" class="form-control" name="entry.385793713" placeholder="Type answer here" required>
       </fieldset>
-
       <fieldset>
-        Team
-        <select name="entry.1142161909" required>
+        <legend>Team</legend>
+        <select class="form-select" name="entry.1142161909" required>
           <option value="" disabled selected>Select one</option>
           <option value="5572 - Rosbots">5572 - Rosbots</option>
           <option value="118 - Robonaunts">118 - Robonaunts</option>
           <option value="1690 - ORBIT">1690 - ORBIT</option>
         </select>
       </fieldset>
-
       <fieldset>
-        Robot Attendance
-        <select name="entry.942927237" required>
+        <legend>Robot Attendance</legend>
+        <select class="form-select" name="entry.942927237" required>
           <option value="" disabled selected>Select one</option>
           <option value="Present">Present</option>
           <option value="No Show">No Show</option>
         </select>
       </fieldset>
-
-      
     </div>
-    <div class="form-row">
-      Auto
-      <img src="https://i.imgur.com/3DbrkSJ.jpeg" alt="Online Photo" width="300" height="200">
 
+    <h4>Auto</h4>
+    <div class="form-row">
       <fieldset>
-        Starting Location
-        <select name="entry.1061926718" required>
+        <legend>Starting Location</legend>
+        <select class="form-select" name="entry.1061926718" required>
           <option value="" disabled selected>Select one</option>
           <option value="S1">S1</option>
           <option value="S2">S2</option>
@@ -98,319 +94,253 @@
         </select>
       </fieldset>
       <fieldset>
-        Where Robot Scored
-        <div style="display: flex; gap: 40px;">
-          
-          <!-- Column 1: A–F -->
-          <div>
-            <label><input type="checkbox" name="entry.1189704345" value="A">A</label><br>
-            <label><input type="checkbox" name="entry.1189704345" value="B">B</label><br>
-            <label><input type="checkbox" name="entry.1189704345" value="C">C</label><br>
-            <label><input type="checkbox" name="entry.1189704345" value="D">D</label><br>
-            <label><input type="checkbox" name="entry.1189704345" value="E">E</label><br>
-            <label><input type="checkbox" name="entry.1189704345" value="F">F</label><br>
-          </div>
-          
-          <!-- Column 2: G–L -->
-          <div>
-            <label><input type="checkbox" name="entry.1189704345" value="G">G</label><br>
-            <label><input type="checkbox" name="entry.1189704345" value="H">H</label><br>
-            <label><input type="checkbox" name="entry.1189704345" value="I">I</label><br>
-            <label><input type="checkbox" name="entry.1189704345" value="J">J</label><br>
-            <label><input type="checkbox" name="entry.1189704345" value="K">K</label><br>
-            <label><input type="checkbox" name="entry.1189704345" value="L">L</label><br>
-          </div>
-      
-        </div>
-      </fieldset>
-      <fieldset>
-        Exit Starting Area?
-        <select name="entry.2011066249" required>
+        <legend>Exit Starting Area?</legend>
+        <select class="form-select" name="entry.2011066249" required>
           <option value="" disabled selected>Select one</option>
           <option value="Yes">Yes</option>
           <option value="No">No</option>
           <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
         </select>
       </fieldset>
+      <div class="form-row">
+        <fieldset class="w-100">
+          <legend>Where Robot Scored</legend>
+          <div class="d-flex gap-5">
+            <div>
+              <label><input type="checkbox" name="entry.1189704345" value="A"> A</label><br>
+              <label><input type="checkbox" name="entry.1189704345" value="B"> B</label><br>
+              <label><input type="checkbox" name="entry.1189704345" value="C"> C</label><br>
+              <label><input type="checkbox" name="entry.1189704345" value="D"> D</label><br>
+              <label><input type="checkbox" name="entry.1189704345" value="E"> E</label><br>
+              <label><input type="checkbox" name="entry.1189704345" value="F"> F</label><br>
+            </div>
+            <div>
+              <label><input type="checkbox" name="entry.1189704345" value="G"> G</label><br>
+              <label><input type="checkbox" name="entry.1189704345" value="H"> H</label><br>
+              <label><input type="checkbox" name="entry.1189704345" value="I"> I</label><br>
+              <label><input type="checkbox" name="entry.1189704345" value="J"> J</label><br>
+              <label><input type="checkbox" name="entry.1189704345" value="K"> K</label><br>
+              <label><input type="checkbox" name="entry.1189704345" value="L"> L</label><br>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <img src="https://i.imgur.com/3DbrkSJ.jpeg" alt="Online Photo" width="300" height="208" style="border: 2px solid black; border-radius: 12px;">
       <fieldset>
-      Auto Processor <br>
-<label><input type="radio" name="entry.2051342965" value="0" required>0</label><br>
-<label><input type="radio" name="entry.2051342965" value="1">1</label><br>
-<label><input type="radio" name="entry.2051342965" value="2">2</label><br>
-<label><input type="radio" name="entry.2051342965" value="3">3</label><br>
-<label><input type="radio" name="entry.2051342965" value="4">4</label><br>
-<label><input type="radio" name="entry.2051342965" value="5">5</label><br>
-<label><input type="radio" name="entry.2051342965" value="6">6</label><br>
-<label><input type="radio" name="entry.2051342965" value="7">7</label><br>
-<label><input type="radio" name="entry.2051342965" value="8">8</label><br>
-</fieldset> 
-<fieldset>
-  Auto Net <br>
-<label><input type="radio" name="entry.1916771961" value="0" required>0</label><br>
-<label><input type="radio" name="entry.1916771961" value="1">1</label><br>
-<label><input type="radio" name="entry.1916771961" value="2">2</label><br>
-<label><input type="radio" name="entry.1916771961" value="3">3</label><br>
-<label><input type="radio" name="entry.1916771961" value="4">4</label><br>
-<label><input type="radio" name="entry.1916771961" value="5">5</label><br>
-<label><input type="radio" name="entry.1916771961" value="6">6</label><br>
-<label><input type="radio" name="entry.1916771961" value="7">7</label><br>
-<label><input type="radio" name="entry.1916771961" value="8">8</label><br>
-</fieldset>
-<fieldset>
-  Auto L4
-  <div style="display: flex; gap: 20px;">
-    
-    <!-- Column 1: 0-4 -->
-    <div>
-      <label><input type="radio" name="entry.345642875" value="0" required>0</label><br>
-      <label><input type="radio" name="entry.345642875" value="1">1</label><br>
-      <label><input type="radio" name="entry.345642875" value="2">2</label><br>
-      <label><input type="radio" name="entry.345642875" value="3">3</label><br>
-      
-    </div>
-    
-    <!-- Column 2: 5-8 -->
-    <div>
-      <label><input type="radio" name="entry.345642875" value="4">4</label><br>
-      <label><input type="radio" name="entry.345642875" value="5">5</label><br>
-      <label><input type="radio" name="entry.345642875" value="6">6</label><br>
-      <label><input type="radio" name="entry.345642875" value="7">7</label><br>
-    </div>
-
-  </div>
-</fieldset>
-<fieldset>
-  Auto L3
-  <div style="display: flex; gap: 20px;">
-    
-    <!-- Column 1: 0-4 -->
-    <div>
-      <label><input type="radio" name="entry.1951919616" value="0" required>0</label><br>
-      <label><input type="radio" name="entry.1951919616" value="1">1</label><br>
-      <label><input type="radio" name="entry.1951919616" value="2">2</label><br>
-      <label><input type="radio" name="entry.1951919616" value="3">3</label><br>
-      
-    </div>
-    
-    <!-- Column 2: 5-8 -->
-    <div>
-      <label><input type="radio" name="entry.1951919616" value="4">4</label><br>
-      <label><input type="radio" name="entry.1951919616" value="5">5</label><br>
-      <label><input type="radio" name="entry.1951919616" value="6">6</label><br>
-      <label><input type="radio" name="entry.1951919616" value="7">7</label><br>
-    </div>
-
-  </div>
-</fieldset>
-<fieldset>
-  Auto L2
-  <div style="display: flex; gap: 20px;">
-    
-    <!-- Column 1: 0-4 -->
-    <div>
-      <label><input type="radio" name="entry.1162467329" value="0" required>0</label><br>
-      <label><input type="radio" name="entry.1162467329" value="1">1</label><br>
-      <label><input type="radio" name="entry.1162467329" value="2">2</label><br>
-      <label><input type="radio" name="entry.1162467329" value="3">3</label><br>
-      
-    </div>
-    
-    <!-- Column 2: 5-8 -->
-    <div>
-      <label><input type="radio" name="entry.1162467329" value="4">4</label><br>
-      <label><input type="radio" name="entry.1162467329" value="5">5</label><br>
-      <label><input type="radio" name="entry.1162467329" value="6">6</label><br>
-      <label><input type="radio" name="entry.1162467329" value="7">7</label><br>
-    </div>
-
-  </div>
-</fieldset>
-<fieldset>
-  Auto L1
-  <div style="display: flex; gap: 20px;">
-    
-    <!-- Column 1: 0-4 -->
-    <div>
-      <label><input type="radio" name="entry.1430046888" value="0" required>0</label><br>
-      <label><input type="radio" name="entry.1430046888" value="1">1</label><br>
-      <label><input type="radio" name="entry.1430046888" value="2">2</label><br>
-      <label><input type="radio" name="entry.1430046888" value="3">3</label><br>
-    </div>
-    
-    <!-- Column 2: 5-8 -->
-    <div>
-      <label><input type="radio" name="entry.1430046888" value="4">4</label><br>
-      <label><input type="radio" name="entry.1430046888" value="5">5</label><br>
-      <label><input type="radio" name="entry.1430046888" value="6">6</label><br>
-      <label><input type="radio" name="entry.1430046888" value="7">7</label><br>
+        <legend>Auto Processor</legend>
+        <select class="form-select" name="entry.2051342965" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Auto Net</legend>
+        <select class="form-select" name="entry.1916771961" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Auto L4</legend>
+        <select class="form-select" name="entry.345642875" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Auto L3</legend>
+        <select class="form-select" name="entry.1951919616" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Auto L2</legend>
+        <select class="form-select" name="entry.1162467329" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Auto L1</legend>
+        <select class="form-select" name="entry.1430046888" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+      </fieldset>
     </div>
 
-  </div>
-</fieldset>
-    </div>
-
+    <h4>Teleop</h4>
     <div class="form-row">
-      Teleop
       <fieldset>
-        Teleop Processor
-        <div style="display: flex; gap: 20px;">
-          
-          <!-- Column 1: 0-4 -->
-          <div>
-            <label><input type="radio" name="entry.905449581" value="0" required>0</label><br>
-            <label><input type="radio" name="entry.905449581" value="1">1</label><br>
-            <label><input type="radio" name="entry.905449581" value="2">2</label><br>
-            <label><input type="radio" name="entry.905449581" value="3">3</label><br>
-            <label><input type="radio" name="entry.905449581" value="4">4</label><br>
-          </div>
-          
-          <!-- Column 2: 5-8 -->
-          <div>
-            <label><input type="radio" name="entry.905449581" value="5">5</label><br>
-            <label><input type="radio" name="entry.905449581" value="6">6</label><br>
-            <label><input type="radio" name="entry.905449581" value="7">7</label><br>
-            <label><input type="radio" name="entry.905449581" value="8">8</label><br>
-            <label><input type="radio" name="entry.905449581" value="9">9</label><br>
-          </div>
-      
-        </div>
+        <legend>Teleop Processor</legend>
+        <select class="form-select" name="entry.905449581" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
       </fieldset>
       <fieldset>
-        Teleop Net
-        <div style="display: flex; gap: 20px;">
-          
-          <!-- Column 1: 0-4 -->
-          <div>
-            <label><input type="radio" name="entry.550948513" value="0" required>0</label><br>
-            <label><input type="radio" name="entry.550948513" value="1">1</label><br>
-            <label><input type="radio" name="entry.550948513" value="2">2</label><br>
-            <label><input type="radio" name="entry.550948513" value="3">3</label><br>
-            <label><input type="radio" name="entry.550948513" value="4">4</label><br>
-          </div>
-          
-          <!-- Column 2: 5-8 -->
-          <div>
-            <label><input type="radio" name="entry.550948513" value="5">5</label><br>
-            <label><input type="radio" name="entry.550948513" value="6">6</label><br>
-            <label><input type="radio" name="entry.550948513" value="7">7</label><br>
-            <label><input type="radio" name="entry.550948513" value="8">8</label><br>
-            <label><input type="radio" name="entry.550948513" value="9">9</label><br>
-          </div>
-      
-        </div>
+        <legend>Teleop Net</legend>
+        <select class="form-select" name="entry.550948513" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
       </fieldset>
       <fieldset>
-        Teleop L4
-        <div style="display: flex; gap: 20px;">
-          
-          <!-- Column 1: 0-4 -->
-          <div>
-            <label><input type="radio" name="entry.300837219" value="0" required>0</label><br>
-            <label><input type="radio" name="entry.300837219" value="1">1</label><br>
-            <label><input type="radio" name="entry.300837219" value="2">2</label><br>
-            <label><input type="radio" name="entry.300837219" value="3">3</label><br>
-            <label><input type="radio" name="entry.300837219" value="4">4</label><br>
-            <label><input type="radio" name="entry.300837219" value="5">5</label><br>
-            
-          </div>
-          
-          <!-- Column 2: 5-8 -->
-          <div>
-            <label><input type="radio" name="entry.300837219" value="6">6</label><br>
-            <label><input type="radio" name="entry.300837219" value="7">7</label><br>
-            <label><input type="radio" name="entry.300837219" value="8">8</label><br>
-            <label><input type="radio" name="entry.300837219" value="9">9</label><br>
-            <label><input type="radio" name="entry.300837219" value="10">10</label><br>
-            <label><input type="radio" name="entry.300837219" value="11">11</label><br>
-          </div>
-      
-        </div>
+        <legend>Teleop L4</legend>
+        <select class="form-select" name="entry.300837219" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
       </fieldset>
       <fieldset>
-        Teleop L3
-        <div style="display: flex; gap: 20px;">
-          
-          <!-- Column 1: 0-4 -->
-          <div>
-            <label><input type="radio" name="entry.54316812" value="0" required>0</label><br>
-            <label><input type="radio" name="entry.54316812" value="1">1</label><br>
-            <label><input type="radio" name="entry.54316812" value="2">2</label><br>
-            <label><input type="radio" name="entry.54316812" value="3">3</label><br>
-            <label><input type="radio" name="entry.54316812" value="4">4</label><br>
-            <label><input type="radio" name="entry.54316812" value="5">5</label><br>
-            
-          </div>
-          
-          <!-- Column 2: 5-8 -->
-          <div>
-            <label><input type="radio" name="entry.54316812" value="6">6</label><br>
-            <label><input type="radio" name="entry.54316812" value="7">7</label><br>
-            <label><input type="radio" name="entry.54316812" value="8">8</label><br>
-            <label><input type="radio" name="entry.54316812" value="9">9</label><br>
-            <label><input type="radio" name="entry.54316812" value="10">10</label><br>
-            <label><input type="radio" name="entry.54316812" value="11">11</label><br>
-          </div>
-      
-        </div>
+        <legend>Teleop L3</legend>
+        <select class="form-select" name="entry.54316812" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
       </fieldset>
       <fieldset>
-        Teleop L2
-        <div style="display: flex; gap: 20px;">
-          
-          <!-- Column 1: 0-4 -->
-          <div>
-            <label><input type="radio" name="entry.727030243" value="0" required>0</label><br>
-            <label><input type="radio" name="entry.727030243" value="1">1</label><br>
-            <label><input type="radio" name="entry.727030243" value="2">2</label><br>
-            <label><input type="radio" name="entry.727030243" value="3">3</label><br>
-            <label><input type="radio" name="entry.727030243" value="4">4</label><br>
-            <label><input type="radio" name="entry.727030243" value="5">5</label><br>
-            
-          </div>
-          
-          <!-- Column 2: 5-8 -->
-          <div>
-            <label><input type="radio" name="entry.727030243" value="6">6</label><br>
-            <label><input type="radio" name="entry.727030243" value="7">7</label><br>
-            <label><input type="radio" name="entry.727030243" value="8">8</label><br>
-            <label><input type="radio" name="entry.727030243" value="9">9</label><br>
-            <label><input type="radio" name="entry.727030243" value="10">10</label><br>
-            <label><input type="radio" name="entry.727030243" value="11">11</label><br>
-          </div>
-      
-        </div>
+        <legend>Teleop L2</legend>
+        <select class="form-select" name="entry.727030243" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
       </fieldset>
       <fieldset>
-        Teleop L1
-        <div style="display: flex; gap: 20px;">
-          
-          <!-- Column 1: 0-4 -->
-          <div>
-            <label><input type="radio" name="entry.598969573" value="0" required>0</label><br>
-            <label><input type="radio" name="entry.598969573" value="1">1</label><br>
-            <label><input type="radio" name="entry.598969573" value="2">2</label><br>
-            <label><input type="radio" name="entry.598969573" value="3">3</label><br>
-            <label><input type="radio" name="entry.598969573" value="4">4</label><br>
-            <label><input type="radio" name="entry.598969573" value="5">5</label><br>
-            
-          </div>
-          
-          <!-- Column 2: 5-8 -->
-          <div>
-            <label><input type="radio" name="entry.598969573" value="6">6</label><br>
-            <label><input type="radio" name="entry.598969573" value="7">7</label><br>
-            <label><input type="radio" name="entry.598969573" value="8">8</label><br>
-            <label><input type="radio" name="entry.598969573" value="9">9</label><br>
-            <label><input type="radio" name="entry.598969573" value="10">10</label><br>
-            <label><input type="radio" name="entry.598969573" value="11">11</label><br>
-          </div>
-      
-        </div>
+        <legend>Teleop L1</legend>
+        <select class="form-select" name="entry.598969573" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
       </fieldset>
-      <div class="form-wrapper">
+    </div>
+
+    <h4>Scoring & Intake</h4>
+    <div class="form-row">
       <fieldset>
-        Scoring Method
-        <select name="entry.1093979612" required>
+        <legend>Scoring Method</legend>
+        <select class="form-select" name="entry.1093979612" required>
           <option value="" disabled selected>Select one</option>
           <option value="April Tag (Can Shoot Anywhere)">April Tag (Can Shoot Anywhere)</option>
           <option value="Has To Line Up">Has To Line Up</option>
@@ -418,10 +348,9 @@
           <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
         </select>
       </fieldset>
-      <legend> -</legend>
       <fieldset>
-        Coral Intake Method
-        <select name="entry.1991747744" required>
+        <legend>Coral Intake Method</legend>
+        <select class="form-select" name="entry.1991747744" required>
           <option value="" disabled selected>Select one</option>
           <option value="Feeder Station">Feeder Station</option>
           <option value="Floor">Floor</option>
@@ -430,10 +359,9 @@
           <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
         </select>
       </fieldset>
-      <legend> -</legend>
       <fieldset>
-        Algae Intake Method
-        <select name="entry.1444682807" required>
+        <legend>Algae Intake Method</legend>
+        <select class="form-select" name="entry.1444682807" required>
           <option value="" disabled selected>Select one</option>
           <option value="Off the Reef">Off the Reef</option>
           <option value="Floor">Floor</option>
@@ -443,39 +371,24 @@
         </select>
       </fieldset>
     </div>
-    Endgame
-    <div class="form-wrapper">
-    <fieldset>
-      Climb/Park
-      <select name="entry.1908684697" required>
-        <option value="" disabled selected>Select one</option>
-        <option value="Deep Climb (Lower Cage) - Successful">Deep Climb (Lower Cage) - Successful</option>
-        <option value="Shallow Climb (Higher Cage) - Successful">Shallow Climb (Higher Cage) - Successful</option>
-        <option value="Attempted To Climb, Parked">Attempted To Climb, Parked</option>
-        <option value="Attempted To Climb, No Park">Attempted To Climb, No Park</option>
-        <option value="Just Parked">Just Parked</option>
-        <option value="None/Did Not Attempt">None/Did Not Attempt</option>
-      </select>
-    </fieldset>
-    
-    <fieldset>
-     
-    Defense:
-      Rate 1-5. 1 to 2 = poor, 4 to 5 = good, 3 = No Defense
-      <select name="entry.1685817405" required>
-        <option value="" disabled selected>Select one</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-    </fieldset>
-    <fieldset>
-     
-      Driving:
-        Rate 1-5. 1 to 2 = poor, 4 to 5 = good, 3 = Neutral
-        <select name="entry.1362560271" required>
+
+    <h4>Endgame</h4>
+    <div class="form-row">
+      <fieldset>
+        <legend>Climb/Park</legend>
+        <select class="form-select" name="entry.1908684697" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Deep Climb (Lower Cage) - Successful">Deep Climb (Lower Cage) - Successful</option>
+          <option value="Shallow Climb (Higher Cage) - Successful">Shallow Climb (Higher Cage) - Successful</option>
+          <option value="Attempted To Climb, Parked">Attempted To Climb, Parked</option>
+          <option value="Attempted To Climb, No Park">Attempted To Climb, No Park</option>
+          <option value="Just Parked">Just Parked</option>
+          <option value="None/Did Not Attempt">None/Did Not Attempt</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Defense</legend>
+        <select class="form-select" name="entry.1685817405" required>
           <option value="" disabled selected>Select one</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -484,42 +397,46 @@
           <option value="5">5</option>
         </select>
       </fieldset>
-    
+      <fieldset>
+        <legend>Driving</legend>
+        <select class="form-select" name="entry.1362560271" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Tipped?</legend>
+        <select class="form-select" name="entry.616314965" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+          <option value="Almost">Almost</option>
+        </select>
+      </fieldset>
+    </div>
 
+    <div class="form-row">
+      <fieldset class="w-100">
+        <legend>Comments</legend>
+        <input type="text" class="form-control" name="entry.904774817" placeholder="Type answer here" required>
+      </fieldset>
+    </div>
 
-  </div>
-  <fieldset>
-     
-    Tipped?
-      <select name="entry.616314965" required>
-        <option value="" disabled selected>Select one</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-        <option value="Almost">Almost</option>
-      </select>
-    </fieldset>
-
-  </div>
-
- 
-Comments:
-<input type="text" name="entry.904774817" placeholder="Type answer here" required>.
-
-  </p>
-  <div class="mx-auto p-2" style="width: 200px;">
-    <button type="submit" class="btn btn-primary">Submit!</button>
-  </div>
-  
-
-    <!----<button type="submit">Submit</button> ---->
+    <div class="form-row justify-content-center">
+      <button type="submit" class="btn btn-primary">Submit!</button>
+    </div>
   </form>
 
-  <iframe name="hidden_iframe" style="display:none;"
-          onload="if(submitted) alert('Thanks! Form submitted.');"></iframe>
+  <iframe name="hidden_iframe" style="display:none;" onload="if(submitted) alert('Thanks! Form submitted.');"></iframe>
+</div>
 
-  <script>
-    var submitted = false;
-  </script>
-
+<script>
+  var submitted = false;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
