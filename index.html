@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fieldsets Side by Side</title>
+  <body style="background-color: rgb(232, 137, 137);"></body>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <title>5572 Scouting Site</title>
   <style>
     .form-row {
       display: flex;
@@ -10,10 +14,11 @@
       margin-bottom: 20px;
     }
     fieldset {
-      width: 150px;
+      width: min-content;
       padding: 5px;
       border: 2px solid #333;
       box-sizing: border-box;
+      height: min-content;
     }
   </style>
 </head>
@@ -23,6 +28,7 @@
         method="POST" target="hidden_iframe" onsubmit="submitted=true;">
     
     <div class="form-row">
+      Pre-Match
       <fieldset>
         Your Name
         <select name="entry.42633613" required>
@@ -47,14 +53,465 @@
       </fieldset>
 
       <fieldset>
+        Match Number:
+        <input type="text" name="entry.385793713" placeholder="Type answer here" required>.
         
-        <label for="rating">Match Number: <span id="rangeValue">1</span></label><br>
+        <!---<label for="rating">Match Number: <span id="rangeValue">1</span></label><br>
         <input type="range" id="rating" name="entry.385793713" min="1" max="200" value="1" required
-               oninput="document.getElementById('rangeValue').textContent = this.value">
+               oninput="document.getElementById('rangeValue').textContent = this.value"> ---->
       </fieldset>
+
+      <fieldset>
+        Team
+        <select name="entry.1142161909" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="5572 - Rosbots">5572 - Rosbots</option>
+          <option value="118 - Robonaunts">118 - Robonaunts</option>
+          <option value="1690 - ORBIT">1690 - ORBIT</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        Robot Attendance
+        <select name="entry.942927237" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Present">Present</option>
+          <option value="No Show">No Show</option>
+        </select>
+      </fieldset>
+
+      
+    </div>
+    <div class="form-row">
+      Auto
+      <img src="https://i.imgur.com/3DbrkSJ.jpeg" alt="Online Photo" width="300" height="200">
+
+      <fieldset>
+        Starting Location
+        <select name="entry.1061926718" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="S1">S1</option>
+          <option value="S2">S2</option>
+          <option value="S3">S3</option>
+          <option value="S4">S4</option>
+          <option value="S5">S5</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        Where Robot Scored
+        <div style="display: flex; gap: 40px;">
+          
+          <!-- Column 1: A–F -->
+          <div>
+            <label><input type="checkbox" name="entry.1189704345" value="A">A</label><br>
+            <label><input type="checkbox" name="entry.1189704345" value="B">B</label><br>
+            <label><input type="checkbox" name="entry.1189704345" value="C">C</label><br>
+            <label><input type="checkbox" name="entry.1189704345" value="D">D</label><br>
+            <label><input type="checkbox" name="entry.1189704345" value="E">E</label><br>
+            <label><input type="checkbox" name="entry.1189704345" value="F">F</label><br>
+          </div>
+          
+          <!-- Column 2: G–L -->
+          <div>
+            <label><input type="checkbox" name="entry.1189704345" value="G">G</label><br>
+            <label><input type="checkbox" name="entry.1189704345" value="H">H</label><br>
+            <label><input type="checkbox" name="entry.1189704345" value="I">I</label><br>
+            <label><input type="checkbox" name="entry.1189704345" value="J">J</label><br>
+            <label><input type="checkbox" name="entry.1189704345" value="K">K</label><br>
+            <label><input type="checkbox" name="entry.1189704345" value="L">L</label><br>
+          </div>
+      
+        </div>
+      </fieldset>
+      <fieldset>
+        Exit Starting Area?
+        <select name="entry.2011066249" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+          <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
+        </select>
+      </fieldset>
+      <fieldset>
+      Auto Processor <br>
+<label><input type="radio" name="entry.2051342965" value="0" required>0</label><br>
+<label><input type="radio" name="entry.2051342965" value="1">1</label><br>
+<label><input type="radio" name="entry.2051342965" value="2">2</label><br>
+<label><input type="radio" name="entry.2051342965" value="3">3</label><br>
+<label><input type="radio" name="entry.2051342965" value="4">4</label><br>
+<label><input type="radio" name="entry.2051342965" value="5">5</label><br>
+<label><input type="radio" name="entry.2051342965" value="6">6</label><br>
+<label><input type="radio" name="entry.2051342965" value="7">7</label><br>
+<label><input type="radio" name="entry.2051342965" value="8">8</label><br>
+</fieldset> 
+<fieldset>
+  Auto Net <br>
+<label><input type="radio" name="entry.1916771961" value="0" required>0</label><br>
+<label><input type="radio" name="entry.1916771961" value="1">1</label><br>
+<label><input type="radio" name="entry.1916771961" value="2">2</label><br>
+<label><input type="radio" name="entry.1916771961" value="3">3</label><br>
+<label><input type="radio" name="entry.1916771961" value="4">4</label><br>
+<label><input type="radio" name="entry.1916771961" value="5">5</label><br>
+<label><input type="radio" name="entry.1916771961" value="6">6</label><br>
+<label><input type="radio" name="entry.1916771961" value="7">7</label><br>
+<label><input type="radio" name="entry.1916771961" value="8">8</label><br>
+</fieldset>
+<fieldset>
+  Auto L4
+  <div style="display: flex; gap: 20px;">
+    
+    <!-- Column 1: 0-4 -->
+    <div>
+      <label><input type="radio" name="entry.345642875" value="0" required>0</label><br>
+      <label><input type="radio" name="entry.345642875" value="1">1</label><br>
+      <label><input type="radio" name="entry.345642875" value="2">2</label><br>
+      <label><input type="radio" name="entry.345642875" value="3">3</label><br>
+      
+    </div>
+    
+    <!-- Column 2: 5-8 -->
+    <div>
+      <label><input type="radio" name="entry.345642875" value="4">4</label><br>
+      <label><input type="radio" name="entry.345642875" value="5">5</label><br>
+      <label><input type="radio" name="entry.345642875" value="6">6</label><br>
+      <label><input type="radio" name="entry.345642875" value="7">7</label><br>
     </div>
 
-    <button type="submit">Submit</button>
+  </div>
+</fieldset>
+<fieldset>
+  Auto L3
+  <div style="display: flex; gap: 20px;">
+    
+    <!-- Column 1: 0-4 -->
+    <div>
+      <label><input type="radio" name="entry.1951919616" value="0" required>0</label><br>
+      <label><input type="radio" name="entry.1951919616" value="1">1</label><br>
+      <label><input type="radio" name="entry.1951919616" value="2">2</label><br>
+      <label><input type="radio" name="entry.1951919616" value="3">3</label><br>
+      
+    </div>
+    
+    <!-- Column 2: 5-8 -->
+    <div>
+      <label><input type="radio" name="entry.1951919616" value="4">4</label><br>
+      <label><input type="radio" name="entry.1951919616" value="5">5</label><br>
+      <label><input type="radio" name="entry.1951919616" value="6">6</label><br>
+      <label><input type="radio" name="entry.1951919616" value="7">7</label><br>
+    </div>
+
+  </div>
+</fieldset>
+<fieldset>
+  Auto L2
+  <div style="display: flex; gap: 20px;">
+    
+    <!-- Column 1: 0-4 -->
+    <div>
+      <label><input type="radio" name="entry.1162467329" value="0" required>0</label><br>
+      <label><input type="radio" name="entry.1162467329" value="1">1</label><br>
+      <label><input type="radio" name="entry.1162467329" value="2">2</label><br>
+      <label><input type="radio" name="entry.1162467329" value="3">3</label><br>
+      
+    </div>
+    
+    <!-- Column 2: 5-8 -->
+    <div>
+      <label><input type="radio" name="entry.1162467329" value="4">4</label><br>
+      <label><input type="radio" name="entry.1162467329" value="5">5</label><br>
+      <label><input type="radio" name="entry.1162467329" value="6">6</label><br>
+      <label><input type="radio" name="entry.1162467329" value="7">7</label><br>
+    </div>
+
+  </div>
+</fieldset>
+<fieldset>
+  Auto L1
+  <div style="display: flex; gap: 20px;">
+    
+    <!-- Column 1: 0-4 -->
+    <div>
+      <label><input type="radio" name="entry.1430046888" value="0" required>0</label><br>
+      <label><input type="radio" name="entry.1430046888" value="1">1</label><br>
+      <label><input type="radio" name="entry.1430046888" value="2">2</label><br>
+      <label><input type="radio" name="entry.1430046888" value="3">3</label><br>
+    </div>
+    
+    <!-- Column 2: 5-8 -->
+    <div>
+      <label><input type="radio" name="entry.1430046888" value="4">4</label><br>
+      <label><input type="radio" name="entry.1430046888" value="5">5</label><br>
+      <label><input type="radio" name="entry.1430046888" value="6">6</label><br>
+      <label><input type="radio" name="entry.1430046888" value="7">7</label><br>
+    </div>
+
+  </div>
+</fieldset>
+    </div>
+
+    <div class="form-row">
+      Teleop
+      <fieldset>
+        Teleop Processor
+        <div style="display: flex; gap: 20px;">
+          
+          <!-- Column 1: 0-4 -->
+          <div>
+            <label><input type="radio" name="entry.905449581" value="0" required>0</label><br>
+            <label><input type="radio" name="entry.905449581" value="1">1</label><br>
+            <label><input type="radio" name="entry.905449581" value="2">2</label><br>
+            <label><input type="radio" name="entry.905449581" value="3">3</label><br>
+            <label><input type="radio" name="entry.905449581" value="4">4</label><br>
+          </div>
+          
+          <!-- Column 2: 5-8 -->
+          <div>
+            <label><input type="radio" name="entry.905449581" value="5">5</label><br>
+            <label><input type="radio" name="entry.905449581" value="6">6</label><br>
+            <label><input type="radio" name="entry.905449581" value="7">7</label><br>
+            <label><input type="radio" name="entry.905449581" value="8">8</label><br>
+            <label><input type="radio" name="entry.905449581" value="9">9</label><br>
+          </div>
+      
+        </div>
+      </fieldset>
+      <fieldset>
+        Teleop Net
+        <div style="display: flex; gap: 20px;">
+          
+          <!-- Column 1: 0-4 -->
+          <div>
+            <label><input type="radio" name="entry.550948513" value="0" required>0</label><br>
+            <label><input type="radio" name="entry.550948513" value="1">1</label><br>
+            <label><input type="radio" name="entry.550948513" value="2">2</label><br>
+            <label><input type="radio" name="entry.550948513" value="3">3</label><br>
+            <label><input type="radio" name="entry.550948513" value="4">4</label><br>
+          </div>
+          
+          <!-- Column 2: 5-8 -->
+          <div>
+            <label><input type="radio" name="entry.550948513" value="5">5</label><br>
+            <label><input type="radio" name="entry.550948513" value="6">6</label><br>
+            <label><input type="radio" name="entry.550948513" value="7">7</label><br>
+            <label><input type="radio" name="entry.550948513" value="8">8</label><br>
+            <label><input type="radio" name="entry.550948513" value="9">9</label><br>
+          </div>
+      
+        </div>
+      </fieldset>
+      <fieldset>
+        Teleop L4
+        <div style="display: flex; gap: 20px;">
+          
+          <!-- Column 1: 0-4 -->
+          <div>
+            <label><input type="radio" name="entry.300837219" value="0" required>0</label><br>
+            <label><input type="radio" name="entry.300837219" value="1">1</label><br>
+            <label><input type="radio" name="entry.300837219" value="2">2</label><br>
+            <label><input type="radio" name="entry.300837219" value="3">3</label><br>
+            <label><input type="radio" name="entry.300837219" value="4">4</label><br>
+            <label><input type="radio" name="entry.300837219" value="5">5</label><br>
+            
+          </div>
+          
+          <!-- Column 2: 5-8 -->
+          <div>
+            <label><input type="radio" name="entry.300837219" value="6">6</label><br>
+            <label><input type="radio" name="entry.300837219" value="7">7</label><br>
+            <label><input type="radio" name="entry.300837219" value="8">8</label><br>
+            <label><input type="radio" name="entry.300837219" value="9">9</label><br>
+            <label><input type="radio" name="entry.300837219" value="10">10</label><br>
+            <label><input type="radio" name="entry.300837219" value="11">11</label><br>
+          </div>
+      
+        </div>
+      </fieldset>
+      <fieldset>
+        Teleop L3
+        <div style="display: flex; gap: 20px;">
+          
+          <!-- Column 1: 0-4 -->
+          <div>
+            <label><input type="radio" name="entry.54316812" value="0" required>0</label><br>
+            <label><input type="radio" name="entry.54316812" value="1">1</label><br>
+            <label><input type="radio" name="entry.54316812" value="2">2</label><br>
+            <label><input type="radio" name="entry.54316812" value="3">3</label><br>
+            <label><input type="radio" name="entry.54316812" value="4">4</label><br>
+            <label><input type="radio" name="entry.54316812" value="5">5</label><br>
+            
+          </div>
+          
+          <!-- Column 2: 5-8 -->
+          <div>
+            <label><input type="radio" name="entry.54316812" value="6">6</label><br>
+            <label><input type="radio" name="entry.54316812" value="7">7</label><br>
+            <label><input type="radio" name="entry.54316812" value="8">8</label><br>
+            <label><input type="radio" name="entry.54316812" value="9">9</label><br>
+            <label><input type="radio" name="entry.54316812" value="10">10</label><br>
+            <label><input type="radio" name="entry.54316812" value="11">11</label><br>
+          </div>
+      
+        </div>
+      </fieldset>
+      <fieldset>
+        Teleop L2
+        <div style="display: flex; gap: 20px;">
+          
+          <!-- Column 1: 0-4 -->
+          <div>
+            <label><input type="radio" name="entry.727030243" value="0" required>0</label><br>
+            <label><input type="radio" name="entry.727030243" value="1">1</label><br>
+            <label><input type="radio" name="entry.727030243" value="2">2</label><br>
+            <label><input type="radio" name="entry.727030243" value="3">3</label><br>
+            <label><input type="radio" name="entry.727030243" value="4">4</label><br>
+            <label><input type="radio" name="entry.727030243" value="5">5</label><br>
+            
+          </div>
+          
+          <!-- Column 2: 5-8 -->
+          <div>
+            <label><input type="radio" name="entry.727030243" value="6">6</label><br>
+            <label><input type="radio" name="entry.727030243" value="7">7</label><br>
+            <label><input type="radio" name="entry.727030243" value="8">8</label><br>
+            <label><input type="radio" name="entry.727030243" value="9">9</label><br>
+            <label><input type="radio" name="entry.727030243" value="10">10</label><br>
+            <label><input type="radio" name="entry.727030243" value="11">11</label><br>
+          </div>
+      
+        </div>
+      </fieldset>
+      <fieldset>
+        Teleop L1
+        <div style="display: flex; gap: 20px;">
+          
+          <!-- Column 1: 0-4 -->
+          <div>
+            <label><input type="radio" name="entry.598969573" value="0" required>0</label><br>
+            <label><input type="radio" name="entry.598969573" value="1">1</label><br>
+            <label><input type="radio" name="entry.598969573" value="2">2</label><br>
+            <label><input type="radio" name="entry.598969573" value="3">3</label><br>
+            <label><input type="radio" name="entry.598969573" value="4">4</label><br>
+            <label><input type="radio" name="entry.598969573" value="5">5</label><br>
+            
+          </div>
+          
+          <!-- Column 2: 5-8 -->
+          <div>
+            <label><input type="radio" name="entry.598969573" value="6">6</label><br>
+            <label><input type="radio" name="entry.598969573" value="7">7</label><br>
+            <label><input type="radio" name="entry.598969573" value="8">8</label><br>
+            <label><input type="radio" name="entry.598969573" value="9">9</label><br>
+            <label><input type="radio" name="entry.598969573" value="10">10</label><br>
+            <label><input type="radio" name="entry.598969573" value="11">11</label><br>
+          </div>
+      
+        </div>
+      </fieldset>
+      <div class="form-wrapper">
+      <fieldset>
+        Scoring Method
+        <select name="entry.1093979612" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="April Tag (Can Shoot Anywhere)">April Tag (Can Shoot Anywhere)</option>
+          <option value="Has To Line Up">Has To Line Up</option>
+          <option value="Dosen't/Can't Score">Dosen't/Can't Score</option>
+          <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
+        </select>
+      </fieldset>
+      <legend> -</legend>
+      <fieldset>
+        Coral Intake Method
+        <select name="entry.1991747744" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Feeder Station">Feeder Station</option>
+          <option value="Floor">Floor</option>
+          <option value="Both">Both</option>
+          <option value="None">None</option>
+          <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
+        </select>
+      </fieldset>
+      <legend> -</legend>
+      <fieldset>
+        Algae Intake Method
+        <select name="entry.1444682807" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Off the Reef">Off the Reef</option>
+          <option value="Floor">Floor</option>
+          <option value="Both">Both</option>
+          <option value="None">None</option>
+          <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
+        </select>
+      </fieldset>
+    </div>
+    Endgame
+    <div class="form-wrapper">
+    <fieldset>
+      Climb/Park
+      <select name="entry.1908684697" required>
+        <option value="" disabled selected>Select one</option>
+        <option value="Deep Climb (Lower Cage) - Successful">Deep Climb (Lower Cage) - Successful</option>
+        <option value="Shallow Climb (Higher Cage) - Successful">Shallow Climb (Higher Cage) - Successful</option>
+        <option value="Attempted To Climb, Parked">Attempted To Climb, Parked</option>
+        <option value="Attempted To Climb, No Park">Attempted To Climb, No Park</option>
+        <option value="Just Parked">Just Parked</option>
+        <option value="None/Did Not Attempt">None/Did Not Attempt</option>
+      </select>
+    </fieldset>
+    
+    <fieldset>
+     
+    Defense:
+      Rate 1-5. 1 to 2 = poor, 4 to 5 = good, 3 = No Defense
+      <select name="entry.1685817405" required>
+        <option value="" disabled selected>Select one</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </fieldset>
+    <fieldset>
+     
+      Driving:
+        Rate 1-5. 1 to 2 = poor, 4 to 5 = good, 3 = Neutral
+        <select name="entry.1362560271" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </fieldset>
+    
+
+
+  </div>
+  <fieldset>
+     
+    Tipped?
+      <select name="entry.616314965" required>
+        <option value="" disabled selected>Select one</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Almost">Almost</option>
+      </select>
+    </fieldset>
+
+  </div>
+
+ 
+Comments:
+<input type="text" name="entry.904774817" placeholder="Type answer here" required>.
+
+  </p>
+  <div class="mx-auto p-2" style="width: 200px;">
+    <button type="submit" class="btn btn-primary">Submit!</button>
+  </div>
+  
+
+    <!----<button type="submit">Submit</button> ---->
   </form>
 
   <iframe name="hidden_iframe" style="display:none;"
