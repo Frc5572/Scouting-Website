@@ -102,7 +102,7 @@ async function updateMatchDataFile() {
 
     // Fetch new data for the specified event
     const newMatchData = await fetchMatchData(EVENT_KEY);
-    allMatchData = newMatchData;
+    allMatchData[EVENT_KEY] = newMatchData;
 
     // Write updated data to file
     const jsContent = `// Auto-generated match data from The Blue Alliance API
