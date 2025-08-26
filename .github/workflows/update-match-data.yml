@@ -29,7 +29,7 @@ jobs:
       - name: Update match data
         env:
           TBA_API_KEY: ${{ secrets.TBA_API_KEY }}
-          EVENT_KEY: ${{ github.event.inputs.event_key || '2025txsan' }}
+          EVENT_KEY: ${{ github.event.inputs.event_key || '2025txbel' }}
         run: |
           cat << 'EOF' > update_match_data.js
           const fs = require('fs');
