@@ -136,7 +136,7 @@ jobs:
 
               // Fetch new data for the specified event
               const newMatchData = await fetchMatchData(EVENT_KEY);
-              allMatchData = newMatchData;
+              allMatchData[EVENT_KEY] = newMatchData;
 
               // Write updated data to file
               const jsContent = `// Auto-generated match data from The Blue Alliance API
@@ -164,17 +164,17 @@ jobs:
 
           node update_match_data.js
 
-      #- name: Commit and push changes
-       # run: |
-        #  git config --local user.email "action@github.com"
-         # git config --local user.name "GitHub Action"
-          #git add match-data.js
-          #if git diff --staged --quiet; then
-           # echo "No changes to commit"
-          #else
-           # git commit -m "Update match data for ${EVENT_KEY:-default event}"
-           # git push
-          #fi
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add match-data.js
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update match data for ${EVENT_KEY:-default event}"
+            git push
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
