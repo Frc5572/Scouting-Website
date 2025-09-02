@@ -93,11 +93,8 @@
           <option value="6">6</option>
         </select>
       </fieldset>
-      <fieldset>
-        <legend>Event Key</legend>
-        <input type="text" class="form-control persistent-field" name="entry.1847537648" id="eventKey" placeholder="e.g., 2025txda" required>
-        <small class="form-text text-muted">Format: YYYYcccc</small>
-      </fieldset>
+      <!-- Hidden event key field -->
+      <input type="hidden" name="entry.1847537648" id="eventKey" value="2025txbel">
       <fieldset>
         <legend>Match Number</legend>
         <input type="number" class="form-control" name="entry.385793713" id="matchNumber" placeholder="Match #" required min="1" max="200">
@@ -227,7 +224,7 @@
       </fieldset>
       <fieldset>
         <legend>Auto L2</legend>
-        <select class="form-select" name="entry.1162467329" required>
+        <select class="form-control" name="entry.1162467329" required>
           <option value="" disabled selected>Select one</option>
           <option value="0">0</option>
           <option value="1">1</option>
