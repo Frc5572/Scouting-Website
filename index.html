@@ -482,6 +482,9 @@
     // Try to load match data if available
     if (typeof window.MATCH_DATA !== 'undefined') {
       matchData = window.MATCH_DATA;
+      console.log('Match data loaded:', matchData);
+    } else {
+      console.log('No match data found in match-data.js file');
     }
   });
 
@@ -553,9 +556,11 @@
     const teamSelect = document.getElementById('teamSelect');
     const loadingIndicator = document.getElementById('teamLoadingIndicator');
     
+    console.log('Loading teams for:', eventKey, 'match:', matchNumber);
+    
     if (!eventKey || !matchNumber) {
       teamSelect.disabled = true;
-      teamSelect.innerHTML = '<option value="" disabled selected>Enter event key and match number first</option>';
+      teamSelect.innerHTML = '<option value="" disabled selected>Enter match number first</option>';
       return;
     }
 
@@ -566,11 +571,13 @@
 
     // Try to get teams from local match data first
     if (matchData && matchData[eventKey] && matchData[eventKey][matchNumber]) {
+      console.log('Found teams in local data:', matchData[eventKey][matchNumber]);
       populateTeamSelect(matchData[eventKey][matchNumber]);
       loadingIndicator.style.display = 'none';
       return;
     }
 
+    console.log('No local data found, trying API...');
     // Fallback to API call if local data not available
     fetchTeamsFromAPI(eventKey, matchNumber);
   }
