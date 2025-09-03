@@ -77,9 +77,8 @@
 
     <h4>Pre-Match</h4>
     <div class="form-row">
-    
       <fieldset>
-        <legend>Your Full Name</legend> 
+        <legend>Your Full Name</legend>
         <input type="text" class="form-control persistent-field" name="entry.42633613" id="userName" placeholder="Enter your name" required>
       </fieldset>
        <fieldset>
@@ -475,11 +474,17 @@
 </div>
 
 <script>
+  // Configuration - Change this line to set your event key
+  const DEFAULT_EVENT_KEY = '2025txbel';
+  
   let submitted = false;
   let matchData = null;
 
   // Load persistent data on page load
   window.addEventListener('load', function() {
+    // Set the event key automatically
+    document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
+    
     loadPersistentData();
     initializeMatchNumber();
     
@@ -498,8 +503,8 @@
       savePersistentData();
     }
     
-    // Load teams when event key or match number changes
-    if (e.target.id === 'eventKey' || e.target.id === 'matchNumber') {
+    // Load teams when match number changes (event key is now fixed)
+    if (e.target.id === 'matchNumber') {
       loadTeamsForMatch();
     }
   });
@@ -555,16 +560,18 @@
   }
 
   function loadTeamsForMatch() {
-    const eventKey = document.getElementById('eventKey').value;
+    const eventKey = DEFAULT_EVENT_KEY; // Use the configured event key
     const matchNumber = parseInt(document.getElementById('matchNumber').value);
     const teamSelect = document.getElementById('teamSelect');
     const loadingIndicator = document.getElementById('teamLoadingIndicator');
     
     console.log('Loading teams for:', eventKey, 'match:', matchNumber);
     
-    if (!eventKey || !matchNumber) {
+    if (!matchNumber || isNaN(matchNumber)) {
+      console.log('No valid match number provided');
       teamSelect.disabled = true;
       teamSelect.innerHTML = '<option value="" disabled selected>Enter match number first</option>';
+      loadingIndicator.style.display = 'none';
       return;
     }
 
@@ -581,7 +588,12 @@
       return;
     }
 
-    console.log('No local data found, trying API...');
+    console.log('No local data found for match', matchNumber, 'in event', eventKey);
+    console.log('Available events in matchData:', matchData ? Object.keys(matchData) : 'No match data');
+    if (matchData && matchData[eventKey]) {
+      console.log('Available matches for', eventKey + ':', Object.keys(matchData[eventKey]));
+    }
+    
     // Fallback to API call if local data not available
     fetchTeamsFromAPI(eventKey, matchNumber);
   }
@@ -689,7 +701,8 @@
       // Reset the form
       document.getElementById('scoutingForm').reset();
       
-      // Restore persistent data
+      // Restore the event key and persistent data
+      document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
       loadPersistentData();
       
       // Set next match number
@@ -713,6 +726,4 @@
     savePersistentData();
   });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<script src="
