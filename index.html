@@ -81,7 +81,7 @@
         <legend>Your Full Name</legend>
         <input type="text" class="form-control persistent-field" name="entry.42633613" id="userName" placeholder="Enter your name" required>
       </fieldset>
-      <fieldset>
+       <fieldset>
         <legend>Lanyard Number</legend>
         <select class="form-select persistent-field" name="entry.452275389" id="lanyardNumber" required>
           <option value="" disabled selected>Select one</option>
@@ -93,8 +93,11 @@
           <option value="6">6</option>
         </select>
       </fieldset>
-      <!-- Hidden event key field -->
-      <input type="hidden" name="entry.1847537648" id="eventKey" value="2025txbel">
+      <fieldset>
+        <legend>Event Key</legend>
+        <input type="text" class="form-control persistent-field" name="entry.1847537648" id="eventKey" placeholder="e.g., 2025txda" required>
+        <small class="form-text text-muted">Format: YYYYcccc</small>
+      </fieldset>
       <fieldset>
         <legend>Match Number</legend>
         <input type="number" class="form-control" name="entry.385793713" id="matchNumber" placeholder="Match #" required min="1" max="200">
