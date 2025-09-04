@@ -594,62 +594,6 @@
       console.log('Available matches for', eventKey + ':', Object.keys(matchData[eventKey]));
     }
     
-    // Fallback to API call if local data not available
-    fetchTeamsFromAPI(eventKey, matchNumber);
-  }
-
-  function fetchTeamsFromAPI(eventKey, matchNumber) {
-    const matchKey = `${eventKey}_qm${matchNumber}`;
-    const apiUrl = `https://www.thebluealliance.com/api/v3/match/${matchKey}`;
-    
-    fetch(apiUrl, {
-      headers: {
-        'X-TBA-Auth-Key': 'YOUR_TBA_API_KEY_HERE' // You'll need to replace this
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      const teams = [];
-      
-      // Extract teams from blue and red alliances
-      if (data.alliances && data.alliances.blue && data.alliances.blue.team_keys) {
-        teams.push(...data.alliances.blue.team_keys.map(key => ({
-          key: key,
-          number: key.replace('frc', ''),
-          alliance: 'blue'
-        })));
-      }
-      
-      if (data.alliances && data.alliances.red && data.alliances.red.team_keys) {
-        teams.push(...data.alliances.red.team_keys.map(key => ({
-          key: key,
-          number: key.replace('frc', ''),
-          alliance: 'red'
-        })));
-      }
-      
-      populateTeamSelect(teams);
-    })
-    .catch(error => {
-      console.error('Error fetching match data:', error);
-      showErrorMessage();
-      
-      // Fallback to manual entry
-      const teamSelect = document.getElementById('teamSelect');
-      teamSelect.innerHTML = `
-        <option value="" disabled selected>Error loading - enter manually</option>
-        <option value="Manual Entry">Manual Entry</option>
-      `;
-      teamSelect.disabled = false;
-    })
-    .finally(() => {
-      document.getElementById('teamLoadingIndicator').style.display = 'none';
-    });
   }
 
   function populateTeamSelect(teams) {
