@@ -610,10 +610,10 @@
     teams.forEach(team => {
       const option = document.createElement('option');
       const teamNumber = typeof team === 'string' ? team.replace('frc', '') : team.number;
-      const alliance = team.alliance ? ` (${team.alliance})` : '';
+      //const alliance = team.alliance ? ` (${team.alliance})` : '';
       
       option.value = `${teamNumber}`;
-      option.textContent = `${teamNumber}${alliance}`;
+      option.textContent = `${teamNumber}`; // Removed alliance display
       teamSelect.appendChild(option);
     });
     
