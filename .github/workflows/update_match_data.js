@@ -2,6 +2,17 @@
 const fs = require('fs');
 const axios = require('axios');
 
+const TBA_API_KEY = process.env.TBA_API_KEY;
+const EVENT_KEY = process.env.EVENT_KEY;
+
+if (!TBA_API_KEY) {
+    console.error('TBA_API_KEY environment variable is required');
+    process.exit(1);
+}
+if (!EVENT_KEY) {
+    console.error('EVENT_KEY environment variable is required');
+    process.exit(1);
+}
 
 async function fetchMatchData(eventKey) {
     try {
@@ -61,19 +72,6 @@ window.MATCH_DATA = ${JSON.stringify(allMatchData, null, 2)};`;
     }
 }
 
-
-const TBA_API_KEY = process.env.TBA_API_KEY;
-const EVENT_KEY = process.env.EVENT_KEY;
-
-if (!TBA_API_KEY) {
-    console.error('TBA_API_KEY environment variable is required');
-    process.exit(1);
-}
-if (!EVENT_KEY) {
-    console.error('EVENT_KEY environment variable is required');
-    process.exit(1);
-
-}
 // Run the update
 updateMatchDataFile().then(success => {
     if (!success) {
