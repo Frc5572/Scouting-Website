@@ -32,7 +32,7 @@ jobs:
           EVENT_KEY: ${{ github.event.inputs.event_key || '2025txbel' }}
         run: |
           npm install
-          node update_match_data.js
+          node .github/workflows/update_match_data.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
