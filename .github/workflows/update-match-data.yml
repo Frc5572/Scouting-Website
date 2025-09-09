@@ -31,8 +31,150 @@ jobs:
           TBA_API_KEY: ${{ secrets.TBA_API_KEY }}
           EVENT_KEY: ${{ github.event.inputs.event_key || '2025txbel' }}
         run: |
-          npm install
-          node .github/workflows/update_match_data.js
+          cat << 'EOF' > update_match_data.js
+          const fs = require('fs');
+          const https = require('https');
+
+          const TBA_API_KEY = process.env.TBA_API_KEY;
+          const EVENT_KEY = process.env.EVENT_KEY;
+
+          if (!TBA_API_KEY) {
+            console.error('TBA_API_KEY environment variable is required');
+            process.exit(1);
+          }
+
+          function makeAPIRequest(url) {
+            return new Promise((resolve, reject) => {
+              const options = {
+                headers: {
+                  'X-TBA-Auth-Key': TBA_API_KEY,
+                  'User-Agent': 'FRC5572-ScoutingApp/1.0'
+                }
+              };
+
+              https.get(url, options, (res) => {
+                let data = '';
+                
+                res.on('data', (chunk) => {
+                  data += chunk;
+                });
+                
+                res.on('end', () => {
+                  if (res.statusCode === 200) {
+                    try {
+                      resolve(JSON.parse(data));
+                    } catch (e) {
+                      reject(new Error(`Failed to parse JSON: ${e.message}`));
+                    }
+                  } else {
+                    reject(new Error(`HTTP ${res.statusCode}: ${data}`));
+                  }
+                });
+              }).on('error', reject);
+            });
+          }
+
+          async function fetchMatchData(eventKey) {
+            try {
+              console.log(`Fetching matches for event: ${eventKey}`);
+              const matchesUrl = `https://www.thebluealliance.com/api/v3/event/${eventKey}/matches`;
+              const matches = await makeAPIRequest(matchesUrl);
+              
+              const matchData = {};
+              
+              for (const match of matches) {
+                if (match.comp_level === 'qm') { // Only qualification matches
+                  const matchNumber = match.match_number;
+                  const teams = [];
+                  
+                  // Add blue alliance teams
+                  if (match.alliances && match.alliances.blue && match.alliances.blue.team_keys) {
+                    for (const teamKey of match.alliances.blue.team_keys) {
+                      teams.push({
+                        key: teamKey,
+                        number: teamKey.replace('frc', ''),
+                        alliance: 'blue'
+                      });
+                    }
+                  }
+                  
+                  // Add red alliance teams
+                  if (match.alliances && match.alliances.red && match.alliances.red.team_keys) {
+                    for (const teamKey of match.alliances.red.team_keys) {
+                      teams.push({
+                        key: teamKey,
+                        number: teamKey.replace('frc', ''),
+                        alliance: 'red'
+                      });
+                    }
+                  }
+                  
+                  matchData[matchNumber] = teams;
+                }
+              }
+              
+              return matchData;
+            } catch (error) {
+              console.error(`Error fetching match data for ${eventKey}:`, error.message);
+              return {};
+            }
+          }
+
+          async function updateMatchDataFile() {
+            try {
+              // Load existing data
+              let allMatchData = {};
+              try {
+                const existingData = fs.readFileSync('match-data.js', 'utf8');
+                const dataMatch = existingData.match(/window\.MATCH_DATA\s*=\s*({[\s\S]*?});/);
+                if (dataMatch) {
+                  allMatchData = JSON.parse(dataMatch[1]);
+                }
+              } catch (e) {
+                console.log('No existing match-data.js found, creating new file');
+              }
+
+              // Fetch new data for the specified event
+              const newMatchData = await fetchMatchData(EVENT_KEY);
+              allMatchData[EVENT_KEY] = newMatchData;
+
+              // Write updated data to file
+              const jsContent = `// Auto-generated match data from The Blue Alliance API
+          // Last updated: ${new Date().toISOString()}
+          window.MATCH_DATA = ${JSON.stringify(allMatchData, null, 2)};`;
+
+              fs.writeFileSync('match-data.js', jsContent);
+              console.log(`Successfully updated match data for ${EVENT_KEY}`);
+              console.log(`Total matches: ${Object.keys(newMatchData).length}`);
+              
+              return Object.keys(newMatchData).length > 0;
+            } catch (error) {
+              console.error('Error updating match data:', error);
+              return false;
+            }
+          }
+
+          // Run the update
+          updateMatchDataFile().then(success => {
+            if (!success) {
+              process.exit(1);
+            }
+          });
+          EOF
+
+          node update_match_data.js
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add match-data.js
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update match data for ${EVENT_KEY:-default event}"
+            git push
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
