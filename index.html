@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>5572 Scouting Site</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="match-data.js"></script>
@@ -78,7 +81,7 @@
         <legend>Your Full Name</legend>
         <input type="text" class="form-control persistent-field" name="entry.42633613" id="userName" placeholder="Enter your name" required>
       </fieldset>
-      <fieldset>
+       <fieldset>
         <legend>Lanyard Number</legend>
         <select class="form-select persistent-field" name="entry.452275389" id="lanyardNumber" required>
           <option value="" disabled selected>Select one</option>
@@ -91,9 +94,9 @@
         </select>
       </fieldset>
       <fieldset>
-        <legend>Event Key</legend>
-        <input type="text" class="form-control persistent-field" name="entry.1847537648" id="eventKey" placeholder="e.g., 2025txda" required>
-        <small class="form-text text-muted">Format: YYYYcccc</small>
+        <legend>Event: 2025txbel</legend>
+        <input type="hidden" name="entry.1847537648" id="eventKey" value="2025txbel">
+        <div class="form-control-static">Belton Event</div>
       </fieldset>
       <fieldset>
         <legend>Match Number</legend>
@@ -224,7 +227,7 @@
       </fieldset>
       <fieldset>
         <legend>Auto L2</legend>
-        <select class="form-select" name="entry.1162467329" required>
+        <select class="form-control" name="entry.1162467329" required>
           <option value="" disabled selected>Select one</option>
           <option value="0">0</option>
           <option value="1">1</option>
@@ -471,17 +474,26 @@
 </div>
 
 <script>
+  // Configuration - Change this line to set your event key
+  const DEFAULT_EVENT_KEY = '2025txbel';
+  
   let submitted = false;
   let matchData = null;
 
   // Load persistent data on page load
   window.addEventListener('load', function() {
+    // Set the event key automatically
+    document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
+    
     loadPersistentData();
     initializeMatchNumber();
     
     // Try to load match data if available
     if (typeof window.MATCH_DATA !== 'undefined') {
       matchData = window.MATCH_DATA;
+      console.log('Match data loaded:', matchData);
+    } else {
+      console.log('No match data found in match-data.js file');
     }
   });
 
@@ -491,8 +503,8 @@
       savePersistentData();
     }
     
-    // Load teams when event key or match number changes
-    if (e.target.id === 'eventKey' || e.target.id === 'matchNumber') {
+    // Load teams when match number changes (event key is now fixed)
+    if (e.target.id === 'matchNumber') {
       loadTeamsForMatch();
     }
   });
@@ -540,7 +552,7 @@
       matchNumberField.value = window.scoutingPersistentData.lastMatchNumber + 1;
     } else if (!matchNumberField.value) {
       // If no previous match and field is empty, start with 1
-      matchNumberField.value = 1;
+      matchNumberField.value = 0;
     }
     
     // Load teams for current match
@@ -548,14 +560,18 @@
   }
 
   function loadTeamsForMatch() {
-    const eventKey = document.getElementById('eventKey').value;
+    const eventKey = DEFAULT_EVENT_KEY; // Use the configured event key
     const matchNumber = parseInt(document.getElementById('matchNumber').value);
     const teamSelect = document.getElementById('teamSelect');
     const loadingIndicator = document.getElementById('teamLoadingIndicator');
     
-    if (!eventKey || !matchNumber) {
+    console.log('Loading teams for:', eventKey, 'match:', matchNumber);
+    
+    if (!matchNumber || isNaN(matchNumber)) {
+      console.log('No valid match number provided');
       teamSelect.disabled = true;
-      teamSelect.innerHTML = '<option value="" disabled selected>Enter event key and match number first</option>';
+      teamSelect.innerHTML = '<option value="" disabled selected>Enter match number first</option>';
+      loadingIndicator.style.display = 'none';
       return;
     }
 
@@ -566,67 +582,18 @@
 
     // Try to get teams from local match data first
     if (matchData && matchData[eventKey] && matchData[eventKey][matchNumber]) {
+      console.log('Found teams in local data:', matchData[eventKey][matchNumber]);
       populateTeamSelect(matchData[eventKey][matchNumber]);
       loadingIndicator.style.display = 'none';
       return;
     }
 
-    // Fallback to API call if local data not available
-    fetchTeamsFromAPI(eventKey, matchNumber);
-  }
-
-  function fetchTeamsFromAPI(eventKey, matchNumber) {
-    const matchKey = `${eventKey}_qm${matchNumber}`;
-    const apiUrl = `https://www.thebluealliance.com/api/v3/match/${matchKey}`;
+    console.log('No local data found for match', matchNumber, 'in event', eventKey);
+    console.log('Available events in matchData:', matchData ? Object.keys(matchData) : 'No match data');
+    if (matchData && matchData[eventKey]) {
+      console.log('Available matches for', eventKey + ':', Object.keys(matchData[eventKey]));
+    }
     
-    fetch(apiUrl, {
-      headers: {
-        'X-TBA-Auth-Key': 'YOUR_TBA_API_KEY_HERE' // You'll need to replace this
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      const teams = [];
-      
-      // Extract teams from blue and red alliances
-      if (data.alliances && data.alliances.blue && data.alliances.blue.team_keys) {
-        teams.push(...data.alliances.blue.team_keys.map(key => ({
-          key: key,
-          number: key.replace('frc', ''),
-          alliance: 'blue'
-        })));
-      }
-      
-      if (data.alliances && data.alliances.red && data.alliances.red.team_keys) {
-        teams.push(...data.alliances.red.team_keys.map(key => ({
-          key: key,
-          number: key.replace('frc', ''),
-          alliance: 'red'
-        })));
-      }
-      
-      populateTeamSelect(teams);
-    })
-    .catch(error => {
-      console.error('Error fetching match data:', error);
-      showErrorMessage();
-      
-      // Fallback to manual entry
-      const teamSelect = document.getElementById('teamSelect');
-      teamSelect.innerHTML = `
-        <option value="" disabled selected>Error loading - enter manually</option>
-        <option value="Manual Entry">Manual Entry</option>
-      `;
-      teamSelect.disabled = false;
-    })
-    .finally(() => {
-      document.getElementById('teamLoadingIndicator').style.display = 'none';
-    });
   }
 
   function populateTeamSelect(teams) {
@@ -643,10 +610,10 @@
     teams.forEach(team => {
       const option = document.createElement('option');
       const teamNumber = typeof team === 'string' ? team.replace('frc', '') : team.number;
-      const alliance = team.alliance ? ` (${team.alliance})` : '';
+      //const alliance = team.alliance ? ` (${team.alliance})` : '';
       
       option.value = `${teamNumber}`;
-      option.textContent = `${teamNumber}${alliance}`;
+      option.textContent = `${teamNumber}`; // Removed alliance display
       teamSelect.appendChild(option);
     });
     
@@ -678,7 +645,8 @@
       // Reset the form
       document.getElementById('scoutingForm').reset();
       
-      // Restore persistent data
+      // Restore the event key and persistent data
+      document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
       loadPersistentData();
       
       // Set next match number
@@ -702,6 +670,4 @@
     savePersistentData();
   });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<script src="
