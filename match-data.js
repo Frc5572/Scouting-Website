@@ -1,4 +1,3 @@
-
 // Auto-generated match data from The Blue Alliance API
 // Last updated: 2025-08-26T23:01:57.684Z
 window.MATCH_DATA = {
