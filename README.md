@@ -18,6 +18,6 @@ Mentors:
 Alex Resnick, Watson Wilson
 
 Associates: 
-Copilot; Microsoft, ChatGPT; OpenAI LP
+Copilot; Microsoft, ChatGPT; OpenAI LP, ClaudeAI; Anthropic
 
 Front-end formatting made possible by Bootstrap.
