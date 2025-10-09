@@ -106,13 +106,26 @@
         <legend>Match Number</legend>
         <input type="number" class="form-control" name="entry.385793713" id="matchNumber" placeholder="Match #" required min="1" max="200">
       </fieldset>
-      <fieldset>
-        <legend>Team</legend>
-        <select class="form-select" name="entry.1142161909" id="teamSelect" required disabled>
-          <option value="" disabled selected>Select match first</option>
-        </select>
-        <small id="teamLoadingIndicator" class="form-text text-muted" style="display: none;">Loading teams...</small>
-      </fieldset>
+     <fieldset>
+  <legend>Team</legend>
+  <select class="form-select" name="entry.1142161909_select" id="teamSelect" disabled>
+    <option value="" disabled selected>Select match first</option>
+  </select>
+  <small id="teamLoadingIndicator" class="form-text text-muted" style="display: none;">Loading teams...</small>
+  
+  <div class="mt-2">
+    <label for="teamInput" class="form-label" style="font-size: 0.875rem;">Or enter team manually:</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      name="entry.1142161909_input" 
+      id="teamInput" 
+      placeholder="Enter team number"
+    >
+  </div>
+  
+  <input type="hidden" name="entry.1142161909" id="teamFinal" required>
+</fieldset>
       <fieldset>
         <legend>Robot Attendance</legend>
         <select class="form-select" name="entry.942927237" required>
