@@ -106,13 +106,23 @@
         <legend>Match Number</legend>
         <input type="number" class="form-control" name="entry.385793713" id="matchNumber" placeholder="Match #" required min="1" max="200">
       </fieldset>
-     <fieldset>
-        <legend>Team</legend>
-        <select class="form-select" name="entry.1142161909" id="teamSelect" required disabled>
-          <option value="" disabled selected>Select match first</option>
-        </select>
-        <small id="teamLoadingIndicator" class="form-text text-muted" style="display: none;">Loading teams...</small>
-      </fieldset>
+    <fieldset>
+  <legend>Team</legend>
+  <input 
+    type="text" 
+    class="form-control" 
+    name="entry.1142161909" 
+    id="teamInput" 
+    list="teamDatalist"
+    placeholder="Enter or select team number" 
+    required
+    disabled
+  >
+  <datalist id="teamDatalist">
+    <option value="">Select match first</option>
+  </datalist>
+  <small id="teamLoadingIndicator" class="form-text text-muted" style="display: none;">Loading teams...</small>
+</fieldset>
       <fieldset>
         <legend>Robot Attendance</legend>
         <select class="form-select" name="entry.942927237" required>
@@ -709,65 +719,72 @@ function decrementTeleopL1() {
   }
 
   function loadTeamsForMatch() {
-    const eventKey = DEFAULT_EVENT_KEY; // Use the configured event key
-    const matchNumber = parseInt(document.getElementById('matchNumber').value);
-    const teamSelect = document.getElementById('teamSelect');
-    const loadingIndicator = document.getElementById('teamLoadingIndicator');
-    
-    console.log('Loading teams for:', eventKey, 'match:', matchNumber);
-    
-    if (!matchNumber || isNaN(matchNumber)) {
-      console.log('No valid match number provided');
-      teamSelect.disabled = true;
-      teamSelect.innerHTML = '<option value="" disabled selected>Enter match number first</option>';
-      loadingIndicator.style.display = 'none';
-      return;
-    }
-
-    // Show loading state
-    loadingIndicator.style.display = 'block';
-    teamSelect.disabled = true;
-    teamSelect.innerHTML = '<option value="" disabled selected>Loading teams...</option>';
-
-    // Try to get teams from local match data first
-    if (matchData && matchData[eventKey] && matchData[eventKey][matchNumber]) {
-      console.log('Found teams in local data:', matchData[eventKey][matchNumber]);
-      populateTeamSelect(matchData[eventKey][matchNumber]);
-      loadingIndicator.style.display = 'none';
-      return;
-    }
-
-    console.log('No local data found for match', matchNumber, 'in event', eventKey);
-    console.log('Available events in matchData:', matchData ? Object.keys(matchData) : 'No match data');
-    if (matchData && matchData[eventKey]) {
-      console.log('Available matches for', eventKey + ':', Object.keys(matchData[eventKey]));
-    }
-    
+  const eventKey = DEFAULT_EVENT_KEY;
+  const matchNumber = parseInt(document.getElementById('matchNumber').value);
+  const teamInput = document.getElementById('teamInput');
+  const loadingIndicator = document.getElementById('teamLoadingIndicator');
+  
+  console.log('Loading teams for:', eventKey, 'match:', matchNumber);
+  
+  if (!matchNumber || isNaN(matchNumber)) {
+    console.log('No valid match number provided');
+    teamInput.disabled = true;
+    teamInput.placeholder = 'Enter match number first';
+    document.getElementById('teamDatalist').innerHTML = '<option value="">Enter match number first</option>';
+    loadingIndicator.style.display = 'none';
+    return;
   }
 
-  function populateTeamSelect(teams) {
-    const teamSelect = document.getElementById('teamSelect');
-    
-    if (!teams || teams.length === 0) {
-      teamSelect.innerHTML = '<option value="" disabled selected>No teams found</option>';
-      teamSelect.disabled = true;
-      return;
-    }
-    
-    teamSelect.innerHTML = '<option value="" disabled selected>Select team</option>';
-    
-    teams.forEach(team => {
-      const option = document.createElement('option');
-      const teamNumber = typeof team === 'string' ? team.replace('frc', '') : team.number;
-      //const alliance = team.alliance ? ` (${team.alliance})` : '';
-      
-      option.value = `${teamNumber}`;
-      option.textContent = `${teamNumber}`; // Removed alliance display
-      teamSelect.appendChild(option);
-    });
-    
-    teamSelect.disabled = false;
+  // Show loading state
+  loadingIndicator.style.display = 'block';
+  teamInput.disabled = true;
+  teamInput.placeholder = 'Loading teams...';
+  document.getElementById('teamDatalist').innerHTML = '<option value="">Loading teams...</option>';
+
+  // Try to get teams from local match data first
+  if (matchData && matchData[eventKey] && matchData[eventKey][matchNumber]) {
+    console.log('Found teams in local data:', matchData[eventKey][matchNumber]);
+    populateTeamSelect(matchData[eventKey][matchNumber]);
+    loadingIndicator.style.display = 'none';
+    return;
   }
+
+  console.log('No local data found for match', matchNumber, 'in event', eventKey);
+  console.log('Available events in matchData:', matchData ? Object.keys(matchData) : 'No match data');
+  if (matchData && matchData[eventKey]) {
+    console.log('Available matches for', eventKey + ':', Object.keys(matchData[eventKey]));
+  }
+  
+  // Enable input even if no data found, so user can type manually
+  teamInput.disabled = false;
+  teamInput.placeholder = 'Enter team number manually';
+  document.getElementById('teamDatalist').innerHTML = '';
+  loadingIndicator.style.display = 'none';
+}
+
+function populateTeamSelect(teams) {
+  const teamInput = document.getElementById('teamInput');
+  const teamDatalist = document.getElementById('teamDatalist');
+  
+  if (!teams || teams.length === 0) {
+    teamInput.placeholder = 'Enter team number manually';
+    teamInput.disabled = false;
+    teamDatalist.innerHTML = '';
+    return;
+  }
+  
+  teamDatalist.innerHTML = '';
+  
+  teams.forEach(team => {
+    const option = document.createElement('option');
+    const teamNumber = typeof team === 'string' ? team.replace('frc', '') : team.number;
+    option.value = teamNumber;
+    teamDatalist.appendChild(option);
+  });
+  
+  teamInput.disabled = false;
+  teamInput.placeholder = 'Enter or select team number';
+}
 
   function showErrorMessage() {
     const errorMessage = document.getElementById('errorMessage');
