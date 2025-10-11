@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -65,7 +65,7 @@
   <h1 class="text-center mb-4"><img src="https://i.imgur.com/xqjJoxr.jpeg" alt="Online Photo" width="350" height="80" style="border: 2px solid black; border-radius: 12px;"> -      5572 Scouting Site     - <img src="https://i.imgur.com/OZ2d2KR.jpeg" alt="Online Photo" width="350" height="80" style="border: 2px solid black; border-radius: 12px;"></h1>
   
   <div id="successMessage" class="success-message">
-    Form submitted successfully! Ready for next match.
+    If password is correct, the form submitted successfully. Form reseted and ready for next match.
   </div>
 
   <div id="errorMessage" class="error-message">
@@ -77,6 +77,10 @@
 
     <h4>Pre-Match</h4>
     <div class="form-row">
+      <fieldset>
+        <legend>Password</legend>
+        <input type="text" class="form-control persistent-field" name="entry.823625560" id="password" placeholder="Enter the Passwood" required>
+      </fieldset>
       <fieldset>
         <legend>Your Full Name</legend>
         <input type="text" class="form-control persistent-field" name="entry.42633613" id="userName" placeholder="Enter your name" required>
@@ -94,21 +98,31 @@
         </select>
       </fieldset>
       <fieldset>
-        <legend>Event: 2025txbel</legend>
+        <legend>Event: TRI - 2025</legend>
         <input type="hidden" name="entry.1847537648" id="eventKey" value="2025txbel">
-        <div class="form-control-static">Belton Event</div>
+        <div class="form-control-static">Round Robin 1 and/or 2</div>
       </fieldset>
       <fieldset>
         <legend>Match Number</legend>
         <input type="number" class="form-control" name="entry.385793713" id="matchNumber" placeholder="Match #" required min="1" max="200">
       </fieldset>
-      <fieldset>
-        <legend>Team</legend>
-        <select class="form-select" name="entry.1142161909" id="teamSelect" required disabled>
-          <option value="" disabled selected>Select match first</option>
-        </select>
-        <small id="teamLoadingIndicator" class="form-text text-muted" style="display: none;">Loading teams...</small>
-      </fieldset>
+    <fieldset>
+  <legend>Team (For today (10/10/2025), write in the team NUMBER:</legend>
+  <input 
+    type="text" 
+    class="form-control" 
+    name="entry.1142161909" 
+    id="teamInput" 
+    list="teamDatalist"
+    placeholder="Enter or select team number" 
+    required
+    disabled
+  >
+  <datalist id="teamDatalist">
+    <option value="">Select match first</option>
+  </datalist>
+  <small id="teamLoadingIndicator" class="form-text text-muted" style="display: none;">Loading teams...</small>
+</fieldset>
       <fieldset>
         <legend>Robot Attendance</legend>
         <select class="form-select" name="entry.942927237" required>
@@ -167,93 +181,51 @@
       <img src="https://i.imgur.com/3DbrkSJ.jpeg" alt="Online Photo" width="300" height="208" style="border: 2px solid black; border-radius: 12px;">
       <fieldset>
         <legend>Auto Processor</legend>
-        <select class="form-select" name="entry.2051342965" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoProcessor()">-</button>
+          <input type="number" class="form-control text-center" name="entry.2051342965" id="autoProcessor" placeholder="0" required min="0" max="12" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementAutoProcessor()">+</button>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Auto Net</legend>
-        <select class="form-select" name="entry.1916771961" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoNet()">-</button>
+          <input type="number" class="form-control text-center" name="entry.1916771961" id="autoNet" placeholder="0" required min="0" max="8" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementAutoNet()">+</button>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Auto L4</legend>
-        <select class="form-select" name="entry.345642875" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoL4()">-</button>
+          <input type="number" class="form-control text-center" name="entry.345642875" id="autoL4" placeholder="0" required min="0" max="12" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementAutoL4()">+</button>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Auto L3</legend>
-        <select class="form-select" name="entry.1951919616" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoL3()">-</button>
+          <input type="number" class="form-control text-center" name="entry.1951919616" id="autoL3" placeholder="0" required min="0" max="12" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementAutoL3()">+</button>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Auto L2</legend>
-        <select class="form-control" name="entry.1162467329" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoL2()">-</button>
+          <input type="number" class="form-control text-center" name="entry.1162467329" id="autoL2" placeholder="0" required min="0" max="12" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementAutoL2()">+</button>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Auto L1</legend>
-        <select class="form-select" name="entry.1430046888" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoL1()">-</button>
+          <input type="number" class="form-control text-center" name="entry.1430046888" id="autoL1" placeholder="0" required min="0" max="12" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementAutoL1()">+</button>
+        </div>
       </fieldset>
     </div>
 
@@ -261,117 +233,51 @@
     <div class="form-row">
       <fieldset>
         <legend>Teleop Processor</legend>
-        <select class="form-select" name="entry.905449581" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopProcessor()">-</button>
+          <input type="number" class="form-control text-center" name="entry.905449581" id="teleopProcessor" placeholder="0" required min="0" max="20" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopProcessor()">+</button>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Teleop Net</legend>
-        <select class="form-select" name="entry.550948513" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopNet()">-</button>
+          <input type="number" class="form-control text-center" name="entry.550948513" id="teleopNet" placeholder="0" required min="0" max="20" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopNet()">+</button>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Teleop L4</legend>
-        <select class="form-select" name="entry.300837219" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopL4()">-</button>
+          <input type="number" class="form-control text-center" name="entry.300837219" id="teleopL4" placeholder="0" required min="0" max="20" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopL4()">+</button>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Teleop L3</legend>
-        <select class="form-select" name="entry.54316812" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopL3()">-</button>
+          <input type="number" class="form-control text-center" name="entry.54316812" id="teleopL3" placeholder="0" required min="0" max="20" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopL3()">+</button>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Teleop L2</legend>
-        <select class="form-select" name="entry.727030243" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopL2()">-</button>
+          <input type="number" class="form-control text-center" name="entry.727030243" id="teleopL2" placeholder="0" required min="0" max="20" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopL2()">+</button>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Teleop L1</legend>
-        <select class="form-select" name="entry.598969573" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
+        <div class="input-group">
+          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopL1()">-</button>
+          <input type="number" class="form-control text-center" name="entry.598969573" id="teleopL1" placeholder="0" required min="0" max="20" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopL1()">+</button>
+        </div>
       </fieldset>
     </div>
 
@@ -429,22 +335,22 @@
         <legend>Defense</legend>
         <select class="form-select" name="entry.1685817405" required>
           <option value="" disabled selected>Select one</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+          <option value="1">1 - Bad</option>
+          <option value="2">2 - Meh</option>
+          <option value="3">3 - Neutral</option>
+          <option value="4">4 - Decent</option>
+          <option value="5">5 - Good</option>
         </select>
       </fieldset>
       <fieldset>
         <legend>Driving</legend>
         <select class="form-select" name="entry.1362560271" required>
           <option value="" disabled selected>Select one</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+          <option value="1">1 - Bad</option>
+          <option value="2">2 - Meh</option>
+          <option value="3">3 - Neutral</option>
+          <option value="4">4 - Decent</option>
+          <option value="5">5 - Good</option>
         </select>
       </fieldset>
       <fieldset>
@@ -474,6 +380,259 @@
 </div>
 
 <script>
+
+function incrementAutoProcessor() {
+  const input = document.getElementById('autoProcessor');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementAutoProcessor() {
+  const input = document.getElementById('autoProcessor');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+function incrementAutoNet() {
+  const input = document.getElementById('autoNet');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementAutoNet() {
+  const input = document.getElementById('autoNet');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+function incrementAutoL4() {
+  const input = document.getElementById('autoL4');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementAutoL4() {
+  const input = document.getElementById('autoL4');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+function incrementAutoL3() {
+  const input = document.getElementById('autoL3');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementAutoL3() {
+  const input = document.getElementById('autoL3');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+function incrementAutoL2() {
+  const input = document.getElementById('autoL2');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementAutoL2() {
+  const input = document.getElementById('autoL2');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+function incrementAutoL1() {
+  const input = document.getElementById('autoL1');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementAutoL1() {
+  const input = document.getElementById('autoL1');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+function incrementTeleopProcessor() {
+  const input = document.getElementById('teleopProcessor');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementTeleopProcessor() {
+  const input = document.getElementById('teleopProcessor');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+function incrementTeleopNet() {
+  const input = document.getElementById('teleopNet');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementTeleopNet() {
+  const input = document.getElementById('teleopNet');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+function incrementTeleopL4() {
+  const input = document.getElementById('teleopL4');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementTeleopL4() {
+  const input = document.getElementById('teleopL4');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+function incrementTeleopL3() {
+  const input = document.getElementById('teleopL3');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementTeleopL3() {
+  const input = document.getElementById('teleopL3');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+function incrementTeleopL2() {
+  const input = document.getElementById('teleopL2');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementTeleopL2() {
+  const input = document.getElementById('teleopL2');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+function incrementTeleopL1() {
+  const input = document.getElementById('teleopL1');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue < 12) {
+    currentValue++;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
+
+function decrementTeleopL1() {
+  const input = document.getElementById('teleopL1');
+  let currentValue = parseInt(input.value) || 0;
+  
+  if (currentValue > 0) {
+    currentValue--;
+    input.value = currentValue;
+    input.dispatchEvent(new Event('change'));
+  }
+}
   // Configuration - Change this line to set your event key
   const DEFAULT_EVENT_KEY = '2025txbel';
   
@@ -560,65 +719,72 @@
   }
 
   function loadTeamsForMatch() {
-    const eventKey = DEFAULT_EVENT_KEY; // Use the configured event key
-    const matchNumber = parseInt(document.getElementById('matchNumber').value);
-    const teamSelect = document.getElementById('teamSelect');
-    const loadingIndicator = document.getElementById('teamLoadingIndicator');
-    
-    console.log('Loading teams for:', eventKey, 'match:', matchNumber);
-    
-    if (!matchNumber || isNaN(matchNumber)) {
-      console.log('No valid match number provided');
-      teamSelect.disabled = true;
-      teamSelect.innerHTML = '<option value="" disabled selected>Enter match number first</option>';
-      loadingIndicator.style.display = 'none';
-      return;
-    }
-
-    // Show loading state
-    loadingIndicator.style.display = 'block';
-    teamSelect.disabled = true;
-    teamSelect.innerHTML = '<option value="" disabled selected>Loading teams...</option>';
-
-    // Try to get teams from local match data first
-    if (matchData && matchData[eventKey] && matchData[eventKey][matchNumber]) {
-      console.log('Found teams in local data:', matchData[eventKey][matchNumber]);
-      populateTeamSelect(matchData[eventKey][matchNumber]);
-      loadingIndicator.style.display = 'none';
-      return;
-    }
-
-    console.log('No local data found for match', matchNumber, 'in event', eventKey);
-    console.log('Available events in matchData:', matchData ? Object.keys(matchData) : 'No match data');
-    if (matchData && matchData[eventKey]) {
-      console.log('Available matches for', eventKey + ':', Object.keys(matchData[eventKey]));
-    }
-    
+  const eventKey = DEFAULT_EVENT_KEY;
+  const matchNumber = parseInt(document.getElementById('matchNumber').value);
+  const teamInput = document.getElementById('teamInput');
+  const loadingIndicator = document.getElementById('teamLoadingIndicator');
+  
+  console.log('Loading teams for:', eventKey, 'match:', matchNumber);
+  
+  if (!matchNumber || isNaN(matchNumber)) {
+    console.log('No valid match number provided');
+    teamInput.disabled = true;
+    teamInput.placeholder = 'Enter match number first';
+    document.getElementById('teamDatalist').innerHTML = '<option value="">Enter match number first</option>';
+    loadingIndicator.style.display = 'none';
+    return;
   }
 
-  function populateTeamSelect(teams) {
-    const teamSelect = document.getElementById('teamSelect');
-    
-    if (!teams || teams.length === 0) {
-      teamSelect.innerHTML = '<option value="" disabled selected>No teams found</option>';
-      teamSelect.disabled = true;
-      return;
-    }
-    
-    teamSelect.innerHTML = '<option value="" disabled selected>Select team</option>';
-    
-    teams.forEach(team => {
-      const option = document.createElement('option');
-      const teamNumber = typeof team === 'string' ? team.replace('frc', '') : team.number;
-      //const alliance = team.alliance ? ` (${team.alliance})` : '';
-      
-      option.value = `${teamNumber}`;
-      option.textContent = `${teamNumber}`; // Removed alliance display
-      teamSelect.appendChild(option);
-    });
-    
-    teamSelect.disabled = false;
+  // Show loading state
+  loadingIndicator.style.display = 'block';
+  teamInput.disabled = true;
+  teamInput.placeholder = 'Loading teams...';
+  document.getElementById('teamDatalist').innerHTML = '<option value="">Loading teams...</option>';
+
+  // Try to get teams from local match data first
+  if (matchData && matchData[eventKey] && matchData[eventKey][matchNumber]) {
+    console.log('Found teams in local data:', matchData[eventKey][matchNumber]);
+    populateTeamSelect(matchData[eventKey][matchNumber]);
+    loadingIndicator.style.display = 'none';
+    return;
   }
+
+  console.log('No local data found for match', matchNumber, 'in event', eventKey);
+  console.log('Available events in matchData:', matchData ? Object.keys(matchData) : 'No match data');
+  if (matchData && matchData[eventKey]) {
+    console.log('Available matches for', eventKey + ':', Object.keys(matchData[eventKey]));
+  }
+  
+  // Enable input even if no data found, so user can type manually
+  teamInput.disabled = false;
+  teamInput.placeholder = 'Enter team number manually';
+  document.getElementById('teamDatalist').innerHTML = '';
+  loadingIndicator.style.display = 'none';
+}
+
+function populateTeamSelect(teams) {
+  const teamInput = document.getElementById('teamInput');
+  const teamDatalist = document.getElementById('teamDatalist');
+  
+  if (!teams || teams.length === 0) {
+    teamInput.placeholder = 'Enter team number manually';
+    teamInput.disabled = false;
+    teamDatalist.innerHTML = '';
+    return;
+  }
+  
+  teamDatalist.innerHTML = '';
+  
+  teams.forEach(team => {
+    const option = document.createElement('option');
+    const teamNumber = typeof team === 'string' ? team.replace('frc', '') : team.number;
+    option.value = teamNumber;
+    teamDatalist.appendChild(option);
+  });
+  
+  teamInput.disabled = false;
+  teamInput.placeholder = 'Enter or select team number';
+}
 
   function showErrorMessage() {
     const errorMessage = document.getElementById('errorMessage');
