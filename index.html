@@ -7,11 +7,12 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>5572 Scouting Site</title>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/PGjYvXpj/Screenshot-2026-01-11-at-4-29-36-PM-removebg-preview.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="match-data.js"></script>
   <style>
     body {
-      background-color: rgb(232, 137, 137);
+      background-color: rgb(84, 175, 178);
     }
     .form-row {
       display: flex;
@@ -29,6 +30,7 @@
     }
     legend {
       font-weight: bold;
+      font-size: 0.9rem;
     }
     .success-message {
       display: none;
@@ -62,32 +64,40 @@
 </head>
 <body>
 <div class="container py-4">
-  <h1 class="text-center mb-4"><img src="https://i.imgur.com/xqjJoxr.jpeg" alt="Online Photo" width="350" height="80" style="border: 2px solid black; border-radius: 12px;"> -      5572 Scouting Site     - <img src="https://i.imgur.com/OZ2d2KR.jpeg" alt="Online Photo" width="350" height="80" style="border: 2px solid black; border-radius: 12px;"></h1>
+  <h1 class="text-center mb-4"><img src="https://i.ibb.co/kg7hB0qm/maxresdefault.jpg" alt="Online Photo" width="350" height="200" style="border: 2px solid black; border-radius: 12px;"> </h1>
+  <h1 class="text-center mb-4"><img src="https://i.ibb.co/VWxVwMNR/Screenshot-2026-01-11-at-2-23-42-PM.png" alt="Online Photo" width="350" height="80" style="border: 2px solid black; border-radius: 12px;"> -      5572 Scouting Site     - <img src="https://i.ibb.co/HDW30TNj/Screenshot-2026-01-11-at-2-23-50-PM.png" alt="Online Photo" width="350" height="80" style="border: 2px solid black; border-radius: 12px;"></h1>
   
   <div id="successMessage" class="success-message">
-    If password is correct, the form submitted successfully. Form reseted and ready for next match.
+    Form submitted successfully! Form reset and ready for next match.
   </div>
 
   <div id="errorMessage" class="error-message">
     Error loading match data. Please check event key and match number.
   </div>
 
-  <form id="scoutingForm" action="https://docs.google.com/forms/d/e/1FAIpQLSd0aU5uxNdrizvRt6PZL4cgRauRL0xAC74xru5_cDiKKv6AXA/formResponse"
-        method="POST" target="hidden_iframe">
+  <form id="scoutingForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfKyjJST5AuVqQqLPSgvL6_mbgDB5nghvyScQcZwwEgpANGbA/formResponse" method="POST" target="hidden_iframe">
 
     <h4>Pre-Match</h4>
     <div class="form-row">
       <fieldset>
         <legend>Password</legend>
-        <input type="text" class="form-control persistent-field" name="entry.823625560" id="password" placeholder="Enter the Passwood" required>
+        <input type="text" class="form-control persistent-field" name="entry.1734301860" id="password" placeholder="Enter Password" required>
       </fieldset>
       <fieldset>
-        <legend>Your Full Name</legend>
-        <input type="text" class="form-control persistent-field" name="entry.42633613" id="userName" placeholder="Enter your name" required>
+        <legend>Your Name</legend>
+        <select class="form-select persistent-field" name="entry.2048293135" id="scoutName" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Saajid">Saajid</option>
+          <option value="Elijah">Elijah</option>
+          <option value="Jane">Jane</option>
+          <option value="Will">Will</option>
+          <option value="Jacqueline">Jacqueline</option>
+          <option value="Rital">Rital</option>
+        </select>
       </fieldset>
-       <fieldset>
+      <fieldset>
         <legend>Lanyard Number</legend>
-        <select class="form-select persistent-field" name="entry.452275389" id="lanyardNumber" required>
+        <select class="form-select persistent-field" name="entry.1022431114" id="lanyardNumber" required>
           <option value="" disabled selected>Select one</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -98,46 +108,42 @@
         </select>
       </fieldset>
       <fieldset>
-        <legend>Event: TRI - 2025</legend>
-        <input type="hidden" name="entry.1847537648" id="eventKey" value="2025txhou2">
-        <div class="form-control-static">TRI 2 Qualification Matches</div>
+        <legend>Event: San Antonio - 2026</legend>
+        <input type="hidden" name="entry.1847537648" id="eventKey" value="2026txsan">
+        <div class="form-control-static">Day 1, Qualification Matches</div>
       </fieldset>
       <fieldset>
         <legend>Match Number</legend>
-        <input type="number" class="form-control" name="entry.385793713" id="matchNumber" placeholder="Match #" required min="1" max="200">
+        <input type="number" class="form-control" name="entry.1248777371" id="matchNumber" placeholder="Match #" required min="1" max="400">
       </fieldset>
-    <fieldset>
-  <legend>Team NUMBER (click the box and choose your correct auto generated team number, or write in team number):</legend>
-  <input 
-    type="text" 
-    class="form-control" 
-    name="entry.1142161909" 
-    id="teamInput" 
-    list="teamDatalist"
-    placeholder="Enter or select team number" 
-    required
-    disabled
-  >
-  <datalist id="teamDatalist">
-    <option value="">Select match first</option>
-  </datalist>
-  <small id="teamLoadingIndicator" class="form-text text-muted" style="display: none;">Loading teams...</small>
-</fieldset>
+      <fieldset>
+        <legend>Team NUMBER:</legend>
+        <input 
+          type="text" 
+          class="form-control" 
+          name="entry.362193707" 
+          id="teamInput" 
+          list="teamDatalist"
+          placeholder="Enter or select team number" 
+          required
+          disabled
+        >
+        <datalist id="teamDatalist">
+          <option value="">Select match first</option>
+        </datalist>
+        <small id="teamLoadingIndicator" class="form-text text-muted" style="display: none;">Loading teams...</small>
+      </fieldset>
       <fieldset>
         <legend>Robot Attendance</legend>
-        <select class="form-select" name="entry.942927237" required>
+        <select class="form-select" name="entry.1905062215" required>
           <option value="" disabled selected>Select one</option>
           <option value="Present">Present</option>
-          <option value="No Show">No Show</option>
+          <option value="Not Present">Not Present</option>
         </select>
       </fieldset>
-    </div>
-
-    <h4>Auto</h4>
-    <div class="form-row">
       <fieldset>
         <legend>Starting Location</legend>
-        <select class="form-select" name="entry.1061926718" required>
+        <select class="form-select" name="entry.2027630203" required>
           <option value="" disabled selected>Select one</option>
           <option value="S1">S1</option>
           <option value="S2">S2</option>
@@ -146,205 +152,145 @@
           <option value="S5">S5</option>
         </select>
       </fieldset>
+      <img src="https://i.ibb.co/Pshyrvc6/Screenshot-2026-01-10-at-4-28-51-PM.png" alt="Online Photo" width="400" height="180" style="border: 2px solid black; border-radius: 12px;">
+    </div>
+
+    <h4>Auto (2:30-2:10)</h4>
+    <div class="form-row">
       <fieldset>
-        <legend>Exit Starting Area?</legend>
-        <select class="form-select" name="entry.2011066249" required>
+        <legend>Exit Starting Line?</legend>
+        <select class="form-select" name="entry.2010927838" required>
           <option value="" disabled selected>Select one</option>
           <option value="Yes">Yes</option>
           <option value="No">No</option>
           <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
         </select>
       </fieldset>
-      <div class="form-row">
-        <fieldset class="w-100">
-          <legend>Where Robot Scored (In Auto)</legend>
-          <div class="d-flex gap-5">
-            <div>
-              <label><input type="checkbox" name="entry.1189704345" value="A"> A</label><br>
-              <label><input type="checkbox" name="entry.1189704345" value="B"> B</label><br>
-              <label><input type="checkbox" name="entry.1189704345" value="C"> C</label><br>
-              <label><input type="checkbox" name="entry.1189704345" value="D"> D</label><br>
-              <label><input type="checkbox" name="entry.1189704345" value="E"> E</label><br>
-              <label><input type="checkbox" name="entry.1189704345" value="F"> F</label><br>
-            </div>
-            <div>
-              <label><input type="checkbox" name="entry.1189704345" value="G"> G</label><br>
-              <label><input type="checkbox" name="entry.1189704345" value="H"> H</label><br>
-              <label><input type="checkbox" name="entry.1189704345" value="I"> I</label><br>
-              <label><input type="checkbox" name="entry.1189704345" value="J"> J</label><br>
-              <label><input type="checkbox" name="entry.1189704345" value="K"> K</label><br>
-              <label><input type="checkbox" name="entry.1189704345" value="L"> L</label><br>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-      <img src="https://i.imgur.com/3DbrkSJ.jpeg" alt="Online Photo" width="300" height="208" style="border: 2px solid black; border-radius: 12px;">
       <fieldset>
-        <legend>Auto Processor</legend>
+        <legend>Auto Fuel Scored</legend>
         <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoProcessor()">-</button>
-          <input type="number" class="form-control text-center" name="entry.2051342965" id="autoProcessor" placeholder="0" required min="0" max="12" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementAutoProcessor()">+</button>
+          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoScored()">-</button>
+          <input type="number" class="form-control text-center" name="entry.652021388" id="autoScored" placeholder="0" required min="0" max="500" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementAutoScored()">+</button>
         </div>
       </fieldset>
       <fieldset>
-        <legend>Auto Net</legend>
+        <legend>Auto Fuel Passed</legend>
         <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoNet()">-</button>
-          <input type="number" class="form-control text-center" name="entry.1916771961" id="autoNet" placeholder="0" required min="0" max="8" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementAutoNet()">+</button>
+          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoPassed()">-</button>
+          <input type="number" class="form-control text-center" name="entry.1948083885" id="autoPassed" placeholder="0" required min="0" max="500" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementAutoPassed()">+</button>
         </div>
       </fieldset>
       <fieldset>
-        <legend>Auto L4</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoL4()">-</button>
-          <input type="number" class="form-control text-center" name="entry.345642875" id="autoL4" placeholder="0" required min="0" max="12" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementAutoL4()">+</button>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Auto L3</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoL3()">-</button>
-          <input type="number" class="form-control text-center" name="entry.1951919616" id="autoL3" placeholder="0" required min="0" max="12" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementAutoL3()">+</button>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Auto L2</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoL2()">-</button>
-          <input type="number" class="form-control text-center" name="entry.1162467329" id="autoL2" placeholder="0" required min="0" max="12" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementAutoL2()">+</button>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Auto L1</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoL1()">-</button>
-          <input type="number" class="form-control text-center" name="entry.1430046888" id="autoL1" placeholder="0" required min="0" max="12" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementAutoL1()">+</button>
-        </div>
+        <legend>Auto Climb?</legend>
+        <select class="form-select" name="entry.1884769915" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Climbed">Climbed</option>
+          <option value="No Climb">No Climb</option>
+          <option value="Attempted To Climb, Failed">Attempted To Climb, Failed</option>
+        </select>
       </fieldset>
     </div>
 
-    <h4>Teleop</h4>
+    <h4>Teleop (2:10-0:00)</h4>
     <div class="form-row">
       <fieldset>
-        <legend>Teleop Processor</legend>
+        <legend>Teleop Fuel Scored</legend>
         <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopProcessor()">-</button>
-          <input type="number" class="form-control text-center" name="entry.905449581" id="teleopProcessor" placeholder="0" required min="0" max="20" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopProcessor()">+</button>
+          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopScored()">-</button>
+          <input type="number" class="form-control text-center" name="entry.2027288960" id="teleopScored" placeholder="0" required min="0" max="500" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopScored()">+</button>
         </div>
       </fieldset>
       <fieldset>
-        <legend>Teleop Net</legend>
+        <legend>Teleop Fuel Passed</legend>
         <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopNet()">-</button>
-          <input type="number" class="form-control text-center" name="entry.550948513" id="teleopNet" placeholder="0" required min="0" max="20" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopNet()">+</button>
+          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopPassed()">-</button>
+          <input type="number" class="form-control text-center" name="entry.1192527974" id="teleopPassed" placeholder="0" required min="0" max="500" value="0">
+          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopPassed()">+</button>
         </div>
       </fieldset>
       <fieldset>
-        <legend>Teleop L4</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopL4()">-</button>
-          <input type="number" class="form-control text-center" name="entry.300837219" id="teleopL4" placeholder="0" required min="0" max="20" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopL4()">+</button>
-        </div>
+        <legend>Teleop Climb?</legend>
+        <select class="form-select" name="entry.1291362431" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="No Climb">No Climb</option>
+          <option value="Attempted To Climb, Failed">Attempted To Climb, Failed</option>
+          <option value="Climbed First Rung">Climbed First Rung</option>
+          <option value="Climbed Second Rung">Climbed Second Rung</option>
+          <option value="Climbed Third Rung">Climbed Third Rung</option>
+        </select>
       </fieldset>
+      <img src="https://i.ibb.co/V0LPK1DF/Screenshot-2026-01-10-at-5-39-41-PM.png" alt="Online Photo" width="400" height="180" style="border: 2px solid black; border-radius: 12px;">
       <fieldset>
-        <legend>Teleop L3</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopL3()">-</button>
-          <input type="number" class="form-control text-center" name="entry.54316812" id="teleopL3" placeholder="0" required min="0" max="20" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopL3()">+</button>
-        </div>
+        <legend>Passing Accuracy (only if bot passed fuel)</legend>
+        <select class="form-select" name="entry.812255631" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="N/A">N/A - Did not pass</option>
+          <option value="1">1 = Barely shot out, left the field, stayed in Neutral Zone</option>
+          <option value="2">2 = Shot to edge of Neutral Zone bordering our Hub</option>
+          <option value="3">3 = Past Robot Starting Line</option>
+          <option value="4">4 = Right in front of our Hub</option>
+        </select>
       </fieldset>
-      <fieldset>
-        <legend>Teleop L2</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopL2()">-</button>
-          <input type="number" class="form-control text-center" name="entry.727030243" id="teleopL2" placeholder="0" required min="0" max="20" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopL2()">+</button>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Teleop L1</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopL1()">-</button>
-          <input type="number" class="form-control text-center" name="entry.598969573" id="teleopL1" placeholder="0" required min="0" max="20" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopL1()">+</button>
-        </div>
-      </fieldset>
-    </div>
+    </div> 
 
-    <h4>Scoring & Intake</h4>
+    <h4>Post-Game</h4>
     <div class="form-row">
+      <fieldset>
+        <legend>When their Hub was Active, the robot mainly:</legend>
+        <select class="form-select" name="entry.854198450" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Scored/Collected Fuel">Scored/Collected Fuel</option>
+          <option value="Passed/Collected Fuel">Passed/Collected Fuel</option>
+          <option value="Equally Scored and Passed Fuel">Equally Scored and Passed Fuel</option>
+          <option value="Played Defence">Played Defence</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>When their Hub was Inactive, the robot mainly:</legend>
+        <select class="form-select" name="entry.769981197" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Collected/Passed Fuel">Collected/Passed Fuel</option>
+          <option value="Played Defence">Played Defence</option>
+        </select>
+      </fieldset>
       <fieldset>
         <legend>Scoring Method</legend>
-        <select class="form-select" name="entry.1093979612" required>
+        <select class="form-select" name="entry.1401683727" required>
           <option value="" disabled selected>Select one</option>
-          <option value="April Tag (Can Shoot Anywhere)">April Tag (Can Shoot Anywhere)</option>
+          <option value="April Tags (smooth movement)">April Tags (smooth movement)</option>
           <option value="Has To Line Up">Has To Line Up</option>
-          <option value="Dosen't/Can't Score">Dosen't/Can't Score</option>
-          <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
+          <option value="Did Not Score">Did Not Score</option>
+          <option value="Don't know">Don't know</option>
         </select>
       </fieldset>
       <fieldset>
-        <legend>Coral Intake Method</legend>
-        <select class="form-select" name="entry.1991747744" required>
+        <legend>Fuel Intake Method</legend>
+        <select class="form-select" name="entry.105420236" required>
           <option value="" disabled selected>Select one</option>
           <option value="Feeder Station">Feeder Station</option>
-          <option value="Floor">Floor</option>
+          <option value="Ground">Ground</option>
           <option value="Both">Both</option>
           <option value="None">None</option>
-          <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Algae Intake Method</legend>
-        <select class="form-select" name="entry.1444682807" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Off the Reef">Off the Reef</option>
-          <option value="Floor">Floor</option>
-          <option value="Both">Both</option>
-          <option value="None">None</option>
-          <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
-        </select>
-      </fieldset>
-    </div>
-
-    <h4>Endgame</h4>
-    <div class="form-row">
-      <fieldset>
-        <legend>Climb/Park</legend>
-        <select class="form-select" name="entry.1908684697" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Deep Climb (Lower Cage) - Successful">Deep Climb (Lower Cage) - Successful</option>
-          <option value="Shallow Climb (Higher Cage) - Successful">Shallow Climb (Higher Cage) - Successful</option>
-          <option value="Attempted To Climb, Parked">Attempted To Climb, Parked</option>
-          <option value="Attempted To Climb, No Park">Attempted To Climb, No Park</option>
-          <option value="Just Parked">Just Parked</option>
-          <option value="None/Did Not Attempt">None/Did Not Attempt</option>
+          <option value="Don't know">Don't know</option>
         </select>
       </fieldset>
       <fieldset>
         <legend>Defense</legend>
-        <select class="form-select" name="entry.1685817405" required>
+        <select class="form-select" name="entry.1323284915" required>
           <option value="" disabled selected>Select one</option>
           <option value="1">1 - Bad</option>
           <option value="2">2 - Meh</option>
-          <option value="3">3 - Neutral</option>
+          <option value="3">3 - Neutral/No Defence</option>
           <option value="4">4 - Decent</option>
           <option value="5">5 - Good</option>
         </select>
       </fieldset>
       <fieldset>
         <legend>Driving</legend>
-        <select class="form-select" name="entry.1362560271" required>
+        <select class="form-select" name="entry.1307312004" required>
           <option value="" disabled selected>Select one</option>
           <option value="1">1 - Bad</option>
           <option value="2">2 - Meh</option>
@@ -354,20 +300,24 @@
         </select>
       </fieldset>
       <fieldset>
-        <legend>Tipped?</legend>
-        <select class="form-select" name="entry.616314965" required>
+        <legend>Did they tip over?</legend>
+        <select class="form-select" name="entry.271229141" required>
           <option value="" disabled selected>Select one</option>
           <option value="Yes">Yes</option>
           <option value="No">No</option>
           <option value="Almost">Almost</option>
         </select>
       </fieldset>
+      <fieldset>
+        <legend>Number of fuel thrown by alliance human player</legend>
+        <input type="number" class="form-control" name="entry.1206035018" id="humanPlayerFuel" placeholder="Guess Here" required min="0" max="400">
+      </fieldset>
     </div>
 
     <div class="form-row">
       <fieldset class="w-100">
         <legend>Comments</legend>
-        <input type="text" class="form-control" name="entry.904774817" placeholder="Type answer here" required>
+        <input type="text" class="form-control" name="entry.2023321300" placeholder="Type answer here" required>
       </fieldset>
     </div>
 
@@ -376,358 +326,167 @@
     </div>
   </form>
 
-  <iframe name="hidden_iframe" style="display:none;" onload="handleFormSubmit()"></iframe>
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 </div>
 
 <script>
 
-function incrementAutoProcessor() {
-  const input = document.getElementById('autoProcessor');
+function incrementAutoScored() {
+  const input = document.getElementById('autoScored');
   let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue < 12) {
+  if (currentValue < 500) {
     currentValue++;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
 }
 
-function decrementAutoProcessor() {
-  const input = document.getElementById('autoProcessor');
+function decrementAutoScored() {
+  const input = document.getElementById('autoScored');
   let currentValue = parseInt(input.value) || 0;
-  
   if (currentValue > 0) {
     currentValue--;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
 }
-function incrementAutoNet() {
-  const input = document.getElementById('autoNet');
+
+function incrementAutoPassed() {
+  const input = document.getElementById('autoPassed');
   let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue < 12) {
+  if (currentValue < 500) {
     currentValue++;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
 }
 
-function decrementAutoNet() {
-  const input = document.getElementById('autoNet');
+function decrementAutoPassed() {
+  const input = document.getElementById('autoPassed');
   let currentValue = parseInt(input.value) || 0;
-  
   if (currentValue > 0) {
     currentValue--;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
 }
-function incrementAutoL4() {
-  const input = document.getElementById('autoL4');
+
+function incrementTeleopScored() {
+  const input = document.getElementById('teleopScored');
   let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue < 12) {
+  if (currentValue < 500) {
     currentValue++;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
 }
 
-function decrementAutoL4() {
-  const input = document.getElementById('autoL4');
+function decrementTeleopScored() {
+  const input = document.getElementById('teleopScored');
   let currentValue = parseInt(input.value) || 0;
-  
   if (currentValue > 0) {
     currentValue--;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
 }
-function incrementAutoL3() {
-  const input = document.getElementById('autoL3');
+
+function incrementTeleopPassed() {
+  const input = document.getElementById('teleopPassed');
   let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue < 12) {
+  if (currentValue < 500) {
     currentValue++;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
 }
 
-function decrementAutoL3() {
-  const input = document.getElementById('autoL3');
+function decrementTeleopPassed() {
+  const input = document.getElementById('teleopPassed');
   let currentValue = parseInt(input.value) || 0;
-  
   if (currentValue > 0) {
     currentValue--;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
 }
-function incrementAutoL2() {
-  const input = document.getElementById('autoL2');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue < 12) {
-    currentValue++;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
 
-function decrementAutoL2() {
-  const input = document.getElementById('autoL2');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue > 0) {
-    currentValue--;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
-function incrementAutoL1() {
-  const input = document.getElementById('autoL1');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue < 12) {
-    currentValue++;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
+const DEFAULT_EVENT_KEY = '2026txsan';
+let submitted = false;
+let matchData = null;
 
-function decrementAutoL1() {
-  const input = document.getElementById('autoL1');
-  let currentValue = parseInt(input.value) || 0;
+window.addEventListener('load', function() {
+  document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
+  loadPersistentData();
+  initializeMatchNumber();
   
-  if (currentValue > 0) {
-    currentValue--;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
+  if (typeof window.MATCH_DATA !== 'undefined') {
+    matchData = window.MATCH_DATA;
+    console.log('Match data loaded:', matchData);
+  } else {
+    console.log('No match data found in match-data.js file');
   }
-}
-function incrementTeleopProcessor() {
-  const input = document.getElementById('teleopProcessor');
-  let currentValue = parseInt(input.value) || 0;
   
-  if (currentValue < 12) {
-    currentValue++;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
+  document.getElementById('hidden_iframe').addEventListener('load', handleFormSubmit);
+});
 
-function decrementTeleopProcessor() {
-  const input = document.getElementById('teleopProcessor');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue > 0) {
-    currentValue--;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
+document.addEventListener('change', function(e) {
+  if (e.target.classList.contains('persistent-field')) {
+    savePersistentData();
   }
-}
-function incrementTeleopNet() {
-  const input = document.getElementById('teleopNet');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue < 12) {
-    currentValue++;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
-
-function decrementTeleopNet() {
-  const input = document.getElementById('teleopNet');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue > 0) {
-    currentValue--;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
-function incrementTeleopL4() {
-  const input = document.getElementById('teleopL4');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue < 12) {
-    currentValue++;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
-
-function decrementTeleopL4() {
-  const input = document.getElementById('teleopL4');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue > 0) {
-    currentValue--;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
-function incrementTeleopL3() {
-  const input = document.getElementById('teleopL3');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue < 12) {
-    currentValue++;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
-
-function decrementTeleopL3() {
-  const input = document.getElementById('teleopL3');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue > 0) {
-    currentValue--;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
-function incrementTeleopL2() {
-  const input = document.getElementById('teleopL2');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue < 12) {
-    currentValue++;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
-
-function decrementTeleopL2() {
-  const input = document.getElementById('teleopL2');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue > 0) {
-    currentValue--;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
-function incrementTeleopL1() {
-  const input = document.getElementById('teleopL1');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue < 12) {
-    currentValue++;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
-
-function decrementTeleopL1() {
-  const input = document.getElementById('teleopL1');
-  let currentValue = parseInt(input.value) || 0;
-  
-  if (currentValue > 0) {
-    currentValue--;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-  }
-}
-  // Configuration - Change this line to set your event key
-  const DEFAULT_EVENT_KEY = '2025txhou2';
-  
-  let submitted = false;
-  let matchData = null;
-
-  // Load persistent data on page load
-  window.addEventListener('load', function() {
-    // Set the event key automatically
-    document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
-    
-    loadPersistentData();
-    initializeMatchNumber();
-    
-    // Try to load match data if available
-    if (typeof window.MATCH_DATA !== 'undefined') {
-      matchData = window.MATCH_DATA;
-      console.log('Match data loaded:', matchData);
-    } else {
-      console.log('No match data found in match-data.js file');
-    }
-  });
-
-  // Save persistent data when fields change
-  document.addEventListener('change', function(e) {
-    if (e.target.classList.contains('persistent-field')) {
-      savePersistentData();
-    }
-    
-    // Load teams when match number changes (event key is now fixed)
-    if (e.target.id === 'matchNumber') {
-      loadTeamsForMatch();
-    }
-  });
-
-  // Also save on input for text fields
-  document.addEventListener('input', function(e) {
-    if (e.target.classList.contains('persistent-field')) {
-      savePersistentData();
-    }
-  });
-
-  function savePersistentData() {
-    const persistentData = {};
-    document.querySelectorAll('.persistent-field').forEach(field => {
-      persistentData[field.id] = field.value;
-    });
-    
-    // Also save current match number to help with auto-increment
-    const matchNumber = document.getElementById('matchNumber').value;
-    if (matchNumber) {
-      persistentData.lastMatchNumber = parseInt(matchNumber);
-    }
-    
-    // Using a simple variable instead of localStorage since it's not supported
-    window.scoutingPersistentData = persistentData;
-  }
-
-  function loadPersistentData() {
-    if (window.scoutingPersistentData) {
-      Object.keys(window.scoutingPersistentData).forEach(fieldId => {
-        if (fieldId !== 'lastMatchNumber') {
-          const field = document.getElementById(fieldId);
-          if (field) {
-            field.value = window.scoutingPersistentData[fieldId];
-          }
-        }
-      });
-    }
-  }
-
-  function initializeMatchNumber() {
-    const matchNumberField = document.getElementById('matchNumber');
-    if (window.scoutingPersistentData && window.scoutingPersistentData.lastMatchNumber) {
-      // If we have a previous match number, start with the next one
-      matchNumberField.value = window.scoutingPersistentData.lastMatchNumber + 1;
-    } else if (!matchNumberField.value) {
-      // If no previous match and field is empty, start with 1
-      matchNumberField.value = 0;
-    }
-    
-    // Load teams for current match
+  if (e.target.id === 'matchNumber') {
     loadTeamsForMatch();
   }
+});
 
-  function loadTeamsForMatch() {
+document.addEventListener('input', function(e) {
+  if (e.target.classList.contains('persistent-field')) {
+    savePersistentData();
+  }
+});
+
+function savePersistentData() {
+  const persistentData = {};
+  document.querySelectorAll('.persistent-field').forEach(field => {
+    persistentData[field.id] = field.value;
+  });
+  const matchNumber = document.getElementById('matchNumber').value;
+  if (matchNumber) {
+    persistentData.lastMatchNumber = parseInt(matchNumber);
+  }
+  window.scoutingPersistentData = persistentData;
+}
+
+function loadPersistentData() {
+  if (window.scoutingPersistentData) {
+    Object.keys(window.scoutingPersistentData).forEach(fieldId => {
+      if (fieldId !== 'lastMatchNumber') {
+        const field = document.getElementById(fieldId);
+        if (field) {
+          field.value = window.scoutingPersistentData[fieldId];
+        }
+      }
+    });
+  }
+}
+
+function initializeMatchNumber() {
+  const matchNumberField = document.getElementById('matchNumber');
+  if (window.scoutingPersistentData && window.scoutingPersistentData.lastMatchNumber) {
+    matchNumberField.value = window.scoutingPersistentData.lastMatchNumber + 1;
+  } else if (!matchNumberField.value) {
+    matchNumberField.value = 1;
+  }
+  loadTeamsForMatch();
+}
+
+function loadTeamsForMatch() {
   const eventKey = DEFAULT_EVENT_KEY;
   const matchNumber = parseInt(document.getElementById('matchNumber').value);
   const teamInput = document.getElementById('teamInput');
   const loadingIndicator = document.getElementById('teamLoadingIndicator');
   
-  console.log('Loading teams for:', eventKey, 'match:', matchNumber);
-  
   if (!matchNumber || isNaN(matchNumber)) {
-    console.log('No valid match number provided');
     teamInput.disabled = true;
     teamInput.placeholder = 'Enter match number first';
     document.getElementById('teamDatalist').innerHTML = '<option value="">Enter match number first</option>';
@@ -735,27 +494,17 @@ function decrementTeleopL1() {
     return;
   }
 
-  // Show loading state
   loadingIndicator.style.display = 'block';
   teamInput.disabled = true;
   teamInput.placeholder = 'Loading teams...';
   document.getElementById('teamDatalist').innerHTML = '<option value="">Loading teams...</option>';
 
-  // Try to get teams from local match data first
   if (matchData && matchData[eventKey] && matchData[eventKey][matchNumber]) {
-    console.log('Found teams in local data:', matchData[eventKey][matchNumber]);
     populateTeamSelect(matchData[eventKey][matchNumber]);
     loadingIndicator.style.display = 'none';
     return;
   }
-
-  console.log('No local data found for match', matchNumber, 'in event', eventKey);
-  console.log('Available events in matchData:', matchData ? Object.keys(matchData) : 'No match data');
-  if (matchData && matchData[eventKey]) {
-    console.log('Available matches for', eventKey + ':', Object.keys(matchData[eventKey]));
-  }
   
-  // Enable input even if no data found, so user can type manually
   teamInput.disabled = false;
   teamInput.placeholder = 'Enter team number manually';
   document.getElementById('teamDatalist').innerHTML = '';
@@ -774,7 +523,6 @@ function populateTeamSelect(teams) {
   }
   
   teamDatalist.innerHTML = '';
-  
   teams.forEach(team => {
     const option = document.createElement('option');
     const teamNumber = typeof team === 'string' ? team.replace('frc', '') : team.number;
@@ -786,54 +534,39 @@ function populateTeamSelect(teams) {
   teamInput.placeholder = 'Enter or select team number';
 }
 
-  function showErrorMessage() {
-    const errorMessage = document.getElementById('errorMessage');
-    errorMessage.style.display = 'block';
+function handleFormSubmit() {
+  console.log('handleFormSubmit called, submitted flag:', submitted);
+  
+  if (submitted) {
+    const successMessage = document.getElementById('successMessage');
+    successMessage.style.display = 'block';
     
     setTimeout(() => {
-      errorMessage.style.display = 'none';
-    }, 5000);
-  }
+      successMessage.style.display = 'none';
+    }, 3000);
 
-  function handleFormSubmit() {
-    if (submitted) {
-      // Show success message
-      const successMessage = document.getElementById('successMessage');
-      successMessage.style.display = 'block';
-      
-      setTimeout(() => {
-        successMessage.style.display = 'none';
-      }, 3000);
-
-      // Save current match number before reset
-      const currentMatchNumber = parseInt(document.getElementById('matchNumber').value) || 1;
-      
-      // Reset the form
-      document.getElementById('scoutingForm').reset();
-      
-      // Restore the event key and persistent data
-      document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
-      loadPersistentData();
-      
-      // Set next match number
-      document.getElementById('matchNumber').value = currentMatchNumber + 1;
-      
-      // Update stored match number
-      if (window.scoutingPersistentData) {
-        window.scoutingPersistentData.lastMatchNumber = currentMatchNumber;
-      }
-      
-      // Load teams for new match
-      loadTeamsForMatch();
-      
-      submitted = false;
+    const currentMatchNumber = parseInt(document.getElementById('matchNumber').value) || 1;
+    document.getElementById('scoutingForm').reset();
+    document.getElementById('scoutingForm').classList.remove('loading');
+    document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
+    loadPersistentData();
+    document.getElementById('matchNumber').value = currentMatchNumber + 1;
+    
+    if (window.scoutingPersistentData) {
+      window.scoutingPersistentData.lastMatchNumber = currentMatchNumber;
     }
+    
+    loadTeamsForMatch();
+    submitted = false;
   }
+}
 
-  // Handle form submission
-  document.getElementById('scoutingForm').addEventListener('submit', function() {
-    submitted = true;
-    savePersistentData();
-  });
+document.getElementById('scoutingForm').addEventListener('submit', function(e) {
+  console.log('Form submitting...');
+  submitted = true;
+  savePersistentData();
+  document.getElementById('scoutingForm').classList.add('loading');
+});
 </script>
-<script src="
+</body>
+</html>
