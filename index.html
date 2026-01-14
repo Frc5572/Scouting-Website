@@ -21,7 +21,7 @@
       margin-bottom: 10px;
     }
     fieldset {
-      width: 150px;
+      width: 175px;
       padding: 10px;
       border: 2px solid #333;
       border-radius: 8px;
@@ -222,6 +222,15 @@
           <option value="Climbed Third Rung">Climbed Third Rung</option>
         </select>
       </fieldset>
+      <fieldset>
+        <legend>How did they Climb?</legend>
+        <select class="form-select" name="entry.1022083903" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Left Side">Left Side</option>
+          <option value="Down the Middle">Down the Middle</option>
+          <option value="Right Side">Right Side</option>
+        </select>
+      </fieldset>
       <img src="https://i.ibb.co/V0LPK1DF/Screenshot-2026-01-10-at-5-39-41-PM.png" alt="Online Photo" width="350" height="150" style="border: 2px solid black; border-radius: 12px;">
       <fieldset>
         <legend>Passing Accuracy (only if bot passed fuel)</legend>
@@ -252,7 +261,8 @@
         <legend>When their Hub was Inactive, the robot mainly:</legend>
         <select class="form-select" name="entry.769981197" required>
           <option value="" disabled selected>Select one</option>
-          <option value="Collected/Passed Fuel">Collected/Passed Fuel</option>
+          <option value="Passed/Collected Fuel">Passed/Collected Fuel</option>
+          <option value="Hoarded/Collected Fuel">Hoarded/Collected Fuel</option>
           <option value="Played Defence">Played Defence</option>
         </select>
       </fieldset>
@@ -300,6 +310,22 @@
         </select>
       </fieldset>
       <fieldset>
+        <legend>Can go under Trench?</legend>
+        <select class="form-select" name="entry.842957171" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Can go over Bump?</legend>
+        <select class="form-select" name="entry.1678024093" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </fieldset>
+      <fieldset>
         <legend>Did they tip over?</legend>
         <select class="form-select" name="entry.271229141" required>
           <option value="" disabled selected>Select one</option>
@@ -335,7 +361,7 @@ function incrementAutoScored() {
   const input = document.getElementById('autoScored');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue < 500) {
-    currentValue++;
+    currentValue+=5;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -345,7 +371,7 @@ function decrementAutoScored() {
   const input = document.getElementById('autoScored');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue > 0) {
-    currentValue--;
+    currentValue-=5;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -355,7 +381,7 @@ function incrementAutoPassed() {
   const input = document.getElementById('autoPassed');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue < 500) {
-    currentValue++;
+    currentValue+=5;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -365,7 +391,7 @@ function decrementAutoPassed() {
   const input = document.getElementById('autoPassed');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue > 0) {
-    currentValue--;
+    currentValue-=5;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -375,7 +401,7 @@ function incrementTeleopScored() {
   const input = document.getElementById('teleopScored');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue < 500) {
-    currentValue++;
+    currentValue+=5;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -385,7 +411,7 @@ function decrementTeleopScored() {
   const input = document.getElementById('teleopScored');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue > 0) {
-    currentValue--;
+    currentValue-=5;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -395,7 +421,7 @@ function incrementTeleopPassed() {
   const input = document.getElementById('teleopPassed');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue < 500) {
-    currentValue++;
+    currentValue+=5;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -405,7 +431,7 @@ function decrementTeleopPassed() {
   const input = document.getElementById('teleopPassed');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue > 0) {
-    currentValue--;
+    currentValue-=5;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
