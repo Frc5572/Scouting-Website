@@ -361,7 +361,7 @@ function incrementAutoScored() {
   const input = document.getElementById('autoScored');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue < 500) {
-    currentValue+=5;
+    currentValue+=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -371,7 +371,7 @@ function decrementAutoScored() {
   const input = document.getElementById('autoScored');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue > 0) {
-    currentValue-=5;
+    currentValue-=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -381,7 +381,7 @@ function incrementAutoPassed() {
   const input = document.getElementById('autoPassed');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue < 500) {
-    currentValue+=5;
+    currentValue+=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -391,7 +391,7 @@ function decrementAutoPassed() {
   const input = document.getElementById('autoPassed');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue > 0) {
-    currentValue-=5;
+    currentValue-=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -401,7 +401,7 @@ function incrementTeleopScored() {
   const input = document.getElementById('teleopScored');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue < 500) {
-    currentValue+=5;
+    currentValue+=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -411,7 +411,7 @@ function decrementTeleopScored() {
   const input = document.getElementById('teleopScored');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue > 0) {
-    currentValue-=5;
+    currentValue-=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -421,7 +421,7 @@ function incrementTeleopPassed() {
   const input = document.getElementById('teleopPassed');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue < 500) {
-    currentValue+=5;
+    currentValue+=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
@@ -431,7 +431,7 @@ function decrementTeleopPassed() {
   const input = document.getElementById('teleopPassed');
   let currentValue = parseInt(input.value) || 0;
   if (currentValue > 0) {
-    currentValue-=5;
+    currentValue-=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
   }
