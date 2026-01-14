@@ -11,344 +11,543 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="match-data.js"></script>
   <style>
-    body {
-      background-color: rgb(150, 20, 9);
+    * {
+      transition: all 0.2s ease;
     }
+    
+    body {
+      background: linear-gradient(135deg, rgb(150, 20, 9) 0%, rgb(120, 15, 7) 100%);
+      min-height: 100vh;
+      padding-bottom: 50px;
+    }
+    
+    .container {
+      max-width: 1400px;
+    }
+    
+    h1 {
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin-bottom: 30px;
+    }
+    
+    h4 {
+      color: white;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      margin-top: 30px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+      border-left: 5px solid white;
+    }
+    
+    .header-images {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    
+    .header-images img {
+      border: 4px solid white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    
+    .form-section {
+      background: rgba(255,255,255,0.95);
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    
     .form-row {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       margin-bottom: 10px;
     }
+    
     fieldset {
       width: 175px;
-      padding: 10px;
-      border: 2px solid #333;
-      border-radius: 8px;
+      padding: 12px;
+      border: 3px solid #333;
+      border-radius: 10px;
       background-color: white;
       height: min-content;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
+    
+    fieldset:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+    
     legend {
       font-weight: bold;
       font-size: 0.9rem;
+      color: rgb(150, 20, 9);
+      padding: 0 5px;
     }
+    
+    .form-control, .form-select {
+      border: 2px solid #ddd;
+      border-radius: 6px;
+    }
+    
+    .form-control:focus, .form-select:focus {
+      border-color: rgb(150, 20, 9);
+      box-shadow: 0 0 0 0.2rem rgba(150, 20, 9, 0.25);
+    }
+    
+    .btn-outline-danger, .btn-outline-success {
+      border-width: 2px;
+    }
+    
+    .btn-outline-danger:hover {
+      transform: scale(1.05);
+    }
+    
+    .btn-outline-success:hover {
+      transform: scale(1.05);
+    }
+    
+    .submit-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, rgb(150, 20, 9) 0%, rgb(120, 15, 7) 100%);
+      border: none;
+      padding: 15px 60px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      background: linear-gradient(135deg, rgb(170, 25, 12) 0%, rgb(140, 20, 10) 100%);
+    }
+    
+    .btn-primary:active {
+      transform: translateY(-1px);
+    }
+    
     .success-message {
       display: none;
       position: fixed;
       top: 20px;
       right: 20px;
       z-index: 1000;
-      background-color: #28a745;
+      background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
       color: white;
-      padding: 15px 25px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      font-weight: bold;
+      animation: slideIn 0.3s ease;
     }
+    
     .error-message {
       display: none;
       position: fixed;
       top: 20px;
       right: 20px;
       z-index: 1000;
-      background-color: #dc3545;
+      background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
       color: white;
-      padding: 15px 25px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      font-weight: bold;
+      animation: slideIn 0.3s ease;
     }
+    
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
     .loading {
       opacity: 0.6;
       pointer-events: none;
+    }
+    
+    .loading::after {
+      content: '';
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      z-index: 9999;
+    }
+    
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    
+    .field-image {
+      border: 4px solid #333;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      align-self: center;
+    }
+    
+    .form-control-static {
+      padding: 8px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      font-weight: 500;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .header-images {
+        flex-direction: column;
+      }
+      
+      .header-images img {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      fieldset {
+        width: 100%;
+      }
+      
+      .field-image {
+        width: 100%;
+        height: auto;
+      }
     }
   </style>
 </head>
 <body>
 <div class="container py-4">
-  <h1 class="text-center mb-4"><img src="https://i.ibb.co/kg7hB0qm/maxresdefault.jpg" alt="Online Photo" width="350" height="200" style="border: 2px solid black; border-radius: 12px;"> </h1>
-  <h1 class="text-center mb-4"><img src="https://i.ibb.co/VWxVwMNR/Screenshot-2026-01-11-at-2-23-42-PM.png" alt="Online Photo" width="350" height="80" style="border: 2px solid black; border-radius: 12px;"> -      5572 Scouting Site     - <img src="https://i.ibb.co/HDW30TNj/Screenshot-2026-01-11-at-2-23-50-PM.png" alt="Online Photo" width="350" height="80" style="border: 2px solid black; border-radius: 12px;"></h1>
+  <div class="header-images">
+    <img src="https://i.ibb.co/kg7hB0qm/maxresdefault.jpg" alt="Team Logo" width="350" height="200">
+  </div>
+  
+  <h1 class="text-center">
+    <div class="header-images">
+      <img src="https://i.ibb.co/VWxVwMNR/Screenshot-2026-01-11-at-2-23-42-PM.png" alt="Logo 1" width="250" height="60">
+      <span style="font-size: 2.5rem;">5572 Scouting Site</span>
+      <img src="https://i.ibb.co/HDW30TNj/Screenshot-2026-01-11-at-2-23-50-PM.png" alt="Logo 2" width="250" height="60">
+    </div>
+  </h1>
   
   <div id="successMessage" class="success-message">
-    Form submitted successfully! Form reset and ready for next match.
+    ✓ Form submitted successfully! Ready for next match.
   </div>
 
   <div id="errorMessage" class="error-message">
-    Error loading match data. Please check event key and match number.
+    ✗ Error loading match data. Please check event key and match number.
   </div>
 
   <form id="scoutingForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfKyjJST5AuVqQqLPSgvL6_mbgDB5nghvyScQcZwwEgpANGbA/formResponse" method="POST" target="hidden_iframe">
 
     <h4>Pre-Match</h4>
-    <div class="form-row">
-      <fieldset>
-        <legend>Password</legend>
-        <input type="text" class="form-control persistent-field" name="entry.1734301860" id="password" placeholder="Enter Password" required>
-      </fieldset>
-      <fieldset>
-        <legend>Your Name</legend>
-        <select class="form-select persistent-field" name="entry.2048293135" id="scoutName" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Saajid">Saajid</option>
-          <option value="Elijah">Elijah</option>
-          <option value="Jane">Jane</option>
-          <option value="Will">Will</option>
-          <option value="Jacqueline">Jacqueline</option>
-          <option value="Rital">Rital</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Lanyard Number</legend>
-        <select class="form-select persistent-field" name="entry.1022431114" id="lanyardNumber" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Event: San Antonio - 2026</legend>
-        <input type="hidden" name="entry.1847537648" id="eventKey" value="2026txsan">
-        <div class="form-control-static">Day 1, Qualification Matches</div>
-      </fieldset>
-      <fieldset>
-        <legend>Match Number</legend>
-        <input type="number" class="form-control" name="entry.1248777371" id="matchNumber" placeholder="Match #" required min="1" max="400">
-      </fieldset>
-      <fieldset>
-        <legend>Team NUMBER:</legend>
-        <input 
-          type="text" 
-          class="form-control" 
-          name="entry.362193707" 
-          id="teamInput" 
-          list="teamDatalist"
-          placeholder="Enter or select team number" 
-          required
-          disabled
-        >
-        <datalist id="teamDatalist">
-          <option value="">Select match first</option>
-        </datalist>
-        <small id="teamLoadingIndicator" class="form-text text-muted" style="display: none;">Loading teams...</small>
-      </fieldset>
-      <fieldset>
-        <legend>Robot Attendance</legend>
-        <select class="form-select" name="entry.1905062215" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Present">Present</option>
-          <option value="Not Present">Not Present</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Starting Location</legend>
-        <select class="form-select" name="entry.2027630203" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="S1">S1</option>
-          <option value="S2">S2</option>
-          <option value="S3">S3</option>
-          <option value="S4">S4</option>
-          <option value="S5">S5</option>
-        </select>
-      </fieldset>
-      <img src="https://i.ibb.co/Pshyrvc6/Screenshot-2026-01-10-at-4-28-51-PM.png" alt="Online Photo" width="350" height="150" style="border: 2px solid black; border-radius: 12px;">
+    <div class="form-section">
+      <div class="form-row">
+        <fieldset>
+          <legend>Password</legend>
+          <input type="text" class="form-control persistent-field" name="entry.1734301860" id="password" placeholder="Enter Password" required>
+        </fieldset>
+        <fieldset>
+          <legend>Your Name</legend>
+          <select class="form-select persistent-field" name="entry.2048293135" id="scoutName" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Saajid">Saajid</option>
+            <option value="Elijah">Elijah</option>
+            <option value="Jane">Jane</option>
+            <option value="Will">Will</option>
+            <option value="Jacqueline">Jacqueline</option>
+            <option value="Rital">Rital</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Lanyard Number</legend>
+          <select class="form-select persistent-field" name="entry.1022431114" id="lanyardNumber" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Event: San Antonio - 2026</legend>
+          <input type="hidden" name="entry.1847537648" id="eventKey" value="2026txsan">
+          <div class="form-control-static">Day 1, Qualification Matches</div>
+        </fieldset>
+        <fieldset>
+          <legend>Match Number</legend>
+          <input type="number" class="form-control" name="entry.1248777371" id="matchNumber" placeholder="Match #" required min="1" max="400">
+        </fieldset>
+        <fieldset>
+          <legend>Team NUMBER:</legend>
+          <input 
+            type="text" 
+            class="form-control" 
+            name="entry.362193707" 
+            id="teamInput" 
+            list="teamDatalist"
+            placeholder="Enter or select team number" 
+            required
+            disabled
+          >
+          <datalist id="teamDatalist">
+            <option value="">Select match first</option>
+          </datalist>
+          <small id="teamLoadingIndicator" class="form-text text-muted" style="display: none;">Loading teams...</small>
+        </fieldset>
+        <fieldset>
+          <legend>Robot Attendance</legend>
+          <select class="form-select" name="entry.1905062215" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Present">Present</option>
+            <option value="Not Present">Not Present</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Starting Location</legend>
+          <select class="form-select" name="entry.2027630203" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="S1">S1</option>
+            <option value="S2">S2</option>
+            <option value="S3">S3</option>
+            <option value="S4">S4</option>
+            <option value="S5">S5</option>
+          </select>
+        </fieldset>
+        <img src="https://i.ibb.co/Pshyrvc6/Screenshot-2026-01-10-at-4-28-51-PM.png" alt="Field Layout" class="field-image" width="350" height="150">
+      </div>
     </div>
 
     <h4>Auto (2:30-2:10)</h4>
-    <div class="form-row">
-      <fieldset>
-        <legend>Exit Starting Line?</legend>
-        <select class="form-select" name="entry.2010927838" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-          <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Auto Fuel Scored</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoScored()">-</button>
-          <input type="number" class="form-control text-center" name="entry.652021388" id="autoScored" placeholder="0" required min="0" max="500" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementAutoScored()">+</button>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Auto Fuel Passed</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementAutoPassed()">-</button>
-          <input type="number" class="form-control text-center" name="entry.1948083885" id="autoPassed" placeholder="0" required min="0" max="500" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementAutoPassed()">+</button>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Auto Climb?</legend>
-        <select class="form-select" name="entry.1884769915" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Climbed">Climbed</option>
-          <option value="No Climb">No Climb</option>
-          <option value="Attempted To Climb, Failed">Attempted To Climb, Failed</option>
-        </select>
-      </fieldset>
+    <div class="form-section">
+      <div class="form-row">
+        <fieldset>
+          <legend>Exit Starting Line?</legend>
+          <select class="form-select" name="entry.2010927838" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Auto Fuel Scored</legend>
+          <div class="input-group">
+            <button type="button" class="btn btn-outline-danger" onclick="decrementAutoScored()">-</button>
+            <input type="number" class="form-control text-center" name="entry.652021388" id="autoScored" placeholder="0" required min="0" max="500" value="0">
+            <button type="button" class="btn btn-outline-success" onclick="incrementAutoScored()">+</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Auto Fuel Passed</legend>
+          <div class="input-group">
+            <button type="button" class="btn btn-outline-danger" onclick="decrementAutoPassed()">-</button>
+            <input type="number" class="form-control text-center" name="entry.1948083885" id="autoPassed" placeholder="0" required min="0" max="500" value="0">
+            <button type="button" class="btn btn-outline-success" onclick="incrementAutoPassed()">+</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Auto Climb?</legend>
+          <select class="form-select" name="entry.1884769915" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Climbed">Climbed</option>
+            <option value="No Climb">No Climb</option>
+            <option value="Attempted To Climb, Failed">Attempted To Climb, Failed</option>
+          </select>
+        </fieldset>
+      </div>
     </div>
 
     <h4>Teleop (2:10-0:00)</h4>
-    <div class="form-row">
-      <fieldset>
-        <legend>Teleop Fuel Scored</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopScored()">-</button>
-          <input type="number" class="form-control text-center" name="entry.2027288960" id="teleopScored" placeholder="0" required min="0" max="500" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopScored()">+</button>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Teleop Fuel Passed</legend>
-        <div class="input-group">
-          <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopPassed()">-</button>
-          <input type="number" class="form-control text-center" name="entry.1192527974" id="teleopPassed" placeholder="0" required min="0" max="500" value="0">
-          <button type="button" class="btn btn-outline-success" onclick="incrementTeleopPassed()">+</button>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Teleop Climb?</legend>
-        <select class="form-select" name="entry.1291362431" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="No Climb">No Climb</option>
-          <option value="Attempted To Climb, Failed">Attempted To Climb, Failed</option>
-          <option value="Climbed First Rung">Climbed First Rung</option>
-          <option value="Climbed Second Rung">Climbed Second Rung</option>
-          <option value="Climbed Third Rung">Climbed Third Rung</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>How did they Climb?</legend>
-        <select class="form-select" name="entry.1022083903" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Left Side">Left Side</option>
-          <option value="Down the Middle">Down the Middle</option>
-          <option value="Right Side">Right Side</option>
-        </select>
-      </fieldset>
-      <img src="https://i.ibb.co/V0LPK1DF/Screenshot-2026-01-10-at-5-39-41-PM.png" alt="Online Photo" width="350" height="150" style="border: 2px solid black; border-radius: 12px;">
-      <fieldset>
-        <legend>Passing Accuracy (only if bot passed fuel)</legend>
-        <select class="form-select" name="entry.812255631" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="N/A">N/A - Did not pass</option>
-          <option value="1">1 = Barely shot out, left the field, stayed in Neutral Zone</option>
-          <option value="2">2 = Shot to edge of Neutral Zone bordering our Hub</option>
-          <option value="3">3 = Past Robot Starting Line</option>
-          <option value="4">4 = Right in front of our Hub</option>
-        </select>
-      </fieldset>
-    </div> 
+    <div class="form-section">
+      <div class="form-row">
+        <fieldset>
+          <legend>Teleop Fuel Scored</legend>
+          <div class="input-group">
+            <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopScored()">-</button>
+            <input type="number" class="form-control text-center" name="entry.2027288960" id="teleopScored" placeholder="0" required min="0" max="500" value="0">
+            <button type="button" class="btn btn-outline-success" onclick="incrementTeleopScored()">+</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Teleop Fuel Passed</legend>
+          <div class="input-group">
+            <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopPassed()">-</button>
+            <input type="number" class="form-control text-center" name="entry.1192527974" id="teleopPassed" placeholder="0" required min="0" max="500" value="0">
+            <button type="button" class="btn btn-outline-success" onclick="incrementTeleopPassed()">+</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Teleop Climb?</legend>
+          <select class="form-select" name="entry.1291362431" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="No Climb">No Climb</option>
+            <option value="Attempted To Climb, Failed">Attempted To Climb, Failed</option>
+            <option value="Climbed First Rung">Climbed First Rung</option>
+            <option value="Climbed Second Rung">Climbed Second Rung</option>
+            <option value="Climbed Third Rung">Climbed Third Rung</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>How did they Climb?</legend>
+          <select class="form-select" name="entry.1022083903" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Left Side">Left Side</option>
+            <option value="Down the Middle">Down the Middle</option>
+            <option value="Right Side">Right Side</option>
+          </select>
+        </fieldset>
+        <img src="https://i.ibb.co/V0LPK1DF/Screenshot-2026-01-10-at-5-39-41-PM.png" alt="Climbing Layout" class="field-image" width="350" height="150">
+        <fieldset>
+          <legend>Passing Accuracy (only if bot passed fuel)</legend>
+          <select class="form-select" name="entry.812255631" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="N/A">N/A - Did not pass</option>
+            <option value="1">1 = Barely shot out, left the field, stayed in Neutral Zone</option>
+            <option value="2">2 = Shot to edge of Neutral Zone bordering our Hub</option>
+            <option value="3">3 = Past Robot Starting Line</option>
+            <option value="4">4 = Right in front of our Hub</option>
+          </select>
+        </fieldset>
+      </div>
+    </div>
 
     <h4>Post-Game</h4>
-    <div class="form-row">
-      <fieldset>
-        <legend>When their Hub was Active, the robot mainly:</legend>
-        <select class="form-select" name="entry.854198450" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Scored/Collected Fuel">Scored/Collected Fuel</option>
-          <option value="Passed/Collected Fuel">Passed/Collected Fuel</option>
-          <option value="Equally Scored and Passed Fuel">Equally Scored and Passed Fuel</option>
-          <option value="Played Defence">Played Defence</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>When their Hub was Inactive, the robot mainly:</legend>
-        <select class="form-select" name="entry.769981197" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Passed/Collected Fuel">Passed/Collected Fuel</option>
-          <option value="Hoarded/Collected Fuel">Hoarded/Collected Fuel</option>
-          <option value="Played Defence">Played Defence</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Scoring Method</legend>
-        <select class="form-select" name="entry.1401683727" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="April Tags (smooth movement)">April Tags (smooth movement)</option>
-          <option value="Has To Line Up">Has To Line Up</option>
-          <option value="Did Not Score">Did Not Score</option>
-          <option value="Don't know">Don't know</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Fuel Intake Method</legend>
-        <select class="form-select" name="entry.105420236" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Feeder Station">Feeder Station</option>
-          <option value="Ground">Ground</option>
-          <option value="Both">Both</option>
-          <option value="None">None</option>
-          <option value="Don't know">Don't know</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Defense</legend>
-        <select class="form-select" name="entry.1323284915" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="1">1 - Bad</option>
-          <option value="2">2 - Meh</option>
-          <option value="3">3 - Neutral/No Defence</option>
-          <option value="4">4 - Decent</option>
-          <option value="5">5 - Good</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Driving</legend>
-        <select class="form-select" name="entry.1307312004" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="1">1 - Bad</option>
-          <option value="2">2 - Meh</option>
-          <option value="3">3 - Neutral</option>
-          <option value="4">4 - Decent</option>
-          <option value="5">5 - Good</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Can go under Trench?</legend>
-        <select class="form-select" name="entry.842957171" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Can go over Bump?</legend>
-        <select class="form-select" name="entry.1678024093" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Did they tip over?</legend>
-        <select class="form-select" name="entry.271229141" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-          <option value="Almost">Almost</option>
-        </select>
-      </fieldset>
-      <fieldset>
-        <legend>Number of fuel thrown by alliance human player</legend>
-        <input type="number" class="form-control" name="entry.1206035018" id="humanPlayerFuel" placeholder="Guess Here" required min="0" max="400">
-      </fieldset>
+    <div class="form-section">
+      <div class="form-row">
+        <fieldset>
+          <legend>When their Hub was Active, the robot mainly:</legend>
+          <select class="form-select" name="entry.854198450" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Scored/Collected Fuel">Scored/Collected Fuel</option>
+            <option value="Passed/Collected Fuel">Passed/Collected Fuel</option>
+            <option value="Equally Scored and Passed Fuel">Equally Scored and Passed Fuel</option>
+            <option value="Played Defence">Played Defence</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>When their Hub was Inactive, the robot mainly:</legend>
+          <select class="form-select" name="entry.769981197" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Passed/Collected Fuel">Passed/Collected Fuel</option>
+            <option value="Hoarded/Collected Fuel">Hoarded/Collected Fuel</option>
+            <option value="Played Defence">Played Defence</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Scoring Method</legend>
+          <select class="form-select" name="entry.1401683727" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="April Tags (smooth movement)">April Tags (smooth movement)</option>
+            <option value="Has To Line Up">Has To Line Up</option>
+            <option value="Did Not Score">Did Not Score</option>
+            <option value="Don't know">Don't know</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Fuel Intake Method</legend>
+          <select class="form-select" name="entry.105420236" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Feeder Station">Feeder Station</option>
+            <option value="Ground">Ground</option>
+            <option value="Both">Both</option>
+            <option value="None">None</option>
+            <option value="Don't know">Don't know</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Defense</legend>
+          <select class="form-select" name="entry.1323284915" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="1">1 - Bad</option>
+            <option value="2">2 - Meh</option>
+            <option value="3">3 - Neutral/No Defence</option>
+            <option value="4">4 - Decent</option>
+            <option value="5">5 - Good</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Driving</legend>
+          <select class="form-select" name="entry.1307312004" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="1">1 - Bad</option>
+            <option value="2">2 - Meh</option>
+            <option value="3">3 - Neutral</option>
+            <option value="4">4 - Decent</option>
+            <option value="5">5 - Good</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Can go under Trench?</legend>
+          <select class="form-select" name="entry.842957171" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Can go over Bump?</legend>
+          <select class="form-select" name="entry.1678024093" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Did they tip over?</legend>
+          <select class="form-select" name="entry.271229141" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="Almost">Almost</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Number of fuel thrown by alliance human player</legend>
+          <input type="number" class="form-control" name="entry.1206035018" id="humanPlayerFuel" placeholder="Guess Here" required min="0" max="400">
+        </fieldset>
+      </div>
+
+      <div class="form-row" style="margin-top: 20px;">
+        <fieldset class="w-100">
+          <legend>Comments</legend>
+          <input type="text" class="form-control" name="entry.2023321300" placeholder="Type answer here" required>
+        </fieldset>
+      </div>
     </div>
 
-    <div class="form-row">
-      <fieldset class="w-100">
-        <legend>Comments</legend>
-        <input type="text" class="form-control" name="entry.2023321300" placeholder="Type answer here" required>
-      </fieldset>
-    </div>
-
-    <div class="form-row justify-content-center">
-      <button type="submit" class="btn btn-primary">Submit!</button>
+    <div class="submit-container">
+      <button type="submit" class="btn btn-primary">Submit! 🚀</button>
     </div>
   </form>
 
