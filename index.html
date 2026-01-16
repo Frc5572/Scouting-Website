@@ -109,6 +109,10 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     
+    fieldset.answered {
+      background-color: rgb(143, 138, 138);
+    }
+    
     fieldset:hover {
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       transform: translateY(-2px);
@@ -389,7 +393,7 @@
             <option value="Don't know (unacceptable)">Don't know (unacceptable)</option>
           </select>
         </fieldset>
-        <fieldset>
+        <fieldset class="fuel-counter">
           <legend>Auto Fuel Scored</legend>
           <div class="input-group">
             <button type="button" class="btn btn-outline-danger" onclick="decrementAutoScored()">-</button>
@@ -397,7 +401,7 @@
             <button type="button" class="btn btn-outline-success" onclick="incrementAutoScored()">+</button>
           </div>
         </fieldset>
-        <fieldset>
+        <fieldset class="fuel-counter">
           <legend>Auto Fuel Passed</legend>
           <div class="input-group">
             <button type="button" class="btn btn-outline-danger" onclick="decrementAutoPassed()">-</button>
@@ -420,7 +424,7 @@
     <h4>Teleop (2:10-0:00)</h4>
     <div class="form-section">
       <div class="form-row">
-        <fieldset>
+        <fieldset class="fuel-counter">
           <legend>Teleop Fuel Scored</legend>
           <div class="input-group">
             <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopScored()">-</button>
@@ -428,7 +432,7 @@
             <button type="button" class="btn btn-outline-success" onclick="incrementTeleopScored()">+</button>
           </div>
         </fieldset>
-        <fieldset>
+        <fieldset class="fuel-counter">
           <legend>Teleop Fuel Passed</legend>
           <div class="input-group">
             <button type="button" class="btn btn-outline-danger" onclick="decrementTeleopPassed()">-</button>
@@ -594,6 +598,7 @@ function incrementAutoScored() {
     currentValue+=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
+    markFieldsetAsAnswered(input);
   }
 }
 
@@ -604,6 +609,7 @@ function decrementAutoScored() {
     currentValue-=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
+    markFieldsetAsAnswered(input);
   }
 }
 
@@ -614,6 +620,7 @@ function incrementAutoPassed() {
     currentValue+=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
+    markFieldsetAsAnswered(input);
   }
 }
 
@@ -624,6 +631,7 @@ function decrementAutoPassed() {
     currentValue-=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
+    markFieldsetAsAnswered(input);
   }
 }
 
@@ -634,6 +642,7 @@ function incrementTeleopScored() {
     currentValue+=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
+    markFieldsetAsAnswered(input);
   }
 }
 
@@ -644,6 +653,7 @@ function decrementTeleopScored() {
     currentValue-=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
+    markFieldsetAsAnswered(input);
   }
 }
 
@@ -654,6 +664,7 @@ function incrementTeleopPassed() {
     currentValue+=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
+    markFieldsetAsAnswered(input);
   }
 }
 
@@ -664,6 +675,30 @@ function decrementTeleopPassed() {
     currentValue-=1;
     input.value = currentValue;
     input.dispatchEvent(new Event('change'));
+    markFieldsetAsAnswered(input);
+  }
+}
+
+function markFieldsetAsAnswered(element) {
+  const fieldset = element.closest('fieldset');
+  if (fieldset) {
+    // Don't mark fuel counter fieldsets as answered if value is 0 or empty
+    if (fieldset.classList.contains('fuel-counter')) {
+      const input = fieldset.querySelector('input');
+      const value = parseInt(input.value) || 0;
+      if (value > 0) {
+        fieldset.classList.add('answered');
+      } else {
+        fieldset.classList.remove('answered');
+      }
+    } else {
+      const input = fieldset.querySelector('input, select');
+      if (input && input.value && input.value !== '') {
+        fieldset.classList.add('answered');
+      } else {
+        fieldset.classList.remove('answered');
+      }
+    }
   }
 }
 
@@ -684,6 +719,22 @@ window.addEventListener('load', function() {
   }
   
   document.getElementById('hidden_iframe').addEventListener('load', handleFormSubmit);
+  
+  // Check initial state of all fields on load
+  document.querySelectorAll('fieldset').forEach(fieldset => {
+    const input = fieldset.querySelector('input, select');
+    if (input) {
+      // For fuel counters, don't mark as answered if value is 0
+      if (fieldset.classList.contains('fuel-counter')) {
+        const value = parseInt(input.value) || 0;
+        if (value > 0) {
+          fieldset.classList.add('answered');
+        }
+      } else if (input.value && input.value !== '') {
+        fieldset.classList.add('answered');
+      }
+    }
+  });
 });
 
 document.addEventListener('change', function(e) {
@@ -693,12 +744,14 @@ document.addEventListener('change', function(e) {
   if (e.target.id === 'matchNumber') {
     loadTeamsForMatch();
   }
+  markFieldsetAsAnswered(e.target);
 });
 
 document.addEventListener('input', function(e) {
   if (e.target.classList.contains('persistent-field')) {
     savePersistentData();
   }
+  markFieldsetAsAnswered(e.target);
 });
 
 function savePersistentData() {
@@ -813,6 +866,11 @@ function handleFormSubmit() {
     }
     
     loadTeamsForMatch();
+    
+    document.querySelectorAll('fieldset').forEach(fieldset => {
+      fieldset.classList.remove('answered');
+    });
+    
     submitted = false;
   }
 }
