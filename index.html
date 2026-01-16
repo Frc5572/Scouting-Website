@@ -15,10 +15,16 @@
       transition: all 0.2s ease;
     }
     
+    html {
+      background: rgb(150, 20, 9);
+      min-height: 100%;
+    }
+    
     body {
-      background: linear-gradient(135deg, rgb(84, 175, 178) 0%, rgb(64, 155, 158) 100%);
+      background: linear-gradient(135deg, rgb(150, 20, 9) 0%, rgb(120, 15, 7) 100%);
       min-height: 100vh;
       padding-bottom: 50px;
+      margin: 0;
     }
     
     .container {
@@ -62,6 +68,22 @@
       box-shadow: none;
     }
     
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      margin-bottom: 20px;
+    }
+    
+    .corner-logo {
+      flex-shrink: 0;
+    }
+    
+    .center-logo {
+      flex-shrink: 0;
+    }
+    
     .form-section {
       background: rgb(164, 162, 162);
       padding: 25px;
@@ -95,7 +117,7 @@
     legend {
       font-weight: bold;
       font-size: 0.9rem;
-      color: rgb(84, 175, 178);
+      color: rgb(150, 20, 9);
       padding: 0 5px;
     }
     
@@ -250,8 +272,10 @@
 </head>
 <body>
 <div class="container py-4">
-  <div class="header-images">
-    <img src="https://i.ibb.co/bMn2vC8g/Rosbots2025-2026-Gear-Logo.png" alt="Rosbots Logo" width="200" height="200"><img src="https://i.ibb.co/kg7hB0qm/maxresdefault.jpg" alt="Team Logo" width="350" height="200"><img src="https://i.ibb.co/bMn2vC8g/Rosbots2025-2026-Gear-Logo.png" alt="Rosbots Logo" width="200" height="200">
+  <div class="top-header">
+    <img src="https://i.ibb.co/bMn2vC8g/Rosbots2025-2026-Gear-Logo.png" alt="Rosbots Logo" width="200" height="200" class="corner-logo">
+    <img src="https://i.ibb.co/kg7hB0qm/maxresdefault.jpg" alt="Team Logo" width="350" height="200" class="center-logo">
+    <img src="https://i.ibb.co/bMn2vC8g/Rosbots2025-2026-Gear-Logo.png" alt="Rosbots Logo" width="200" height="200" class="corner-logo">
   </div>
   
   
