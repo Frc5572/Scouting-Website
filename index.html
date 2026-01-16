@@ -823,6 +823,58 @@ document.getElementById('scoutingForm').addEventListener('submit', function(e) {
   savePersistentData();
   document.getElementById('scoutingForm').classList.add('loading');
 });
+
 </script>
+<div id="cursorTrail">
+  <script>
+    // Cursor trail effect
+    const trail = [];
+    const trailLength = 20;
+    const trailContainer = document.getElementById('cursorTrail');
+  
+    for (let i = 0; i < trailLength; i++) {
+      const dot = document.createElement('div');
+      dot.style.position = 'fixed';
+      dot.style.width = '8px';
+      dot.style.height = '8px';
+      dot.style.background = 'rgba(150, 20, 9, ' + (1 - i / trailLength) + ')';
+      dot.style.borderRadius = '50%';
+      dot.style.pointerEvents = 'none';
+      dot.style.zIndex = '9999';
+      dot.style.left = '-100px';
+      dot.style.top = '-100px';
+      trailContainer.appendChild(dot);
+      trail.push({ element: dot, x: -100, y: -100 });
+    }
+  
+    let mouseX = -100;
+    let mouseY = -100;
+  
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+  
+    function animateTrail() {
+      let currentX = mouseX+100;
+      let currentY = mouseY+100;
+  
+      trail.forEach(dot => {
+        dot.x += (currentX - dot.x) * 0.3;
+        dot.y += (currentY - dot.y) * 0.3;
+        dot.element.style.transform = `translate(${dot.x - 4}px, ${dot.y - 4}px)`;
+        currentX = dot.x;
+        currentY = dot.y;
+      });
+  
+      requestAnimationFrame(animateTrail);
+    }
+  
+    animateTrail();
+  </script>
+  
+
+</div>
+
 </body>
 </html>
