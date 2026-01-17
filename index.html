@@ -1103,7 +1103,9 @@ document.getElementById('scoutingForm').addEventListener('submit', function(e) {
       dot.style.position = 'fixed';
       dot.style.width = '8px';
       dot.style.height = '8px';
-      dot.style.background = 'rgba(0, 0, 0, ' + (1 - i / trailLength) + ')';
+      const colorGroup = Math.floor(i / 100) % 2;
+      const color = colorGroup === 0 ? '0, 0, 0' : '150, 20, 9'; 
+      dot.style.background = 'rgba(' + color + ', ' + (1 - i / trailLength) + ')';
       dot.style.borderRadius = '50%';
       dot.style.pointerEvents = 'none';
       dot.style.zIndex = '9999';
