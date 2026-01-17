@@ -887,7 +887,7 @@ document.getElementById('scoutingForm').addEventListener('submit', function(e) {
   <script>
     // Cursor trail effect
     const trail = [];
-    const trailLength = 20;
+    const trailLength = 160;
     const trailContainer = document.getElementById('cursorTrail');
   
     for (let i = 0; i < trailLength; i++) {
@@ -918,8 +918,8 @@ document.getElementById('scoutingForm').addEventListener('submit', function(e) {
       let currentY = mouseY+100;
   
       trail.forEach(dot => {
-        dot.x += (currentX - dot.x) * 0.6;
-        dot.y += (currentY - dot.y) * 0.6;
+        dot.x += (currentX - dot.x) * 0.9;
+        dot.y += (currentY - dot.y) * 0.9;
         dot.element.style.transform = `translate(${dot.x - 4}px, ${dot.y - 4}px)`;
         currentX = dot.x;
         currentY = dot.y;
