@@ -15,6 +15,32 @@
       transition: all 0.2s ease;
     }
     
+    @keyframes gearRotate {
+      0% { transform: rotate(-45deg); }
+      5.56% { transform: rotate(-45deg); }
+      11.11% { transform: rotate(-35deg); }
+      16.67% { transform: rotate(-35deg); }
+      22.22% { transform: rotate(-25deg); }
+      27.78% { transform: rotate(-25deg); }
+      33.33% { transform: rotate(-15deg); }
+      38.89% { transform: rotate(-15deg); }
+      44.44% { transform: rotate(-5deg); }
+      50% { transform: rotate(-5deg); }
+      55.56% { transform: rotate(5deg); }
+      61.11% { transform: rotate(5deg); }
+      66.67% { transform: rotate(15deg); }
+      72.22% { transform: rotate(15deg); }
+      77.78% { transform: rotate(25deg); }
+      83.33% { transform: rotate(25deg); }
+      88.89% { transform: rotate(35deg); }
+      94.44% { transform: rotate(35deg); }
+      100% { transform: rotate(45deg); }
+    }
+    
+    img[src*="https://i.ibb.co/bMn2vC8g/Rosbots2025-2026-Gear-Logo.png"] {
+      animation: gearRotate 9s ease-in-out infinite alternate;
+    }
+    
     html {
       background: rgb(150, 20, 9);
       min-height: 100%;
