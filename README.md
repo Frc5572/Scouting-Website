@@ -7,7 +7,7 @@ Overview:
 This website takes user input and sends it to team 5572's scouting google form, which is then collected and displayed in its respective google sheet application. 
 
 Terms of use: 
-Only memnbers from  FRC's team  number 5572, The Rosbots, may use this website and its associated google form and google sheet application. 
+Only memnbers from  FRC's team  number 5572, The Rosbots, may submit information to this website and its associated google form. 
 
 --- Credits ---
 
