@@ -9,59 +9,41 @@
   <title>5572 Scouting Site</title>
   <link rel="icon" type="image/png" href="https://i.ibb.co/PGjYvXpj/Screenshot-2026-01-11-at-4-29-36-PM-removebg-preview.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="match-data.js"></script>
   <style>
-    * {
-      transition: all 0.2s ease;
-    }
-    
+    * { transition: all 0.2s ease; }
+
     @keyframes gearRotate {
-      0% { transform: rotate(-45deg); }
-      5.56% { transform: rotate(-45deg); }
-      11.11% { transform: rotate(-35deg); }
-      16.67% { transform: rotate(-35deg); }
-      22.22% { transform: rotate(-25deg); }
-      27.78% { transform: rotate(-25deg); }
-      33.33% { transform: rotate(-15deg); }
-      38.89% { transform: rotate(-15deg); }
-      44.44% { transform: rotate(-5deg); }
-      50% { transform: rotate(-5deg); }
-      55.56% { transform: rotate(5deg); }
-      61.11% { transform: rotate(5deg); }
-      66.67% { transform: rotate(15deg); }
-      72.22% { transform: rotate(15deg); }
-      77.78% { transform: rotate(25deg); }
-      83.33% { transform: rotate(25deg); }
-      88.89% { transform: rotate(35deg); }
-      94.44% { transform: rotate(35deg); }
-      100% { transform: rotate(45deg); }
+      0%   { transform: rotate(-45deg); } 5.56%  { transform: rotate(-45deg); }
+      11.11%{ transform: rotate(-35deg); }16.67% { transform: rotate(-35deg); }
+      22.22%{ transform: rotate(-25deg); }27.78% { transform: rotate(-25deg); }
+      33.33%{ transform: rotate(-15deg); }38.89% { transform: rotate(-15deg); }
+      44.44%{ transform: rotate(-5deg);  }50%    { transform: rotate(-5deg);  }
+      55.56%{ transform: rotate(5deg);   }61.11% { transform: rotate(5deg);   }
+      66.67%{ transform: rotate(15deg);  }72.22% { transform: rotate(15deg);  }
+      77.78%{ transform: rotate(25deg);  }83.33% { transform: rotate(25deg);  }
+      88.89%{ transform: rotate(35deg);  }94.44% { transform: rotate(35deg);  }
+      100%  { transform: rotate(45deg);  }
     }
-    
-    img[src*="https://i.ibb.co/bMn2vC8g/Rosbots2025-2026-Gear-Logo.png"] {
+
+    img[src*="Rosbots2025-2026-Gear-Logo"] {
       animation: gearRotate 9s ease-in-out infinite alternate;
     }
-    
-    html {
-      background: rgb(150, 20, 9);
-      min-height: 100%;
-    }
-    
+
+    html { background: rgb(150, 20, 9); min-height: 100%; }
+
     body {
       background: linear-gradient(135deg, rgb(150, 20, 9) 0%, rgb(120, 15, 7) 100%);
       min-height: 100vh;
       padding-bottom: 50px;
       margin: 0;
     }
-    
-    .container {
-      max-width: 1400px;
-    }
-    
-    h1, h2, h3 {
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-    
+
+    .container { max-width: 1400px; }
+
+    h1, h2, h3 { color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+
     h4 {
       color: white;
       font-weight: bold;
@@ -73,7 +55,7 @@
       border-radius: 10px;
       border-left: 5px solid white;
     }
-    
+
     .header-images {
       display: flex;
       justify-content: center;
@@ -82,17 +64,10 @@
       flex-wrap: wrap;
       margin-bottom: 20px;
     }
-    
-    .header-images img {
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    
-    .header-images img[src*="Rosbots2025-2026-Gear-Logo"] {
-      border: none;
-      box-shadow: none;
-    }
-    
+
+    .header-images img { border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+    .header-images img[src*="Rosbots2025-2026-Gear-Logo"] { border: none; box-shadow: none; }
+
     .top-header {
       display: flex;
       justify-content: space-between;
@@ -100,15 +75,9 @@
       padding: 0 20px;
       margin-bottom: 20px;
     }
-    
-    .corner-logo {
-      flex-shrink: 0;
-    }
-    
-    .center-logo {
-      flex-shrink: 0;
-    }
-    
+
+    .corner-logo, .center-logo { flex-shrink: 0; }
+
     .form-section, .content-section {
       background: rgb(164, 162, 162);
       padding: 25px;
@@ -116,63 +85,33 @@
       margin-bottom: 25px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     }
-    
-    .content-section {
-      padding: 30px;
-    }
-    
+
+    .content-section { padding: 30px; }
+
     .content-section h2 {
       color: rgb(150, 20, 9);
       margin-bottom: 20px;
       padding-bottom: 10px;
       border-bottom: 3px solid rgb(150, 20, 9);
     }
-    
-    .content-section p {
-      color: #333;
-      line-height: 1.8;
-      font-size: 1.1rem;
-      text-align: center;
-    }
-    
+
+    .content-section p { color: #333; line-height: 1.8; font-size: 1.1rem; text-align: center; }
+
     .team-stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
-    
-    .stat-card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    
-    .stat-card h3 {
-      color: rgb(150, 20, 9);
-      font-size: 2rem;
-      margin-bottom: 10px;
-      text-shadow: none;
-    }
-    
-    .stat-card p {
-      color: #666;
-      margin: 0;
-    }
-    
-    #aboutPage .content-section {
-      background: rgba(255, 255, 255, 0.82);
-    }
-    
-    .form-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 10px;
-    }
-    
+
+    .stat-card { background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .stat-card h3 { color: rgb(150, 20, 9); font-size: 2rem; margin-bottom: 10px; text-shadow: none; }
+    .stat-card p { color: #666; margin: 0; }
+
+    #aboutPage .content-section { background: rgba(255, 255, 255, 0.82); }
+
+    .form-row { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 10px; }
+
     fieldset {
       width: 175px;
       padding: 12px;
@@ -182,52 +121,22 @@
       height: min-content;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    
-    fieldset.answered {
-      background-color: rgb(143, 138, 138);
-    }
-    
-    fieldset:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      transform: translateY(-2px);
-    }
-    
-    legend {
-      font-weight: bold;
-      font-size: 0.9rem;
-      color: rgb(150, 20, 9);
-      padding: 0 5px;
-    }
-    
-    .form-control, .form-select {
-      border: 2px solid #ddd;
-      border-radius: 6px;
-    }
-    
-    .form-control:focus, .form-select:focus {
-      border-color: rgb(84, 175, 178);
-      box-shadow: 0 0 0 0.2rem rgba(84, 175, 178, 0.25);
-    }
-    
-    .btn-outline-danger, .btn-outline-success {
-      border-width: 2px;
-    }
-    
-    .btn-outline-danger:hover {
-      transform: scale(1.05);
-    }
-    
-    .btn-outline-success:hover {
-      transform: scale(1.05);
-    }
-    
-    .submit-container {
-      text-align: center;
-      margin-top: 30px;
-    }
-    
+
+    fieldset.answered { background-color: rgb(143, 138, 138); }
+    fieldset:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.2); transform: translateY(-2px); }
+
+    legend { font-weight: bold; font-size: 0.9rem; color: rgb(150, 20, 9); padding: 0 5px; }
+
+    .form-control, .form-select { border: 2px solid #ddd; border-radius: 6px; }
+    .form-control:focus, .form-select:focus { border-color: rgb(84, 175, 178); box-shadow: 0 0 0 0.2rem rgba(84, 175, 178, 0.25); }
+
+    .btn-outline-danger, .btn-outline-success { border-width: 2px; }
+    .btn-outline-danger:hover, .btn-outline-success:hover { transform: scale(1.05); }
+
+    .submit-container { text-align: center; margin-top: 30px; }
+
     .btn-primary {
-      background: linear-gradient(135deg,  rgb(78, 78, 78) 0%,  rgb(78, 78, 78) 100%);
+      background: linear-gradient(135deg, rgb(78, 78, 78) 0%, rgb(78, 78, 78) 100%);
       border: none;
       padding: 15px 60px;
       font-size: 1.3rem;
@@ -236,19 +145,12 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       color: white;
     }
-    
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      background: linear-gradient(135deg,  rgb(43, 43, 43) 0%, rgb(43, 43, 43) 100%);
-    }
-    
-    .btn-primary:active {
-      transform: translateY(-1px);
-    }
-    
+
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); background: linear-gradient(135deg, rgb(43,43,43) 0%, rgb(43,43,43) 100%); }
+    .btn-primary:active { transform: translateY(-1px); }
+
     .btn-nav {
-      background: linear-gradient(135deg, rgb(78, 78, 78) 0%, rgb(78, 78, 78)  100%);
+      background: linear-gradient(135deg, rgb(78,78,78) 0%, rgb(78,78,78) 100%);
       border: none;
       padding: 10px 30px;
       font-size: 1rem;
@@ -258,14 +160,9 @@
       color: white;
       cursor: pointer;
     }
-    
-    .btn-nav:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      background: linear-gradient(135deg, rgb(43, 43, 43) 0%, rgb(43, 43, 43) 100%);
-      color: white;
-    }
-    
+
+    .btn-nav:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); background: linear-gradient(135deg, rgb(43,43,43) 0%, rgb(43,43,43) 100%); color: white; }
+
     .success-message {
       display: none;
       position: fixed;
@@ -280,7 +177,7 @@
       font-weight: bold;
       animation: slideIn 0.3s ease;
     }
-    
+
     .error-message {
       display: none;
       position: fixed;
@@ -295,116 +192,132 @@
       font-weight: bold;
       animation: slideIn 0.3s ease;
     }
-    
+
     @keyframes slideIn {
-      from {
-        transform: translateX(400px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
+      from { transform: translateX(400px); opacity: 0; }
+      to   { transform: translateX(0);     opacity: 1; }
     }
-    
-    .loading {
-      opacity: 0.6;
-      pointer-events: none;
-    }
-    
+
+    .loading { opacity: 0.6; pointer-events: none; }
     .loading::after {
       content: '';
       position: fixed;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 50px;
-      height: 50px;
+      width: 50px; height: 50px;
       border: 5px solid rgba(255,255,255,0.3);
       border-top-color: white;
       border-radius: 50%;
       animation: spin 1s linear infinite;
       z-index: 9999;
     }
-    
-    @keyframes spin {
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    
-    .field-image {
-      border: 4px solid #333;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      align-self: center;
-    }
-    
-    .form-control-static {
-      padding: 8px;
-      background: #f8f9fa;
-      border-radius: 6px;
-      font-weight: 500;
-      text-align: center;
-    }
-    
-    .page {
+
+    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    .field-image { border: 4px solid #333; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); align-self: center; }
+    .form-control-static { padding: 8px; background: #f8f9fa; border-radius: 6px; font-weight: 500; text-align: center; }
+
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .video-section { background: rgb(164,162,162); padding: 25px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; border: 4px solid #333; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+    /* ── QR Modal ── */
+    .qr-overlay {
       display: none;
-    }
-    
-    .page.active {
-      display: block;
-    }
-
-    /* Game Video Section */
-    .video-section {
-      background: rgb(164, 162, 162);
-      padding: 25px;
-      border-radius: 15px;
-      margin-bottom: 25px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
     }
 
-    .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
+    .qr-overlay.active { display: flex; }
+
+    .qr-modal {
+      background: white;
+      border-radius: 20px;
+      padding: 35px 40px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      max-width: 420px;
+      width: 90%;
+      animation: popIn 0.3s ease;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    .qr-modal h2 {
+      color: rgb(150, 20, 9);
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      text-shadow: none;
+    }
+
+    .qr-modal p { color: #555; font-size: 0.9rem; margin-bottom: 20px; }
+
+    #qrCodeContainer { display: flex; justify-content: center; margin-bottom: 20px; }
+    #qrCodeContainer canvas, #qrCodeContainer img { border-radius: 10px; border: 3px solid #eee; }
+
+    .qr-meta {
+      background: #f8f9fa;
       border-radius: 10px;
-      border: 4px solid #333;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: #444;
+      text-align: left;
     }
 
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+    .qr-meta strong { color: rgb(150, 20, 9); }
+
+    .qr-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-qr-close {
+      background: rgb(150, 20, 9);
+      color: white;
       border: none;
+      padding: 10px 30px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
     }
-    
+
+    .btn-qr-close:hover { background: rgb(120, 15, 7); transform: translateY(-2px); }
+
+    .btn-qr-download {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-qr-download:hover { background: #218838; transform: translateY(-2px); }
+
+    .scan-hint {
+      font-size: 0.78rem;
+      color: #888;
+      margin-top: 10px;
+    }
+
     @media (max-width: 768px) {
-      .header-images {
-        flex-direction: column;
-      }
-      
-      .header-images img {
-        max-width: 100%;
-        height: auto;
-      }
-      
-      .top-header {
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      fieldset {
-        width: 100%;
-      }
-      
-      .field-image {
-        width: 100%;
-        height: auto;
-      }
+      .header-images { flex-direction: column; }
+      .header-images img { max-width: 100%; height: auto; }
+      .top-header { flex-direction: column; gap: 20px; }
+      fieldset { width: 100%; }
+      .field-image { width: 100%; height: auto; }
+      .qr-modal { padding: 25px 20px; }
     }
   </style>
 </head>
@@ -415,25 +328,24 @@
     <img src="https://i.ibb.co/kg7hB0qm/maxresdefault.jpg" alt="Team Logo" width="350" height="200" class="center-logo">
     <img src="https://i.ibb.co/bMn2vC8g/Rosbots2025-2026-Gear-Logo.png" alt="Rosbots Logo" width="200" height="200" class="corner-logo">
   </div>
-  
+
   <!-- Scouting Form Page -->
   <div id="scoutingPage" class="page active">
     <h1 class="text-center">
       <div class="header-images">
         <img src="https://i.ibb.co/VWxVwMNR/Screenshot-2026-01-11-at-2-23-42-PM.png" alt="Logo 1" width="250" height="60">
-        <span style="font-size: 2.5rem;">5572 Scouting Site. </span>
+        <span style="font-size: 2.5rem;">5572 Scouting Site.</span>
         <img src="https://i.ibb.co/HDW30TNj/Screenshot-2026-01-11-at-2-23-50-PM.png" alt="Logo 2" width="250" height="60">
       </div>
     </h1>
 
     <div class="text-center mb-3">
-      <button class="btn-nav" onclick="showAboutPage()">→   About 5572 Scouting  ←</button>
+      <button class="btn-nav" onclick="showAboutPage()">→ About 5572 Scouting ←</button>
     </div>
-    
+
     <div id="successMessage" class="success-message">
       ✓ If password correct: Form submitted successfully! Ready for next match.
     </div>
-
     <div id="errorMessage" class="error-message">
       ✗ Error loading match data. Please check event key and match number.
     </div>
@@ -444,14 +356,14 @@
       <div class="form-section">
         <div class="form-row">
           <fieldset>
-            <legend>Password (Currently Active) </legend>
+            <legend>Password (Currently Active)</legend>
             <input type="text" class="form-control persistent-field" name="entry.1734301860" id="password" placeholder="Enter Password" required>
           </fieldset>
           <fieldset>
             <legend>Your Name</legend>
             <select class="form-select persistent-field" name="entry.2048293135" id="name" required>
               <option value="" disabled selected>Select one</option>
-              <option value="other">other</option>
+              <option value="Other">other</option>
               <option value="Alejandro">Alejandro</option>
               <option value="Alex">Alex</option>
               <option value="Axel">Axel</option>
@@ -479,12 +391,8 @@
             <legend>Lanyard Number</legend>
             <select class="form-select persistent-field" name="entry.1022431114" id="lanyardNumber" required>
               <option value="" disabled selected>Select one</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
             </select>
           </fieldset>
           <fieldset>
@@ -498,24 +406,13 @@
           </fieldset>
           <fieldset>
             <legend>Team NUMBER:</legend>
-            <input 
-              type="text" 
-              class="form-control" 
-              name="entry.362193707" 
-              id="teamInput" 
-              list="teamDatalist"
-              placeholder="Enter or select team number" 
-              required
-              disabled
-            >
-            <datalist id="teamDatalist">
-              <option value="">Select match first</option>
-            </datalist>
-            <small id="teamLoadingIndicator" class="form-text text-muted" style="display: none;">Loading teams...</small>
+            <input type="text" class="form-control" name="entry.362193707" id="teamInput" list="teamDatalist" placeholder="Enter or select team number" required disabled>
+            <datalist id="teamDatalist"><option value="">Select match first</option></datalist>
+            <small id="teamLoadingIndicator" class="form-text text-muted" style="display:none;">Loading teams...</small>
           </fieldset>
           <fieldset>
             <legend>Robot Attendance</legend>
-            <select class="form-select" name="entry.1905062215" required>
+            <select class="form-select" name="entry.1905062215" id="robotAttendance" required>
               <option value="" disabled selected>Select one</option>
               <option value="Present">Present</option>
               <option value="Not Present">Not Present</option>
@@ -523,13 +420,10 @@
           </fieldset>
           <fieldset>
             <legend>Starting Location</legend>
-            <select class="form-select" name="entry.2027630203" required>
+            <select class="form-select" name="entry.2027630203" id="startingLocation" required>
               <option value="" disabled selected>Select one</option>
-              <option value="S1">S1</option>
-              <option value="S2">S2</option>
-              <option value="S3">S3</option>
-              <option value="S4">S4</option>
-              <option value="S5">S5</option>
+              <option value="S1">S1</option><option value="S2">S2</option><option value="S3">S3</option>
+              <option value="S4">S4</option><option value="S5">S5</option>
             </select>
           </fieldset>
           <img src="https://i.ibb.co/Pshyrvc6/Screenshot-2026-01-10-at-4-28-51-PM.png" alt="Field Layout" class="field-image" width="350" height="150">
@@ -549,7 +443,7 @@
         <div class="form-row">
           <fieldset>
             <legend>Exit Starting Line?</legend>
-            <select class="form-select" name="entry.2010927838" required>
+            <select class="form-select" name="entry.2010927838" id="exitLine" required>
               <option value="" disabled selected>Select one</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
@@ -574,7 +468,7 @@
           </fieldset>
           <fieldset>
             <legend>Auto Climb? (Bumpers must be off ground)</legend>
-            <select class="form-select" name="entry.1884769915" required>
+            <select class="form-select" name="entry.1884769915" id="autoClimb" required>
               <option value="" disabled selected>Select one</option>
               <option value="Climbed">Climbed</option>
               <option value="No Climb">No Climb</option>
@@ -583,7 +477,7 @@
           </fieldset>
           <fieldset>
             <legend>How did they climb?</legend>
-            <select class="form-select" name="entry.464361249" required>
+            <select class="form-select" name="entry.464361249" id="autoClimbHow" required>
               <option value="" disabled selected>Select one</option>
               <option value="Left Side">Left Side</option>
               <option value="Down the Middle">Down the Middle</option>
@@ -615,7 +509,7 @@
           </fieldset>
           <fieldset>
             <legend>Teleop Climb?</legend>
-            <select class="form-select" name="entry.1291362431" required>
+            <select class="form-select" name="entry.1291362431" id="teleopClimb" required>
               <option value="" disabled selected>Select one</option>
               <option value="No Climb">No Climb</option>
               <option value="Attempted To Climb, Failed">Attempted To Climb, Failed</option>
@@ -626,7 +520,7 @@
           </fieldset>
           <fieldset>
             <legend>How did they Climb?</legend>
-            <select class="form-select" name="entry.1022083903" required>
+            <select class="form-select" name="entry.1022083903" id="teleopClimbHow" required>
               <option value="" disabled selected>Select one</option>
               <option value="Left Side">Left Side</option>
               <option value="Down the Middle">Down the Middle</option>
@@ -637,7 +531,7 @@
           <img src="https://i.ibb.co/spwwmMj6/Screenshot-2026-01-14-at-6-12-47-PM.png" alt="Climbing Layout" class="field-image" width="350" height="150">
           <fieldset>
             <legend>Passing Accuracy</legend>
-            <select class="form-select" name="entry.812255631" required>
+            <select class="form-select" name="entry.812255631" id="passingAccuracy" required>
               <option value="" disabled selected>Select one</option>
               <option value="N/A">N/A - Did not pass</option>
               <option value="1">1 = Barely shot out, left the field, stayed in Neutral Zone</option>
@@ -647,30 +541,16 @@
           </fieldset>
           <fieldset>
             <legend>Shooting Accuracy</legend>
-            <select class="form-select" name="entry.1465763167" required>
+            <select class="form-select" name="entry.1465763167" id="shootingAccuracy" required>
               <option value="" disabled selected>Select one</option>
               <option value="Did not shoot">Did not shoot</option>
-              <option value="0%">0%</option>
-              <option value="5%">5%</option>
-              <option value="10%">10%</option>
-              <option value="15%">15%</option>
-              <option value="20%">20%</option>
-              <option value="25%">25%</option>
-              <option value="30%">30%</option>
-              <option value="35%">35%</option>
-              <option value="40%">40%</option>
-              <option value="45%">45%</option>
-              <option value="50%">50%</option>
-              <option value="55%">55%</option>
-              <option value="60%">60%</option>
-              <option value="65%">65%</option>
-              <option value="70%">70%</option>
-              <option value="75%">75%</option>
-              <option value="80%">80%</option>
-              <option value="85%">85%</option>
-              <option value="90%">90%</option>
-              <option value="95%">95%</option>
-              <option value="100%">100%</option>
+              <option value="0%">0%</option><option value="5%">5%</option><option value="10%">10%</option>
+              <option value="15%">15%</option><option value="20%">20%</option><option value="25%">25%</option>
+              <option value="30%">30%</option><option value="35%">35%</option><option value="40%">40%</option>
+              <option value="45%">45%</option><option value="50%">50%</option><option value="55%">55%</option>
+              <option value="60%">60%</option><option value="65%">65%</option><option value="70%">70%</option>
+              <option value="75%">75%</option><option value="80%">80%</option><option value="85%">85%</option>
+              <option value="90%">90%</option><option value="95%">95%</option><option value="100%">100%</option>
             </select>
           </fieldset>
         </div>
@@ -681,7 +561,7 @@
         <div class="form-row">
           <fieldset>
             <legend>When their Hub was Active, the robot was a ______ bot</legend>
-            <select class="form-select" name="entry.854198450" required>
+            <select class="form-select" name="entry.854198450" id="hubActive" required>
               <option value="" disabled selected>Select one</option>
               <option value="Cleanup: Stayed in the alliance zone, shot passed balls.">Cleanup: Stayed in the alliance zone, shot passed balls.</option>
               <option value="Cycling: Got fuel from the Neutral zone and scored it.">Cycling: Got fuel from the Neutral zone and scored it.</option>
@@ -695,7 +575,7 @@
           </fieldset>
           <fieldset>
             <legend>When their Hub was Inactive, the robot was a ______ bot</legend>
-            <select class="form-select" name="entry.769981197" required>
+            <select class="form-select" name="entry.769981197" id="hubInactive" required>
               <option value="" disabled selected>Select one</option>
               <option value="Passing: Shot balls to our side of the field.">Passing: Shot balls to our side of the field.</option>
               <option value="Shover: Shoved balls to our side of the field, or to the human players.">Shover: Shoved balls to our side of the field, or to the human players.</option>
@@ -707,7 +587,7 @@
           </fieldset>
           <fieldset>
             <legend>Scoring Method</legend>
-            <select class="form-select" name="entry.1401683727" required>
+            <select class="form-select" name="entry.1401683727" id="scoringMethod" required>
               <option value="" disabled selected>Select one</option>
               <option value="April Tags (smooth movement)">April Tags (smooth movement)</option>
               <option value="Has To Line Up">Has To Line Up</option>
@@ -717,7 +597,7 @@
           </fieldset>
           <fieldset>
             <legend>Fuel Intake Method</legend>
-            <select class="form-select" name="entry.105420236" required>
+            <select class="form-select" name="entry.105420236" id="fuelIntake" required>
               <option value="" disabled selected>Select one</option>
               <option value="Feeder Station">Feeder Station</option>
               <option value="Ground">Ground</option>
@@ -727,60 +607,49 @@
             </select>
           </fieldset>
           <fieldset>
-            <legend>Defense</legend>
-            <select class="form-select" name="entry.1323284915" required>
+            <legend>Defence</legend>
+            <select class="form-select" name="entry.1323284915" id="defence" required>
               <option value="" disabled selected>Select one</option>
-              <option value="1">1 - Bad</option>
-              <option value="2">2 - Meh</option>
-              <option value="3">3 - Neutral/No Defence</option>
-              <option value="4">4 - Decent</option>
+              <option value="1">1 - Bad</option><option value="2">2 - Meh</option>
+              <option value="3">3 - Neutral/No Defence</option><option value="4">4 - Decent</option>
               <option value="5">5 - Good</option>
             </select>
           </fieldset>
           <fieldset>
             <legend>Driving</legend>
-            <select class="form-select" name="entry.1307312004" required>
+            <select class="form-select" name="entry.1307312004" id="driving" required>
               <option value="" disabled selected>Select one</option>
-              <option value="1">1 - Bad</option>
-              <option value="2">2 - Meh</option>
-              <option value="3">3 - Neutral</option>
-              <option value="4">4 - Decent</option>
+              <option value="1">1 - Bad</option><option value="2">2 - Meh</option>
+              <option value="3">3 - Neutral</option><option value="4">4 - Decent</option>
               <option value="5">5 - Good</option>
             </select>
           </fieldset>
           <fieldset>
             <legend>Can go under Trench?</legend>
-            <select class="form-select" name="entry.842957171" required>
+            <select class="form-select" name="entry.842957171" id="trench" required>
               <option value="" disabled selected>Select one</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-              <option value="IDK">IDK</option>
+              <option value="Yes">Yes</option><option value="No">No</option><option value="IDK">IDK</option>
             </select>
           </fieldset>
           <fieldset>
             <legend>Can go over Bump?</legend>
-            <select class="form-select" name="entry.1678024093" required>
+            <select class="form-select" name="entry.1678024093" id="bump" required>
               <option value="" disabled selected>Select one</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-              <option value="IDK">IDK</option>
+              <option value="Yes">Yes</option><option value="No">No</option><option value="IDK">IDK</option>
             </select>
           </fieldset>
           <fieldset>
             <legend>Did they tip over?</legend>
-            <select class="form-select" name="entry.271229141" required>
+            <select class="form-select" name="entry.271229141" id="tipOver" required>
               <option value="" disabled selected>Select one</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-              <option value="Almost">Almost</option>
+              <option value="Yes">Yes</option><option value="No">No</option><option value="Almost">Almost</option>
             </select>
           </fieldset>
           <fieldset>
             <legend>Did they get beached?</legend>
-            <select class="form-select" name="entry.1602966049" required>
+            <select class="form-select" name="entry.1602966049" id="beached" required>
               <option value="" disabled selected>Select one</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
+              <option value="Yes">Yes</option><option value="No">No</option>
             </select>
           </fieldset>
         </div>
@@ -788,7 +657,7 @@
         <div class="form-row" style="margin-top: 20px;">
           <fieldset class="w-100">
             <legend>1. Did they play defence, and if so, were they easy to push around? Describe what they did on defence. 2. Other comments?</legend>
-            <input type="text" class="form-control" name="entry.2023321300" placeholder="Type answer here" required>
+            <input type="text" class="form-control" name="entry.2023321300" id="comments" placeholder="Type answer here" required>
           </fieldset>
         </div>
       </div>
@@ -808,381 +677,352 @@
         <span style="font-size: 2.5rem;">About 5572 Scouting</span>
       </div>
     </h1>
-    
     <div class="text-center mb-4">
-      <button class="btn-nav" onclick="showScoutingPage()">→ Back to Scouting Form ←</button> 
+      <button class="btn-nav" onclick="showScoutingPage()">→ Back to Scouting Form ←</button>
     </div>
-
     <div class="content-section">
       <h2>About Our Scouting System</h2>
-      <p>
-        Our scouting system is designed to collect important match data about other team's robots during competitions. Each scouter 
-        observes a specific robot throughout the match, recording crucial information about their autonomous performance, 
-        teleop capabilities, climbing mechanisms, and strategic gameplay. This data helps our strategy team make 
-        informed decisions during alliance selections and when coming up with diffrent strategies before each match.
-      </p>
+      <p>Our scouting system is designed to collect important match data about other team's robots during competitions. Each scouter observes a specific robot throughout the match, recording crucial information about their autonomous performance, teleop capabilities, climbing mechanisms, and strategic gameplay. This data helps our strategy team make informed decisions during alliance selections and when coming up with different strategies before each match.</p>
     </div>
     <div class="content-section">
       <h2>How The Scouting Site Works</h2>
-      <p>
-        <p style="text-align: center;">Scouters enter robot data and submit the form.</p>
-      </p>
+      <p><p style="text-align: center;">Scouters enter robot data and submit the form.</p></p>
       <img src="https://i.ibb.co/pjPB9JtQ/Screenshot-2026-01-17-at-10-38-34-AM.png" alt="Logo 1" style="display: block; margin: 20px auto; border: 4px solid #333; border-radius: 12px; box-shadow: 0 4px 12px rgb(0, 0, 0);" width="300" height="175">
-      <p>
-        The website sends the information to our Google Form by matching the form IDs to the website question IDs. 
-      </p>
+      <p>The website sends the information to our Google Form by matching the form IDs to the website question IDs.</p>
       <img src="https://i.ibb.co/67ZHvCcD/Screenshot-2026-01-17-at-11-23-32-AM.png" alt="Logo 1" style="display: block; margin: 20px auto; border: 4px solid #333; border-radius: 12px; box-shadow: 0 4px 12px rgb(0, 0, 0);" width="300" height="150">
       <img src="https://i.ibb.co/99pn8YsM/Screenshot-2026-01-17-at-11-19-48-AM.png" alt="Logo 1" style="display: block; margin: 20px auto; border: 4px solid #333; border-radius: 12px; box-shadow: 0 4px 12px rgb(0, 0, 0);" width="300" height="300">
-      <p>
-        The data from the Google Form is then sent to our Google Sheet, where we take the raw data and turn it into processed data, telling us how each robot performs.
-      </p>
+      <p>The data from the Google Form is then sent to our Google Sheet, where we take the raw data and turn it into processed data, telling us how each robot performs.</p>
       <img src="https://i.ibb.co/hxzCQzGH/Screenshot-2026-01-17-at-11-46-58-AM.png" alt="Logo 1" style="display: block; margin: 20px auto; border: 4px solid #333; border-radius: 12px; box-shadow: 0 4px 12px rgb(0, 0, 0);" width="300" height="150">
     </div>
     <div class="content-section">
       <h2>Links</h2>
-      <p>
-        <a href="https://github.com/Frc5572/Scouting-Website" target="_blank">Github Repo</a>
-      </p>
-      <p>
-        <a href="https://docs.google.com/spreadsheets/d/1Hb1gtc7D9eeo4tniX_IHi8PWJhOns-BcMFdDXMybXzs/edit?usp=sharing" target="_blank">Data Collection and Visualization Google Sheet</a>
-      </p>
-    </div> 
-
+      <p><a href="https://github.com/Frc5572/Scouting-Website" target="_blank">Github Repo</a></p>
+      <p><a href="https://docs.google.com/spreadsheets/d/1Hb1gtc7D9eeo4tniX_IHi8PWJhOns-BcMFdDXMybXzs/edit?usp=sharing" target="_blank">Data Collection and Visualization Google Sheet</a></p>
+    </div>
     <div class="content-section">
       <h2>Scouting Team Members</h2>
       <div class="team-stats">
-        <div class="stat-card">
-          <h3>25</h3>
-          <p>Number of Scouts this Season</p>
-        </div>
-        <div class="stat-card">
-          <h3>74</h3>
-          <p>Matches Tracked</p>
-        </div>
-        <div class="stat-card">
-          <h3>100%</h3>
-          <p>Dedication</p>
-        </div>
+        <div class="stat-card"><h3>25</h3><p>Number of Scouts this Season</p></div>
+        <div class="stat-card"><h3>74</h3><p>Matches Tracked</p></div>
+        <div class="stat-card"><h3>100%</h3><p>Dedication</p></div>
       </div>
-      
-      <p style="margin-top: 25px;">
-        Our main scouting team includes: Cole, Saajid, Elijah, Jane, Will, Jacqueline, and Rital. Each member brings 
-        unique skills and perspectives to ensure accurate and comprehensive data collection.
-      </p>
+      <p style="margin-top: 25px;">Our main scouting team includes: Cole, Saajid, Elijah, Jane, Will, Jacqueline, and Rita. Each member brings unique skills and perspectives to ensure accurate and comprehensive data collection.</p>
     </div>
-
     <div class="text-center mt-4">
       <button class="btn-nav" onclick="showScoutingPage()">→ Back to Scouting Form ←</button>
     </div>
   </div>
 </div>
 
+<!-- QR Code Modal -->
+<div class="qr-overlay" id="qrOverlay">
+  <div class="qr-modal">
+    <h2>✓ Submitted! Scan Your QR Code</h2>
+    <p>Form sent to Google. Scan this QR code to import the same data directly into Google Sheets.</p>
+    <div id="qrCodeContainer"></div>
+    <div class="qr-meta" id="qrMeta"></div>
+    <p class="scan-hint">Scan → copy the text → click an empty cell in column A → paste. Each field auto-splits into its own column instantly.</p>
+    <div class="qr-actions">
+      <button class="btn-qr-download" onclick="downloadQR()">⬇ Download QR</button>
+      <button class="btn-qr-close" onclick="closeQR()">Done — Next Match</button>
+    </div>
+  </div>
+</div>
+
 <script>
-
-function showAboutPage() {
-  document.getElementById('scoutingPage').classList.remove('active');
-  document.getElementById('aboutPage').classList.add('active');
-  window.scrollTo(0, 0);
-}
-
-function showScoutingPage() {
-  document.getElementById('aboutPage').classList.remove('active');
-  document.getElementById('scoutingPage').classList.add('active');
-  window.scrollTo(0, 0);
-}
-
-function incrementAutoScored() {
-  const input = document.getElementById('autoScored');
-  let currentValue = parseInt(input.value) || 0;
-  if (currentValue < 500) {
-    currentValue+=1;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-    markFieldsetAsAnswered(input);
+  /* ─── Navigation ─── */
+  function showAboutPage() {
+    document.getElementById('scoutingPage').classList.remove('active');
+    document.getElementById('aboutPage').classList.add('active');
+    window.scrollTo(0, 0);
   }
-}
-
-function decrementAutoScored() {
-  const input = document.getElementById('autoScored');
-  let currentValue = parseInt(input.value) || 0;
-  if (currentValue > 0) {
-    currentValue-=1;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-    markFieldsetAsAnswered(input);
+  function showScoutingPage() {
+    document.getElementById('aboutPage').classList.remove('active');
+    document.getElementById('scoutingPage').classList.add('active');
+    window.scrollTo(0, 0);
   }
-}
 
-function incrementAutoPassed() {
-  const input = document.getElementById('autoPassed');
-  let currentValue = parseInt(input.value) || 0;
-  if (currentValue < 500) {
-    currentValue+=1;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-    markFieldsetAsAnswered(input);
+  /* ─── Counter helpers ─── */
+  function adj(id, delta) {
+    const el = document.getElementById(id);
+    const v = Math.max(0, Math.min(500, (parseInt(el.value) || 0) + delta));
+    el.value = v;
+    el.dispatchEvent(new Event('change'));
+    markFieldsetAsAnswered(el);
   }
-}
+  function incrementAutoScored()  { adj('autoScored',  1); }
+  function decrementAutoScored()  { adj('autoScored', -1); }
+  function incrementAutoPassed()  { adj('autoPassed',  1); }
+  function decrementAutoPassed()  { adj('autoPassed', -1); }
+  function incrementTeleopScored(){ adj('teleopScored', 1); }
+  function decrementTeleopScored(){ adj('teleopScored',-1); }
+  function incrementTeleopPassed(){ adj('teleopPassed', 1); }
+  function decrementTeleopPassed(){ adj('teleopPassed',-1); }
 
-function decrementAutoPassed() {
-  const input = document.getElementById('autoPassed');
-  let currentValue = parseInt(input.value) || 0;
-  if (currentValue > 0) {
-    currentValue-=1;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-    markFieldsetAsAnswered(input);
-  }
-}
-
-function incrementTeleopScored() {
-  const input = document.getElementById('teleopScored');
-  let currentValue = parseInt(input.value) || 0;
-  if (currentValue < 500) {
-    currentValue+=1;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-    markFieldsetAsAnswered(input);
-  }
-}
-
-function decrementTeleopScored() {
-  const input = document.getElementById('teleopScored');
-  let currentValue = parseInt(input.value) || 0;
-  if (currentValue > 0) {
-    currentValue-=1;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-    markFieldsetAsAnswered(input);
-  }
-}
-
-function incrementTeleopPassed() {
-  const input = document.getElementById('teleopPassed');
-  let currentValue = parseInt(input.value) || 0;
-  if (currentValue < 500) {
-    currentValue+=1;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-    markFieldsetAsAnswered(input);
-  }
-}
-
-function decrementTeleopPassed() {
-  const input = document.getElementById('teleopPassed');
-  let currentValue = parseInt(input.value) || 0;
-  if (currentValue > 0) {
-    currentValue-=1;
-    input.value = currentValue;
-    input.dispatchEvent(new Event('change'));
-    markFieldsetAsAnswered(input);
-  }
-}
-
-function markFieldsetAsAnswered(element) {
-  const fieldset = element.closest('fieldset');
-  if (fieldset) {
+  /* ─── Fieldset answered highlight ─── */
+  function markFieldsetAsAnswered(element) {
+    const fieldset = element.closest('fieldset');
+    if (!fieldset) return;
     if (fieldset.classList.contains('fuel-counter')) {
-      const input = fieldset.querySelector('input');
-      const value = parseInt(input.value) || 0;
-      if (value > 0) {
-        fieldset.classList.add('answered');
-      } else {
-        fieldset.classList.remove('answered');
-      }
+      const val = parseInt(fieldset.querySelector('input').value) || 0;
+      fieldset.classList.toggle('answered', val > 0);
     } else {
-      const input = fieldset.querySelector('input, select');
-      if (input && input.value && input.value !== '') {
-        fieldset.classList.add('answered');
-      } else {
-        fieldset.classList.remove('answered');
-      }
+      const inp = fieldset.querySelector('input, select');
+      fieldset.classList.toggle('answered', !!(inp && inp.value && inp.value !== ''));
     }
   }
-}
 
-const DEFAULT_EVENT_KEY = '2026txsan';
-let submitted = false;
-let matchData = null;
+  /* ─── Persistent fields ─── */
+  const DEFAULT_EVENT_KEY = '2026txsan';
+  let submitted = false;
+  let matchData = null;
 
-window.addEventListener('load', function() {
-  document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
-  loadPersistentData();
-  initializeMatchNumber();
-  
-  if (typeof window.MATCH_DATA !== 'undefined') {
-    matchData = window.MATCH_DATA;
-    console.log('Match data loaded:', matchData);
-  } else {
-    console.log('No match data found in match-data.js file');
+  function savePersistentData() {
+    const d = {};
+    document.querySelectorAll('.persistent-field').forEach(f => { d[f.id] = f.value; });
+    const mn = document.getElementById('matchNumber').value;
+    if (mn) d.lastMatchNumber = parseInt(mn);
+    window.scoutingPersistentData = d;
   }
-  
-  document.getElementById('hidden_iframe').addEventListener('load', handleFormSubmit);
-  
-  document.querySelectorAll('fieldset').forEach(fieldset => {
-    const input = fieldset.querySelector('input, select');
-    if (input) {
-      if (fieldset.classList.contains('fuel-counter')) {
-        const value = parseInt(input.value) || 0;
-        if (value > 0) {
-          fieldset.classList.add('answered');
-        }
-      } else if (input.value && input.value !== '') {
-        fieldset.classList.add('answered');
-      }
-    }
-  });
-});
 
-document.addEventListener('change', function(e) {
-  if (e.target.classList.contains('persistent-field')) {
-    savePersistentData();
-  }
-  if (e.target.id === 'matchNumber') {
-    loadTeamsForMatch();
-  }
-  markFieldsetAsAnswered(e.target);
-});
-
-document.addEventListener('input', function(e) {
-  if (e.target.classList.contains('persistent-field')) {
-    savePersistentData();
-  }
-  markFieldsetAsAnswered(e.target);
-});
-
-function savePersistentData() {
-  const persistentData = {};
-  document.querySelectorAll('.persistent-field').forEach(field => {
-    persistentData[field.id] = field.value;
-  });
-  const matchNumber = document.getElementById('matchNumber').value;
-  if (matchNumber) {
-    persistentData.lastMatchNumber = parseInt(matchNumber);
-  }
-  window.scoutingPersistentData = persistentData;
-}
-
-function loadPersistentData() {
-  if (window.scoutingPersistentData) {
-    Object.keys(window.scoutingPersistentData).forEach(fieldId => {
-      if (fieldId !== 'lastMatchNumber') {
-        const field = document.getElementById(fieldId);
-        if (field) {
-          field.value = window.scoutingPersistentData[fieldId];
-        }
-      }
+  function loadPersistentData() {
+    if (!window.scoutingPersistentData) return;
+    Object.keys(window.scoutingPersistentData).forEach(id => {
+      if (id === 'lastMatchNumber') return;
+      const f = document.getElementById(id);
+      if (f) f.value = window.scoutingPersistentData[id];
     });
   }
-}
 
-function initializeMatchNumber() {
-  const matchNumberField = document.getElementById('matchNumber');
-  if (window.scoutingPersistentData && window.scoutingPersistentData.lastMatchNumber) {
-    matchNumberField.value = window.scoutingPersistentData.lastMatchNumber + 1;
-  } else if (!matchNumberField.value) {
-    matchNumberField.value = 1;
+  function initializeMatchNumber() {
+    const f = document.getElementById('matchNumber');
+    if (window.scoutingPersistentData && window.scoutingPersistentData.lastMatchNumber) {
+      f.value = window.scoutingPersistentData.lastMatchNumber + 1;
+    } else if (!f.value) {
+      f.value = 1;
+    }
+    loadTeamsForMatch();
   }
-  loadTeamsForMatch();
-}
 
-function loadTeamsForMatch() {
-  const eventKey = DEFAULT_EVENT_KEY;
-  const matchNumber = parseInt(document.getElementById('matchNumber').value);
-  const teamInput = document.getElementById('teamInput');
-  const loadingIndicator = document.getElementById('teamLoadingIndicator');
-  
-  if (!matchNumber || isNaN(matchNumber)) {
+  /* ─── Team loading ─── */
+  function loadTeamsForMatch() {
+    const matchNumber = parseInt(document.getElementById('matchNumber').value);
+    const teamInput = document.getElementById('teamInput');
+    const loadingIndicator = document.getElementById('teamLoadingIndicator');
+    if (!matchNumber || isNaN(matchNumber)) {
+      teamInput.disabled = true;
+      teamInput.placeholder = 'Enter match number first';
+      document.getElementById('teamDatalist').innerHTML = '<option value="">Enter match number first</option>';
+      loadingIndicator.style.display = 'none';
+      return;
+    }
+    loadingIndicator.style.display = 'block';
     teamInput.disabled = true;
-    teamInput.placeholder = 'Enter match number first';
-    document.getElementById('teamDatalist').innerHTML = '<option value="">Enter match number first</option>';
-    loadingIndicator.style.display = 'none';
-    return;
-  }
-
-  loadingIndicator.style.display = 'block';
-  teamInput.disabled = true;
-  teamInput.placeholder = 'Loading teams...';
-  document.getElementById('teamDatalist').innerHTML = '<option value="">Loading teams...</option>';
-
-  if (matchData && matchData[eventKey] && matchData[eventKey][matchNumber]) {
-    populateTeamSelect(matchData[eventKey][matchNumber]);
-    loadingIndicator.style.display = 'none';
-    return;
-  }
-  
-  teamInput.disabled = false;
-  teamInput.placeholder = 'Enter team number manually';
-  document.getElementById('teamDatalist').innerHTML = '';
-  loadingIndicator.style.display = 'none';
-}
-
-function populateTeamSelect(teams) {
-  const teamInput = document.getElementById('teamInput');
-  const teamDatalist = document.getElementById('teamDatalist');
-  
-  if (!teams || teams.length === 0) {
-    teamInput.placeholder = 'Enter team number manually';
+    teamInput.placeholder = 'Loading teams...';
+    document.getElementById('teamDatalist').innerHTML = '<option value="">Loading teams...</option>';
+    if (matchData && matchData[DEFAULT_EVENT_KEY] && matchData[DEFAULT_EVENT_KEY][matchNumber]) {
+      populateTeamSelect(matchData[DEFAULT_EVENT_KEY][matchNumber]);
+      loadingIndicator.style.display = 'none';
+      return;
+    }
     teamInput.disabled = false;
-    teamDatalist.innerHTML = '';
-    return;
+    teamInput.placeholder = 'Enter team number manually';
+    document.getElementById('teamDatalist').innerHTML = '';
+    loadingIndicator.style.display = 'none';
   }
-  
-  teamDatalist.innerHTML = '';
-  teams.forEach(team => {
-    const option = document.createElement('option');
-    const teamNumber = typeof team === 'string' ? team.replace('frc', '') : team.number;
-    option.value = teamNumber;
-    teamDatalist.appendChild(option);
-  });
-  
-  teamInput.disabled = false;
-  teamInput.placeholder = 'Enter or select team number';
-}
 
-function handleFormSubmit() {
-  console.log('handleFormSubmit called, submitted flag:', submitted);
-  
-  if (submitted) {
+  function populateTeamSelect(teams) {
+    const teamInput = document.getElementById('teamInput');
+    const teamDatalist = document.getElementById('teamDatalist');
+    if (!teams || teams.length === 0) {
+      teamInput.placeholder = 'Enter team number manually';
+      teamInput.disabled = false;
+      teamDatalist.innerHTML = '';
+      return;
+    }
+    teamDatalist.innerHTML = '';
+    teams.forEach(team => {
+      const opt = document.createElement('option');
+      opt.value = typeof team === 'string' ? team.replace('frc', '') : team.number;
+      teamDatalist.appendChild(opt);
+    });
+    teamInput.disabled = false;
+    teamInput.placeholder = 'Enter or select team number';
+  }
+
+  /* ─── QR Code generation ─── */
+  function buildQRData() {
+    const now = new Date();
+    const ts = (now.getMonth()+1) + '/' + now.getDate() + '/' + now.getFullYear() + ' ' +
+      now.getHours().toString().padStart(2,'0') + ':' +
+      now.getMinutes().toString().padStart(2,'0') + ':' +
+      now.getSeconds().toString().padStart(2,'0');
+
+    const v = id => (document.getElementById(id) || {}).value || '';
+
+    // Escape a field value so it's safe inside the SPLIT formula string.
+    // We use | as delimiter, so any | in a value gets replaced with a space.
+    // We also escape double-quotes by doubling them (Sheets CSV convention).
+    const esc = val => String(val).replace(/\|/g, ' ').replace(/"/g, '""');
+
+    const fields = [
+      ts,
+      v('name'),
+      v('lanyardNumber'),
+      v('matchNumber'),
+      v('teamInput'),
+      v('robotAttendance'),
+      v('startingLocation'),
+      v('exitLine'),
+      v('autoScored'),
+      '',                       // Auto Scored Cycles (not collected)
+      v('autoPassed'),
+      '',                       // Auto Passed Cycles (not collected)
+      v('autoClimb'),
+      v('autoClimbHow'),
+      v('teleopScored'),
+      '',                       // Teleop Scored Cycles (not collected)
+      v('teleopPassed'),
+      '',                       // Teleop Passed Cycles (not collected)
+      v('teleopClimb'),
+      v('teleopClimbHow'),
+      v('shootingAccuracy'),
+      v('hubActive'),
+      v('hubInactive'),
+      v('fuelIntake'),
+      v('scoringMethod'),
+      v('driving'),
+      v('defence'),
+      v('trench'),
+      v('bump'),
+      v('tipOver'),
+      v('beached'),
+      v('passingAccuracy'),
+      v('comments'),
+      v('password')
+    ];
+
+    // Build a Sheets SPLIT formula: paste into any cell → spills across columns
+    const escaped = fields.map(esc).join('|');
+    const formula = `=SPLIT("${escaped}","|",TRUE,FALSE)`;
+
+    return { data: formula, ts, team: v('teamInput'), match: v('matchNumber'), scout: v('name') };
+  }
+
+  function showQRModal(qrInfo) {
+    const container = document.getElementById('qrCodeContainer');
+    container.innerHTML = '';
+
+    new QRCode(container, {
+      text: qrInfo.data,
+      width: 280,
+      height: 280,
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+
+    document.getElementById('qrMeta').innerHTML =
+      '<strong>Scout:</strong> ' + qrInfo.scout +
+      ' &nbsp;|&nbsp; <strong>Match:</strong> ' + qrInfo.match +
+      ' &nbsp;|&nbsp; <strong>Team:</strong> ' + qrInfo.team +
+      '<br><strong>Time:</strong> ' + qrInfo.ts;
+
+    document.getElementById('qrOverlay').classList.add('active');
+  }
+
+  function closeQR() {
+    document.getElementById('qrOverlay').classList.remove('active');
+  }
+
+  function downloadQR() {
+    const container = document.getElementById('qrCodeContainer');
+    const canvas = container.querySelector('canvas');
+    const img = container.querySelector('img');
+    let src = null;
+    if (canvas) {
+      src = canvas.toDataURL('image/png');
+    } else if (img) {
+      src = img.src;
+    }
+    if (!src) return;
+    const a = document.createElement('a');
+    const match = document.getElementById('matchNumber').value || 'unknown';
+    const team  = document.getElementById('teamInput').value  || 'unknown';
+    a.download = 'qr_match' + match + '_team' + team + '.png';
+    a.href = src;
+    a.click();
+  }
+
+  /* ─── Form submit handling ─── */
+  function handleFormSubmit() {
+    if (!submitted) return;
+
+    // Build and show QR
+    const qrInfo = buildQRData();
+    showQRModal(qrInfo);
+
+    // Show success toast
     const successMessage = document.getElementById('successMessage');
     successMessage.style.display = 'block';
-    
-    setTimeout(() => {
-      successMessage.style.display = 'none';
-    }, 3000);
+    setTimeout(() => { successMessage.style.display = 'none'; }, 3000);
 
+    // Prep form for next match
     const currentMatchNumber = parseInt(document.getElementById('matchNumber').value) || 1;
     document.getElementById('scoutingForm').reset();
     document.getElementById('scoutingForm').classList.remove('loading');
     document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
     loadPersistentData();
     document.getElementById('matchNumber').value = currentMatchNumber + 1;
-    
+
     if (window.scoutingPersistentData) {
       window.scoutingPersistentData.lastMatchNumber = currentMatchNumber;
     }
-    
+
     loadTeamsForMatch();
-    
-    document.querySelectorAll('fieldset').forEach(fieldset => {
-      fieldset.classList.remove('answered');
-    });
-    
+    document.querySelectorAll('fieldset').forEach(fs => fs.classList.remove('answered'));
     submitted = false;
   }
-}
 
-document.getElementById('scoutingForm').addEventListener('submit', function(e) {
-  console.log('Form submitting...');
-  submitted = true;
-  savePersistentData();
-  document.getElementById('scoutingForm').classList.add('loading');
-});
+  /* ─── Boot ─── */
+  window.addEventListener('load', function () {
+    document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
+    loadPersistentData();
+    initializeMatchNumber();
+
+    if (typeof window.MATCH_DATA !== 'undefined') {
+      matchData = window.MATCH_DATA;
+    }
+
+    document.getElementById('hidden_iframe').addEventListener('load', handleFormSubmit);
+
+    document.querySelectorAll('fieldset').forEach(fieldset => {
+      const input = fieldset.querySelector('input, select');
+      if (!input) return;
+      if (fieldset.classList.contains('fuel-counter')) {
+        if ((parseInt(input.value) || 0) > 0) fieldset.classList.add('answered');
+      } else if (input.value && input.value !== '') {
+        fieldset.classList.add('answered');
+      }
+    });
+  });
+
+  document.addEventListener('change', function (e) {
+    if (e.target.classList.contains('persistent-field')) savePersistentData();
+    if (e.target.id === 'matchNumber') loadTeamsForMatch();
+    markFieldsetAsAnswered(e.target);
+  });
+
+  document.addEventListener('input', function (e) {
+    if (e.target.classList.contains('persistent-field')) savePersistentData();
+    markFieldsetAsAnswered(e.target);
+  });
+
+  document.getElementById('scoutingForm').addEventListener('submit', function () {
+    submitted = true;
+    savePersistentData();
+    document.getElementById('scoutingForm').classList.add('loading');
+  });
 </script>
-<div id="cursorTrail">
-  <script>
-  </script>
-</div>
-
 </body>
 </html>
