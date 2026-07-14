@@ -7,9 +7,22 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>5572 Scouting Site</title>
+
+  <!-- ── PWA install support ── -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#961409">
+  <!-- iPhone / Safari "Add to Home Screen" support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="5572 Scouting">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <!-- Android / Chrome install icon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
   <link rel="icon" type="image/png" href="https://i.ibb.co/PGjYvXpj/Screenshot-2026-01-11-at-4-29-36-PM-removebg-preview.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- Bundled locally so the app works with ZERO internet connection -->
+  <link href="vendor/bootstrap.min.css" rel="stylesheet">
+  <script src="vendor/qrcode.min.js"></script>
   <script src="match-data.js"></script>
   <style>
     * { transition: all 0.2s ease; }
@@ -224,6 +237,22 @@
     .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; border: 4px solid #333; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
+    .offline-badge {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: #343a40;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .offline-badge.show { display: block; }
+
     /* ── QR Modal ── */
     .qr-overlay {
       display: none;
@@ -322,6 +351,8 @@
   </style>
 </head>
 <body>
+<div class="offline-badge" id="offlineBadge">📴 Offline — QR export still works</div>
+
 <div class="container py-4">
   <div class="top-header">
     <img src="https://i.ibb.co/bMn2vC8g/Rosbots2025-2026-Gear-Logo.png" alt="Rosbots Logo" width="200" height="200" class="corner-logo">
@@ -344,7 +375,7 @@
     </div>
 
     <div id="successMessage" class="success-message">
-      ✓ If password correct: Form submitted successfully! Ready for next match.
+      ✓ Saved! QR code ready to scan.
     </div>
     <div id="errorMessage" class="error-message">
       ✗ Error loading match data. Please check event key and match number.
@@ -430,7 +461,7 @@
         </div>
       </div>
 
-      <!-- Game Video Section -->
+      <!-- Game Video Section (requires internet — will simply not load offline) -->
       <h4>Game Overview Video</h4>
       <div class="video-section">
         <div class="video-wrapper">
@@ -685,14 +716,9 @@
       <p>Our scouting system is designed to collect important match data about other team's robots during competitions. Each scouter observes a specific robot throughout the match, recording crucial information about their autonomous performance, teleop capabilities, climbing mechanisms, and strategic gameplay. This data helps our strategy team make informed decisions during alliance selections and when coming up with different strategies before each match.</p>
     </div>
     <div class="content-section">
-      <h2>How The Scouting Site Works</h2>
-      <p><p style="text-align: center;">Scouters enter robot data and submit the form.</p></p>
-      <img src="https://i.ibb.co/pjPB9JtQ/Screenshot-2026-01-17-at-10-38-34-AM.png" alt="Logo 1" style="display: block; margin: 20px auto; border: 4px solid #333; border-radius: 12px; box-shadow: 0 4px 12px rgb(0, 0, 0);" width="300" height="175">
-      <p>The website sends the information to our Google Form by matching the form IDs to the website question IDs.</p>
-      <img src="https://i.ibb.co/67ZHvCcD/Screenshot-2026-01-17-at-11-23-32-AM.png" alt="Logo 1" style="display: block; margin: 20px auto; border: 4px solid #333; border-radius: 12px; box-shadow: 0 4px 12px rgb(0, 0, 0);" width="300" height="150">
-      <img src="https://i.ibb.co/99pn8YsM/Screenshot-2026-01-17-at-11-19-48-AM.png" alt="Logo 1" style="display: block; margin: 20px auto; border: 4px solid #333; border-radius: 12px; box-shadow: 0 4px 12px rgb(0, 0, 0);" width="300" height="300">
-      <p>The data from the Google Form is then sent to our Google Sheet, where we take the raw data and turn it into processed data, telling us how each robot performs.</p>
-      <img src="https://i.ibb.co/hxzCQzGH/Screenshot-2026-01-17-at-11-46-58-AM.png" alt="Logo 1" style="display: block; margin: 20px auto; border: 4px solid #333; border-radius: 12px; box-shadow: 0 4px 12px rgb(0, 0, 0);" width="300" height="150">
+      <h2>How The Scouting Site Works (Offline App Version)</h2>
+      <p style="text-align: center;">Scouters fill out the form on their phone — no signal needed. Submitting instantly generates a QR code containing that match's data.</p>
+      <p>Back at the pit or stands, whoever is running the laptop scans each scouter's QR code with a webcam-based scanner (or any QR scanner app), which pastes the data straight into a row of the Google Sheet. Nothing has to reach the internet in the moment it's collected — the QR code <em>is</em> the transfer mechanism.</p>
     </div>
     <div class="content-section">
       <h2>Links</h2>
@@ -717,8 +743,8 @@
 <!-- QR Code Modal -->
 <div class="qr-overlay" id="qrOverlay">
   <div class="qr-modal">
-    <h2>✓ Submitted! Scan Your QR Code</h2>
-    <p>Form sent to Google. Scan this QR code to import the same data directly into Google Sheets.</p>
+    <h2>✓ Saved! Scan Your QR Code</h2>
+    <p>This QR code holds this match's data. Scan it to import directly into Google Sheets — works with zero connection.</p>
     <div id="qrCodeContainer"></div>
     <div class="qr-meta" id="qrMeta"></div>
     <p class="scan-hint">Scan → copy the text → click an empty cell in column A → paste. Each field auto-splits into its own column instantly.</p>
@@ -730,6 +756,22 @@
 </div>
 
 <script>
+  /* ─── Service worker registration: makes this installable + fully offline ─── */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch((err) => {
+        console.warn('Service worker registration failed:', err);
+      });
+    });
+  }
+
+  /* ─── Offline indicator ─── */
+  function updateOfflineBadge() {
+    document.getElementById('offlineBadge').classList.toggle('show', !navigator.onLine);
+  }
+  window.addEventListener('online', updateOfflineBadge);
+  window.addEventListener('offline', updateOfflineBadge);
+
   /* ─── Navigation ─── */
   function showAboutPage() {
     document.getElementById('scoutingPage').classList.remove('active');
@@ -774,7 +816,6 @@
 
   /* ─── Persistent fields ─── */
   const DEFAULT_EVENT_KEY = '2026txsan';
-  let submitted = false;
   let matchData = null;
 
   function savePersistentData() {
@@ -954,23 +995,39 @@
     a.click();
   }
 
-  /* ─── Form submit handling ─── */
-  function handleFormSubmit() {
-    if (!submitted) return;
+  /* ─── Best-effort background sync to Google Forms (never blocks the QR flow) ─── */
+  function tryBackgroundSubmit(form) {
+    if (!navigator.onLine) return; // don't even try, save the battery/time
+    try {
+      const fd = new FormData(form);
+      fetch(form.action, { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {});
+    } catch (e) {
+      // silently ignore — QR is the source of truth, this is just a bonus
+    }
+  }
 
-    // Build and show QR
+  /* ─── Form submit handling: QR generation is now IMMEDIATE and network-independent ─── */
+  document.getElementById('scoutingForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // we no longer depend on the hidden iframe / network round trip
+    const form = e.target;
+
+    savePersistentData();
+
+    // 1. Build & show the QR code right away — this always works, online or offline.
     const qrInfo = buildQRData();
     showQRModal(qrInfo);
 
-    // Show success toast
+    // 2. Toast
     const successMessage = document.getElementById('successMessage');
     successMessage.style.display = 'block';
     setTimeout(() => { successMessage.style.display = 'none'; }, 3000);
 
-    // Prep form for next match
+    // 3. Fire-and-forget attempt to also log it to the Google Form if there's wifi.
+    tryBackgroundSubmit(form);
+
+    // 4. Reset for next match
     const currentMatchNumber = parseInt(document.getElementById('matchNumber').value) || 1;
-    document.getElementById('scoutingForm').reset();
-    document.getElementById('scoutingForm').classList.remove('loading');
+    form.reset();
     document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
     loadPersistentData();
     document.getElementById('matchNumber').value = currentMatchNumber + 1;
@@ -981,20 +1038,18 @@
 
     loadTeamsForMatch();
     document.querySelectorAll('fieldset').forEach(fs => fs.classList.remove('answered'));
-    submitted = false;
-  }
+  });
 
   /* ─── Boot ─── */
   window.addEventListener('load', function () {
     document.getElementById('eventKey').value = DEFAULT_EVENT_KEY;
     loadPersistentData();
     initializeMatchNumber();
+    updateOfflineBadge();
 
     if (typeof window.MATCH_DATA !== 'undefined') {
       matchData = window.MATCH_DATA;
     }
-
-    document.getElementById('hidden_iframe').addEventListener('load', handleFormSubmit);
 
     document.querySelectorAll('fieldset').forEach(fieldset => {
       const input = fieldset.querySelector('input, select');
@@ -1016,12 +1071,6 @@
   document.addEventListener('input', function (e) {
     if (e.target.classList.contains('persistent-field')) savePersistentData();
     markFieldsetAsAnswered(e.target);
-  });
-
-  document.getElementById('scoutingForm').addEventListener('submit', function () {
-    submitted = true;
-    savePersistentData();
-    document.getElementById('scoutingForm').classList.add('loading');
   });
 </script>
 </body>
