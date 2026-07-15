@@ -1,4 +1,4 @@
-const CACHE_NAME = "rosbots-5572-scouting-v3.003";
+const CACHE_NAME = "rosbots-5572-scouting-v3.004";
 
 // Everything the app needs to run with ZERO network connection.
 const PRECACHE_URLS = [
