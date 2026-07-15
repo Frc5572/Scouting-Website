@@ -758,13 +758,22 @@
 
 <script>
   /* ─── Service worker registration: makes this installable + fully offline ─── */
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js').catch((err) => {
-        console.warn('Service worker registration failed:', err);
-      });
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch((err) => {
+      console.warn('Service worker registration failed:', err);
     });
-  }
+  });
+
+  // When a new service worker takes control, force a reload so the
+  // user actually sees the new version instead of needing to reopen twice.
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (refreshing) return;
+    refreshing = true;
+    window.location.reload();
+  });
+}
 
   /* ─── Offline indicator ─── */
   function updateOfflineBadge() {
