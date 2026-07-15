@@ -1,5 +1,14 @@
-# 5572 Scouting — Offline App Setup
+# 5572 Scouting
 
+NOTICE: 
+
+The gotcha: the way I built sw.js, the browser only checks for updates by comparing the sw.js file itself byte-for-byte. If you only edit index.html (say, tweak a form field) but don't touch sw.js, the browser won't notice anything changed — it'll keep serving the old cached version of index.html forever, even with wifi on.
+
+The fix: every time you push changes to any file, bump the version number at the top of sw.js:
+
+jsconst CACHE_NAME = "rosbots-5572-scouting-v2";  // just increment this
+
+--------------------------------------------------------------------------------------------------------------------------------------------
 This turns your scouting site into an app scouters install straight to their
 phone's home screen — no App Store, no Play Store, and it works with **zero**
 wifi/cell connection once installed. You keep using the QR-scan workflow to
