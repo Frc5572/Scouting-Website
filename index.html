@@ -253,6 +253,21 @@
     }
     .offline-badge.show { display: block; }
 
+    .version-badge {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(0,0,0,0.4);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
     /* ── QR Modal ── */
     .qr-overlay {
       display: none;
@@ -352,6 +367,7 @@
 </head>
 <body>
 <div class="offline-badge" id="offlineBadge">📴 Offline — QR export still works</div>
+<div class="version-badge" id="versionBadge">v...</div>
 
 <div class="container py-4">
   <div class="top-header">
@@ -685,13 +701,13 @@
           </fieldset>
         </div>
 
-       <div class="form-row" style="margin-top: 20px;">
-  <fieldset class="w-100">
-    <legend>1. Did they play defence, and if so, were they easy to push around? Describe what they did on defence. 2. Other comments??</legend>
-    <input type="text" class="form-control" name="entry.2023321300" id="comments" placeholder="Type answer here" required maxlength="200">
-    <small class="form-text text-muted" id="commentsCounter">0 / 200</small>
-  </fieldset>
-</div>
+        <div class="form-row" style="margin-top: 20px;">
+          <fieldset class="w-100">
+            <legend>1. Did they play defence, and if so, were they easy to push around? Describe what they did on defence. 2. Other comments??</legend>
+            <input type="text" class="form-control" name="entry.2023321300" id="comments" placeholder="Type answer here" required maxlength="200">
+            <small class="form-text text-muted" id="commentsCounter">0 / 200</small>
+          </fieldset>
+        </div>
       </div>
 
       <div class="submit-container">
@@ -758,22 +774,22 @@
 
 <script>
   /* ─── Service worker registration: makes this installable + fully offline ─── */
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch((err) => {
-      console.warn('Service worker registration failed:', err);
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch((err) => {
+        console.warn('Service worker registration failed:', err);
+      });
     });
-  });
 
-  // When a new service worker takes control, force a reload so the
-  // user actually sees the new version instead of needing to reopen twice.
-  let refreshing = false;
-  navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (refreshing) return;
-    refreshing = true;
-    window.location.reload();
-  });
-}
+    // When a new service worker takes control, force a reload so the
+    // user actually sees the new version instead of needing to reopen twice.
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (refreshing) return;
+      refreshing = true;
+      window.location.reload();
+    });
+  }
 
   /* ─── Offline indicator ─── */
   function updateOfflineBadge() {
@@ -781,6 +797,24 @@ if ('serviceWorker' in navigator) {
   }
   window.addEventListener('online', updateOfflineBadge);
   window.addEventListener('offline', updateOfflineBadge);
+
+  /* ─── Version badge: reads the version straight out of sw.js so there's only one place to edit it ─── */
+  function loadVersionBadge() {
+    fetch('sw.js')
+      .then((res) => res.text())
+      .then((text) => {
+        const match = text.match(/CACHE_NAME\s*=\s*"rosbots-5572-scouting-v([\d.]+)"/);
+        const badge = document.getElementById('versionBadge');
+        if (match) {
+          badge.textContent = 'v' + match[1];
+        } else {
+          badge.textContent = 'v?';
+        }
+      })
+      .catch(() => {
+        document.getElementById('versionBadge').textContent = 'v?';
+      });
+  }
 
   /* ─── Navigation ─── */
   function showAboutPage() {
@@ -1048,6 +1082,12 @@ if ('serviceWorker' in navigator) {
 
     loadTeamsForMatch();
     document.querySelectorAll('fieldset').forEach(fs => fs.classList.remove('answered'));
+    document.getElementById('commentsCounter').textContent = '0 / 200';
+  });
+
+  /* ─── Comments character counter ─── */
+  document.getElementById('comments').addEventListener('input', function () {
+    document.getElementById('commentsCounter').textContent = this.value.length + ' / 200';
   });
 
   /* ─── Boot ─── */
@@ -1056,6 +1096,7 @@ if ('serviceWorker' in navigator) {
     loadPersistentData();
     initializeMatchNumber();
     updateOfflineBadge();
+    loadVersionBadge();
 
     if (typeof window.MATCH_DATA !== 'undefined') {
       matchData = window.MATCH_DATA;
